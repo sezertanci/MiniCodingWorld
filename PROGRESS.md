@@ -62,9 +62,14 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
 
 - [x] Tek HTML betiği: `node tools/build-single-html.js` → `dist/mini-kodlama-dunyasi.html` (~210 KB, `dist/` git'e girmez). CSS/JS gömülür, görseller base64 veri adresine çevrilir. Testi: `tests/build-single-html.test.js`. Sunucudan açılınca hiçbir ek dosya isteği yapmadığı denendi.
 
+- [x] Uçtan uca son kontrol (2026-11-06): sıfır ilerlemeyle ana ekran → seviye → 3 yıldız → sonraki seviye → yenileme → ayarlardan sıfırlama zinciri denendi. 80 seviye telefonda (375 px), tablette (768 px) ve masaüstünde (1280 px) taşmasız açılıyor; konsolda hata yok; 258 test geçiyor.
+  - Düzeltilen: Tekrar Et'te blok sınırı doluyken ipucu basılamayan yön tuşunu gösteriyordu; artık tekrar sayısını değiştirmeyi veya blok silmeyi öneriyor.
+  - Rapor kullanıcıya sohbet içinde verildi.
+
 ## Sıradaki adımlar
 
-1. Baştan uçtan uca kontrol, düzeltmeler ve rapor (`RAPOR.md`), ardından worklog ve todo kayıtları.
+1. Kullanıcı dönünce oyunları kendi cihazında (tercihen `dist/mini-kodlama-dunyasi.html` ile tablette) deneyecek; geri bildirime göre düzeltme.
+2. Push yalnızca kullanıcı isterse yapılır.
 
 ## Notlar
 

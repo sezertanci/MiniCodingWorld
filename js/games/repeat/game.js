@@ -27,6 +27,7 @@
     missedGoal: "Robot bayrağa ulaşamadı. Tekrar sayısını ya da okları değiştirmeyi dene.",
     missingCoins: "Bayrağa ulaştın ama bütün altınları toplamadın. Önce altınları topla.",
     solved: "Blokların doğru! Başlat'a dokun.",
+    fullHint: "Blok sınırın doldu. Bir tekrar sayısını değiştirmeyi ya da bir bloğu silip yerine Tekrarla bloğu koymayı dene.",
   });
 
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -53,10 +54,12 @@
     return `Robot ${when}${obstacle} çarptı. ${fixAdvice(step)}`;
   }
 
-  function hintMessage(hint, definition) {
+  // Blok sınırı doluysa yön tuşları basılamaz; o zaman sıradaki yön yerine deseni değiştirmesi önerilir.
+  function hintMessage(hint, definition, full) {
     if (hint.type === HINT.EMPTY_REPEAT) return MESSAGES.emptyRepeat;
     if (hint.type === HINT.FIX_COMMAND) return `${fixAdvice(hint)} Yanlış yeri senin için kırmızıyla gösterdim.`;
     if (hint.type === HINT.SOLVED) return MESSAGES.solved;
+    if (full) return `${definition.hint} ${MESSAGES.fullHint}`;
     return `${definition.hint} Parlayan kareye bak; robot oraya ${COMMANDS[hint.direction].label.toLowerCase()} gitmeli.`;
   }
 
@@ -270,9 +273,10 @@
     function showHint() {
       state.hintUsed = true;
       const hint = engine.findHint(level, state.program);
+      const full = blockCount() >= definition.maxBlocks;
       board.hideHint();
       clearPadHint();
-      if (hint.type === HINT.NEXT_MOVE) {
+      if (hint.type === HINT.NEXT_MOVE && !full) {
         board.showHint(hint.target);
         padButtons[hint.direction].classList.add("is-hint");
       }
@@ -285,7 +289,7 @@
         state.highlight = { block: hint.block, inner: hint.inner, className: "is-wrong" };
       }
       render();
-      say(hintMessage(hint, definition));
+      say(hintMessage(hint, definition, full));
     }
 
     async function playSteps(result) {
