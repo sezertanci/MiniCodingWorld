@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Yıldız</title>
+  <desc>Kazanılmış seviye yıldızı. Dolu, sarı.</desc>
+  <ellipse cx="64" cy="118" rx="34" ry="6" fill="#1F2D4F" opacity="0.12"/>
+  <polygon points="64.0,14.0 78.7,45.8 113.5,49.9 87.8,73.7 94.6,108.1 64.0,91.0 33.4,108.1 40.2,73.7 14.5,49.9 49.3,45.8" fill="#FFD24D" stroke="#E8A920" stroke-width="4" stroke-linejoin="round"/>
+  <polygon points="64,91 94.6,108.1 87.8,73.7 113.5,49.9 78.7,45.8 64,66" fill="#F5BE34"/>
+  <ellipse cx="52" cy="50" rx="10" ry="5" fill="#FFFFFF" opacity="0.6" transform="rotate(-35 52 50)"/>
+</svg>

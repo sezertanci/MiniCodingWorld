@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <title>Robot Robi</title>
+  <desc>Oyunun ana karakteri. Beyaz gövdeli, mavi detaylı, el sallayan sevimli robot.</desc>
+  <ellipse cx="100" cy="226" rx="54" ry="8" fill="#1F2D4F" opacity="0.12"/>
+  <!-- Bacaklar -->
+  <rect x="72" y="178" width="20" height="34" rx="10" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <rect x="108" y="178" width="20" height="34" rx="10" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <ellipse cx="80" cy="214" rx="17" ry="9" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <ellipse cx="120" cy="214" rx="17" ry="9" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <!-- Kollar: sol aşağıda, sağ el sallıyor -->
+  <path d="M56 142 L40 172" stroke="#2B7BD9" stroke-width="22" stroke-linecap="round"/>
+  <path d="M56 142 L40 172" stroke="#4DA6FF" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="38" cy="176" r="12" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <path d="M144 140 L170 112" stroke="#2B7BD9" stroke-width="22" stroke-linecap="round"/>
+  <path d="M144 140 L170 112" stroke="#4DA6FF" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="174" cy="106" r="12" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <!-- Gövde -->
+  <rect x="54" y="118" width="92" height="72" rx="30" fill="#FFFFFF" stroke="#B8C7DE" stroke-width="4"/>
+  <path d="M112 120 H116 C132 120 144 132 144 148 V160 C144 176 132 188 116 188 H104 C124 176 126 140 112 120 Z" fill="#E3ECF7"/>
+  <polygon points="100.0,134.0 105.6,146.3 119.0,147.8 109.0,156.9 111.8,170.2 100.0,163.5 88.2,170.2 91.0,156.9 81.0,147.8 94.4,146.3" fill="#FFD24D" stroke="#E8A920" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Boyun ve anten -->
+  <rect x="88" y="108" width="24" height="14" rx="5" fill="#A9B6CC"/>
+  <line x1="100" y1="34" x2="100" y2="16" stroke="#A9B6CC" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="100" cy="12" r="9" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <!-- Kulaklar ve kafa -->
+  <rect x="26" y="54" width="20" height="38" rx="10" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <rect x="154" y="54" width="20" height="38" rx="10" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <rect x="40" y="30" width="120" height="84" rx="40" fill="#FFFFFF" stroke="#B8C7DE" stroke-width="4"/>
+  <path d="M120 32 C142 34 158 50 158 72 V74 C158 96 142 112 120 112 C140 98 142 50 120 32 Z" fill="#E3ECF7"/>
+  <!-- Yüz ekranı -->
+  <rect x="54" y="44" width="92" height="58" rx="26" fill="#1F2D4F"/>
+  <ellipse cx="78" cy="53" rx="14" ry="4" fill="#FFFFFF" opacity="0.25"/>
+  <g fill="none" stroke="#4DF0FF" stroke-width="6" stroke-linecap="round">
+    <path d="M70 74 Q78 63 86 74"/>
+    <path d="M114 74 Q122 63 130 74"/>
+    <path d="M88 86 Q100 96 112 86"/>
+  </g>
+</svg>

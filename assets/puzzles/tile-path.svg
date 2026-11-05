@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Yol karesi</title>
+  <desc>Robotun gideceği yolu gösteren kum renkli kare.</desc>
+  <rect x="4" y="10" width="120" height="114" rx="16" fill="#E0C374"/>
+  <rect x="4" y="4" width="120" height="114" rx="16" fill="#F7E3A3" stroke="#E0C374" stroke-width="4"/>
+  <g fill="#E0C374"><circle cx="32" cy="34" r="4"/><circle cx="90" cy="28" r="3"/><circle cx="70" cy="80" r="4"/><circle cx="36" cy="92" r="3"/></g>
+</svg>

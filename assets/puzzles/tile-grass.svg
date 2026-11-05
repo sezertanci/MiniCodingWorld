@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Çim karesi</title>
+  <desc>Izgara haritada yürünebilir çim karesi. Yan yana dizilerek harita oluşturulur.</desc>
+  <rect x="4" y="10" width="120" height="114" rx="16" fill="#7CC24E"/>
+  <rect x="4" y="4" width="120" height="114" rx="16" fill="#A4E070" stroke="#7CC24E" stroke-width="4"/>
+  <g fill="none" stroke="#7CC24E" stroke-width="4" stroke-linecap="round">
+    <path d="M30 40 L34 30 L38 40"/><path d="M84 30 L88 20 L92 30"/>
+    <path d="M60 88 L64 78 L68 88"/><path d="M96 92 L100 82 L104 92"/>
+  </g>
+</svg>

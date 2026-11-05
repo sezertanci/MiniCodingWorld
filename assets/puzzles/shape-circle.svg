@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Daire</title>
+  <desc>Kırmızı daire. Şekil eşleştirme ve sıralama bulmacaları için.</desc>
+  <defs><circle id="s" cx="64" cy="60" r="48"/></defs>
+  <use href="#s" transform="translate(0 6)" fill="#D94848"/>
+  <use href="#s" fill="#FF6E6E" stroke="#D94848" stroke-width="4" stroke-linejoin="round"/>
+  <ellipse cx="44" cy="38" rx="12" ry="7" fill="#FFFFFF" opacity="0.5" transform="rotate(-35 44 38)"/>
+</svg>

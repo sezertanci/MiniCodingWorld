@@ -1,0 +1,99 @@
+// Oyun görsellerinin merkezi listesi.
+// Her kayıt: dosya yolu (assets/ klasörüne göre), kategori, kaynak ve kısa açıklama.
+// Kaynak: "svg"  → elle çizilmiş, ölçeklenebilir görsel
+//         "mockup" → tasarım görsellerinden kesilmiş geçici PNG (düşük çözünürlük, arka planlı)
+//         "ai"   → yapay zekâ ile üretilmiş PNG (ChatGPT vb.)
+// Klasik <script> ile yüklenir; böylece sunucu olmadan file:// üzerinden de çalışır.
+const ASSET_MANIFEST = Object.freeze([
+  // Karakterler
+  { file: "characters/robot.svg", category: "characters", source: "svg", description: "Ana karakter Robi. El sallayan robot." },
+  { file: "characters/robot-wave.png", category: "characters", source: "mockup", description: "Ana ekrandaki büyük robot (başparmak yukarı)." },
+  { file: "characters/robot-small.png", category: "characters", source: "mockup", description: "Izgara haritadaki küçük robot." },
+  { file: "characters/robot-head.png", category: "characters", source: "mockup", description: "Konuşma balonunun yanındaki robot kafası." },
+
+  // Arka planlar
+  { file: "backgrounds/meadow.svg", category: "backgrounds", source: "svg", description: "Gökyüzü, tepeler ve ağaçlı çayır manzarası." },
+
+  // İkonlar
+  { file: "icons/star.svg", category: "icons", source: "svg", description: "Kazanılmış yıldız." },
+  { file: "icons/star-empty.svg", category: "icons", source: "svg", description: "Henüz kazanılmamış yıldız." },
+  { file: "icons/trophy.svg", category: "icons", source: "svg", description: "Oyun tamamlama kupası." },
+  { file: "icons/medal.svg", category: "icons", source: "svg", description: "Zorluk grubu tamamlama madalyası." },
+  { file: "icons/points.svg", category: "icons", source: "svg", description: "Puan jetonu, yıldız sayacı için." },
+  { file: "icons/lock.svg", category: "icons", source: "svg", description: "Kilitli seviye veya grup." },
+  { file: "icons/hint.svg", category: "icons", source: "svg", description: "İpucu ampulü." },
+  { file: "icons/game-path.png", category: "icons", source: "mockup", description: "Robotun Yolunu Bul oyun ikonu (harita iğnesi)." },
+  { file: "icons/game-order.png", category: "icons", source: "mockup", description: "Komutları Sırala oyun ikonu (küpler)." },
+  { file: "icons/game-if.png", category: "icons", source: "mockup", description: "Eğer Böyleyse oyun ikonu (dallanan oklar)." },
+  { file: "icons/game-repeat.png", category: "icons", source: "mockup", description: "Tekrar Et oyun ikonu (dönen oklar)." },
+  { file: "icons/lock.png", category: "icons", source: "mockup", description: "Seviye seçimindeki kilit." },
+  { file: "icons/star-empty.png", category: "icons", source: "mockup", description: "Seviye seçimindeki gri yıldız." },
+
+  // Arayüz
+  { file: "ui/button-play.svg", category: "ui", source: "svg", description: "Başlat butonu." },
+  { file: "ui/button-back.svg", category: "ui", source: "svg", description: "Geri butonu." },
+  { file: "ui/button-pause.svg", category: "ui", source: "svg", description: "Duraklat butonu." },
+  { file: "ui/button-home.svg", category: "ui", source: "svg", description: "Ana sayfa butonu." },
+  { file: "ui/button-settings.svg", category: "ui", source: "svg", description: "Ayarlar butonu." },
+  { file: "ui/button-retry.svg", category: "ui", source: "svg", description: "Tekrar dene butonu." },
+  { file: "ui/button-hint.svg", category: "ui", source: "svg", description: "İpucu butonu." },
+  { file: "ui/button-arrow-up.svg", category: "ui", source: "svg", description: "Yukarı Git komut butonu." },
+  { file: "ui/button-arrow-down.svg", category: "ui", source: "svg", description: "Aşağı Git komut butonu." },
+  { file: "ui/button-arrow-left.svg", category: "ui", source: "svg", description: "Sola Git komut butonu." },
+  { file: "ui/button-arrow-right.svg", category: "ui", source: "svg", description: "Sağa Git komut butonu." },
+  { file: "ui/logo.png", category: "ui", source: "mockup", description: "Mini Kodlama Dünyası logosu." },
+  { file: "ui/title-banner.png", category: "ui", source: "mockup", description: "Oyun adı başlık şeridi." },
+  { file: "ui/star-counter.png", category: "ui", source: "mockup", description: "Toplam yıldız sayacı." },
+  { file: "ui/stars-rating.png", category: "ui", source: "mockup", description: "Seviye yıldız göstergesi (2/3)." },
+  { file: "ui/button-settings.png", category: "ui", source: "mockup", description: "Ayarlar butonu." },
+  { file: "ui/button-back.png", category: "ui", source: "mockup", description: "Geri butonu." },
+  { file: "ui/button-pause.png", category: "ui", source: "mockup", description: "Duraklat butonu." },
+  { file: "ui/button-start.png", category: "ui", source: "mockup", description: "Yazılı Başlat butonu." },
+  { file: "ui/button-arrow-up.png", category: "ui", source: "mockup", description: "Yukarı ok butonu." },
+  { file: "ui/button-arrow-left.png", category: "ui", source: "mockup", description: "Sola ok butonu." },
+  { file: "ui/button-arrow-right.png", category: "ui", source: "mockup", description: "Sağa ok butonu." },
+  { file: "ui/arrow-pad.png", category: "ui", source: "mockup", description: "Yön tuşları ve Başlat paneli." },
+  { file: "ui/level-panel-easy.png", category: "ui", source: "mockup", description: "Kolay grubu seviye paneli." },
+  { file: "ui/level-panel-medium.png", category: "ui", source: "mockup", description: "Orta grubu seviye paneli (kilitli)." },
+  { file: "ui/level-panel-hard.png", category: "ui", source: "mockup", description: "Zor grubu seviye paneli (kilitli)." },
+  { file: "ui/command-slots.png", category: "ui", source: "mockup", description: "Komut sıralama boş yuvaları." },
+  { file: "ui/card-game-path.png", category: "ui", source: "mockup", description: "Robotun Yolunu Bul oyun kartı." },
+  { file: "ui/card-game-order.png", category: "ui", source: "mockup", description: "Komutları Sırala oyun kartı." },
+  { file: "ui/card-game-if.png", category: "ui", source: "mockup", description: "Eğer Böyleyse oyun kartı." },
+  { file: "ui/card-game-repeat.png", category: "ui", source: "mockup", description: "Tekrar Et oyun kartı." },
+
+  // Bulmaca parçaları ve şekiller
+  { file: "puzzles/shape-circle.svg", category: "puzzles", source: "svg", description: "Kırmızı daire." },
+  { file: "puzzles/shape-square.svg", category: "puzzles", source: "svg", description: "Mavi kare." },
+  { file: "puzzles/shape-triangle.svg", category: "puzzles", source: "svg", description: "Yeşil üçgen." },
+  { file: "puzzles/shape-diamond.svg", category: "puzzles", source: "svg", description: "Mor baklava." },
+  { file: "puzzles/shape-hexagon.svg", category: "puzzles", source: "svg", description: "Turuncu altıgen." },
+  { file: "puzzles/shape-heart.svg", category: "puzzles", source: "svg", description: "Pembe kalp." },
+  { file: "puzzles/tile-grass.svg", category: "puzzles", source: "svg", description: "Yürünebilir çim karesi." },
+  { file: "puzzles/tile-path.svg", category: "puzzles", source: "svg", description: "Kum yol karesi." },
+  { file: "puzzles/tile-water.svg", category: "puzzles", source: "svg", description: "Geçilemeyen su karesi." },
+  { file: "puzzles/rock.svg", category: "puzzles", source: "svg", description: "Taş engeli." },
+  { file: "puzzles/goal-flag.svg", category: "puzzles", source: "svg", description: "Hedef bayrağı." },
+  { file: "puzzles/goal-star.png", category: "puzzles", source: "mockup", description: "Parlayan hedef yıldız karesi." },
+  { file: "puzzles/rock.png", category: "puzzles", source: "mockup", description: "Taş engeli." },
+  { file: "puzzles/rock-condition.png", category: "puzzles", source: "mockup", description: "Koşul bloğundaki taş." },
+  { file: "puzzles/flowers.png", category: "puzzles", source: "mockup", description: "Saksıdaki çiçekler." },
+  { file: "puzzles/watering-can.png", category: "puzzles", source: "mockup", description: "Sulama kabı." },
+  { file: "puzzles/grid-sample.png", category: "puzzles", source: "mockup", description: "Örnek ızgara harita." },
+  { file: "puzzles/command-right-blue.png", category: "puzzles", source: "mockup", description: "Sağa Git kartı (mavi)." },
+  { file: "puzzles/command-right-orange.png", category: "puzzles", source: "mockup", description: "Sağa Git kartı (turuncu)." },
+  { file: "puzzles/command-water.png", category: "puzzles", source: "mockup", description: "Su Dök kartı." },
+  { file: "puzzles/command-flower.png", category: "puzzles", source: "mockup", description: "Çiçeğe Git kartı." },
+  { file: "puzzles/block-if-else.png", category: "puzzles", source: "mockup", description: "Eğer/Değilse blok örneği." },
+  { file: "puzzles/block-turn-right.png", category: "puzzles", source: "mockup", description: "Sağa Dön bloğu." },
+  { file: "puzzles/block-forward.png", category: "puzzles", source: "mockup", description: "İleri Git bloğu." },
+  { file: "puzzles/block-repeat.png", category: "puzzles", source: "mockup", description: "3 kez tekrarla blok örneği." },
+
+  // Üretilmiş / kaynak görseller
+  { file: "generated/mockups/01-home.png", category: "generated", source: "mockup", description: "Tasarım: ana ekran." },
+  { file: "generated/mockups/02-level-select.png", category: "generated", source: "mockup", description: "Tasarım: seviye seçimi." },
+  { file: "generated/mockups/03-game-path.png", category: "generated", source: "mockup", description: "Tasarım: Robotun Yolunu Bul." },
+  { file: "generated/mockups/04-game-order.png", category: "generated", source: "mockup", description: "Tasarım: Komutları Sırala." },
+  { file: "generated/mockups/05-game-if.png", category: "generated", source: "mockup", description: "Tasarım: Eğer Böyleyse." },
+  { file: "generated/mockups/06-game-repeat.png", category: "generated", source: "mockup", description: "Tasarım: Tekrar Et." },
+]);

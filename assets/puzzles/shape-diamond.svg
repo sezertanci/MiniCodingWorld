@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Baklava</title>
+  <desc>Mor baklava dilimi şekli. Şekil bulmacaları için.</desc>
+  <defs><rect id="s" x="26" y="22" width="76" height="76" rx="16" transform="rotate(45 64 60)"/></defs>
+  <use href="#s" transform="translate(0 6)" fill="#7C4FE0"/>
+  <use href="#s" fill="#A97CFF" stroke="#7C4FE0" stroke-width="4" stroke-linejoin="round"/>
+  <ellipse cx="50" cy="36" rx="12" ry="5" fill="#FFFFFF" opacity="0.5" transform="rotate(-45 50 36)"/>
+</svg>

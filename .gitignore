@@ -1,0 +1,9 @@
+# İşletim sistemi ve editör dosyaları
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Geçici görsel çalışmaları
+*.tmp
+assets/**/_draft/

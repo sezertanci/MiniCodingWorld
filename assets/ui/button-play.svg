@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Başlat butonu</title>
+  <desc>Oyunu veya komutları başlatır. Yeşil, oynat simgeli.</desc>
+  <rect x="8" y="14" width="112" height="106" rx="30" fill="#3DA845"/>
+  <rect x="8" y="8" width="112" height="106" rx="30" fill="#6CD46C" stroke="#3DA845" stroke-width="4"/>
+  <rect x="22" y="16" width="84" height="22" rx="11" fill="#FFFFFF" opacity="0.3"/>
+  <polygon points="52,40 52,80 86,60" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="10" stroke-linejoin="round"/>
+</svg>

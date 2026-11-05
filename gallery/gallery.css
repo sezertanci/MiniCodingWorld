@@ -1,0 +1,64 @@
+:root {
+  --bg: #fff8e7;
+  --card: #ffffff;
+  --text: #1f2d4f;
+  --muted: #6b7690;
+  --accent: #4da6ff;
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.top { padding: 24px 16px 8px; max-width: 1200px; margin: 0 auto; }
+.top h1 { margin: 0 0 4px; }
+.top p { margin: 0 0 12px; color: var(--muted); }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button {
+  border: 0; border-radius: 999px; padding: 8px 16px;
+  font: inherit; font-weight: 700; cursor: pointer;
+  background: #e3ecf7; color: var(--text);
+}
+.filters button.active { background: var(--accent); color: #fff; }
+
+main { max-width: 1200px; margin: 0 auto; padding: 8px 16px 40px; }
+main h2 { margin: 28px 0 12px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 14px;
+}
+
+.item {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow: 0 4px 0 #e3ecf7;
+}
+
+/* Saydam alanların görünmesi için damalı zemin */
+.preview {
+  height: 130px;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: repeating-conic-gradient(#f1f4f9 0 25%, #fff 0 50%) 0 0 / 16px 16px;
+}
+.preview img { max-width: 100%; max-height: 120px; }
+
+.name { margin: 10px 0 2px; font-size: 13px; font-weight: 700; word-break: break-all; }
+.desc { margin: 0; font-size: 13px; color: var(--muted); }
+.badge {
+  display: inline-block; margin-top: 6px; padding: 2px 8px;
+  border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff;
+}
+.badge.svg { background: #3da845; }
+.badge.mockup { background: #e8781c; }
+.badge.ai { background: #7c4fe0; }

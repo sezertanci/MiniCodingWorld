@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Ana sayfa butonu</title>
+  <desc>Ana ekrana döner. Turuncu, ev simgeli.</desc>
+  <rect x="8" y="14" width="112" height="106" rx="30" fill="#E8781C"/>
+  <rect x="8" y="8" width="112" height="106" rx="30" fill="#FFA24A" stroke="#E8781C" stroke-width="4"/>
+  <rect x="22" y="16" width="84" height="22" rx="11" fill="#FFFFFF" opacity="0.3"/>
+  <path d="M38 62 L64 38 L90 62 V86 H38 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round"/>
+  <rect x="56" y="66" width="16" height="22" rx="5" fill="#E8781C"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Duraklat butonu</title>
+  <desc>Oyunu duraklatır. Mavi, iki çubuk.</desc>
+  <rect x="8" y="14" width="112" height="106" rx="30" fill="#2B7BD9"/>
+  <rect x="8" y="8" width="112" height="106" rx="30" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <rect x="22" y="16" width="84" height="22" rx="11" fill="#FFFFFF" opacity="0.3"/>
+  <rect x="44" y="40" width="14" height="42" rx="6" fill="#FFFFFF"/>
+  <rect x="70" y="40" width="14" height="42" rx="6" fill="#FFFFFF"/>
+</svg>

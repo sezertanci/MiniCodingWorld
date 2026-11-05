@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Görsel Galerisi – Mini Kodlama Dünyası</title>
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Görsel Galerisi</h1>
+    <p>Mini Kodlama Dünyası için hazırlanmış tüm görseller. Dosya yolu <code>assets/</code> klasörüne göredir.</p>
+    <div class="filters" role="group" aria-label="Kaynak filtresi">
+      <button type="button" data-source="all" class="active">Tümü</button>
+      <button type="button" data-source="svg">SVG</button>
+      <button type="button" data-source="mockup">Tasarımdan kesilen</button>
+      <button type="button" data-source="ai">Yapay zekâ</button>
+    </div>
+  </header>
+  <main id="gallery"></main>
+  <script src="../assets/asset-manifest.js"></script>
+  <script src="gallery.js"></script>
+</body>
+</html>

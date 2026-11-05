@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kupa</title>
+  <desc>Bir oyunun tüm seviyeleri bitince verilen altın kupa.</desc>
+  <ellipse cx="64" cy="118" rx="38" ry="6" fill="#1F2D4F" opacity="0.12"/>
+  <g fill="none" stroke="#E8A920" stroke-width="8" stroke-linecap="round">
+    <path d="M36 32 H26 C16 32 14 42 18 50 C22 58 30 62 40 62"/>
+    <path d="M92 32 H102 C112 32 114 42 110 50 C106 58 98 62 88 62"/>
+  </g>
+  <rect x="56" y="78" width="16" height="18" rx="4" fill="#F5BE34" stroke="#E8A920" stroke-width="4"/>
+  <path d="M34 20 H94 V48 C94 68 81 82 64 82 C47 82 34 68 34 48 Z" fill="#FFD24D" stroke="#E8A920" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M74 20 H94 V48 C94 64 86 76 74 80 Z" fill="#F5BE34"/>
+  <ellipse cx="46" cy="36" rx="5" ry="11" fill="#FFFFFF" opacity="0.6"/>
+  <polygon points="64.0,42.0 69.6,54.3 83.0,55.8 73.0,64.9 75.8,78.2 64.0,71.5 52.2,78.2 55.0,64.9 45.0,55.8 58.4,54.3" transform="translate(0 -12) scale(1)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="38" y="94" width="52" height="18" rx="7" fill="#A97CFF" stroke="#7C4FE0" stroke-width="4"/>
+  <rect x="46" y="99" width="20" height="5" rx="2.5" fill="#FFFFFF" opacity="0.5"/>
+</svg>

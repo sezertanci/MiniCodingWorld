@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kalp</title>
+  <desc>Pembe kalp. Şekil bulmacaları için.</desc>
+  <defs><path id="s" d="M64 106 C20 76 10 54 14 38 C18 20 40 12 52 22 C58 26 62 32 64 36 C66 32 70 26 76 22 C88 12 110 20 114 38 C118 54 108 76 64 106 Z"/></defs>
+  <use href="#s" transform="translate(0 6)" fill="#E0608E"/>
+  <use href="#s" fill="#FF8FB7" stroke="#E0608E" stroke-width="4" stroke-linejoin="round"/>
+  <ellipse cx="36" cy="38" rx="9" ry="6" fill="#FFFFFF" opacity="0.5" transform="rotate(-40 36 38)"/>
+</svg>

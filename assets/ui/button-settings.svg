@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Ayarlar butonu</title>
+  <desc>Ayarlar penceresini açar. Mavi, dişli simgeli.</desc>
+  <rect x="8" y="14" width="112" height="106" rx="30" fill="#2B7BD9"/>
+  <rect x="8" y="8" width="112" height="106" rx="30" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <rect x="22" y="16" width="84" height="22" rx="11" fill="#FFFFFF" opacity="0.3"/>
+  <circle cx="64" cy="61" r="27" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-dasharray="8.5 8.46"/>
+  <circle cx="64" cy="61" r="22" fill="#FFFFFF"/>
+  <circle cx="64" cy="61" r="9" fill="#4DA6FF"/>
+</svg>

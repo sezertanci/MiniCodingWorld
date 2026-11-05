@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kilit</title>
+  <desc>Henüz açılmamış seviye veya grup için kilit.</desc>
+  <ellipse cx="64" cy="118" rx="34" ry="6" fill="#1F2D4F" opacity="0.12"/>
+  <path d="M42 58 V42 C42 28 52 18 64 18 C76 18 86 28 86 42 V58" fill="none" stroke="#7C4FE0" stroke-width="12" stroke-linecap="round"/>
+  <rect x="26" y="52" width="76" height="58" rx="16" fill="#A97CFF" stroke="#7C4FE0" stroke-width="4"/>
+  <path d="M74 54 H86 C93 54 100 60 100 68 V94 C100 102 93 108 86 108 H74 Z" fill="#9468F5"/>
+  <circle cx="64" cy="76" r="8" fill="#FFFFFF"/>
+  <rect x="60" y="78" width="8" height="16" rx="4" fill="#FFFFFF"/>
+  <rect x="34" y="60" width="22" height="6" rx="3" fill="#FFFFFF" opacity="0.5"/>
+</svg>

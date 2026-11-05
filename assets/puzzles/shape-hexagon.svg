@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Altıgen</title>
+  <desc>Turuncu altıgen. Şekil bulmacaları için.</desc>
+  <defs><polygon id="s" points="114.0,60 89.0,103.3 39.0,103.3 14.0,60 39.0,16.7 89.0,16.7"/></defs>
+  <use href="#s" transform="translate(0 6)" fill="#E8781C"/>
+  <use href="#s" fill="#FFA24A" stroke="#E8781C" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="40" y="26" width="40" height="11" rx="5.5" fill="#FFFFFF" opacity="0.5"/>
+</svg>

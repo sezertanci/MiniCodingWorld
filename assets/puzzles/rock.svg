@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Taş</title>
+  <desc>Robotun yolunu kapatan taş engeli. "Eğer Böyleyse" oyununda koşul nesnesi olarak da kullanılır.</desc>
+  <ellipse cx="64" cy="114" rx="48" ry="7" fill="#1F2D4F" opacity="0.12"/>
+  <path d="M18 104 C12 84 22 58 40 44 C54 32 76 30 92 42 C108 54 118 80 110 104 Z" fill="#B7BFCE" stroke="#8A93A6" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M74 34 C84 36 88 40 92 42 C108 54 118 80 110 104 H76 C92 86 88 56 74 34 Z" fill="#A3ABBC"/>
+  <ellipse cx="46" cy="58" rx="12" ry="6" fill="#FFFFFF" opacity="0.5" transform="rotate(-35 46 58)"/>
+</svg>
