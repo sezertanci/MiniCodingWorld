@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Kodlama Dünyası</title>
+  <link rel="icon" href="assets/icons/star.svg">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/screens/home.css">
+  <link rel="stylesheet" href="css/screens/level-select.css">
+  <link rel="stylesheet" href="css/screens/game.css">
+</head>
+<body>
+  <main id="app" class="app"></main>
+
+  <!-- Sıra önemlidir: önce çekirdek, sonra oyunlar, ekranlar ve en son app.js -->
+  <script src="js/core/config.js"></script>
+  <script src="js/core/storage.js"></script>
+  <script src="js/core/stars.js"></script>
+  <script src="js/core/progress.js"></script>
+  <script src="js/core/dom.js"></script>
+  <script src="js/core/components.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/games-registry.js"></script>
+  <script src="js/games/placeholder-game.js"></script>
+  <script src="js/screens/settings-dialog.js"></script>
+  <script src="js/screens/home-screen.js"></script>
+  <script src="js/screens/level-select-screen.js"></script>
+  <script src="js/screens/game-screen.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

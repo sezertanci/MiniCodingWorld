@@ -2,20 +2,59 @@
 
 7 yaşındaki çocuklar için tarayıcıda çalışan, Türkçe ve eğitici bir kodlama oyunu. Oyun HTML, CSS ve düz JavaScript ile yazılır. Sunucu, üyelik veya veritabanı gerekmez.
 
-Bu aşamada projede yalnızca **ortak görsel sistemi** bulunur: tüm mini oyunların kullanacağı karakterler, ikonlar, butonlar, şekiller ve arka planlar. Oyun kodu sonraki adımlarda eklenecek.
+Ana ekranda dört mini oyun bulunur: Robotun Yolunu Bul, Komutları Sırala, Eğer Böyleyse ve Tekrar Et. Her oyunda dört zorluk grubunda 20 seviye vardır: Kolay (1–5), Orta (6–10), Zor (11–15) ve Uzman (16–20). Seviyeler sırayla açılır. Bir grup, önceki grup bitmeden açılmaz. Her seviye 1–3 yıldız verir. İlerleme tarayıcının `localStorage` alanında saklanır.
+
+> Şu an oyunların yerinde geçici bir deneme ekranı var. Bu ekranda seviyeyi 1, 2 veya 3 yıldızla bitirerek kilit sistemi denenebilir. Gerçek oyunlar sırayla eklenecek.
 
 ## Gereksinimler
 
 - Güncel bir tarayıcı (Chrome, Firefox, Edge veya Safari)
+- Testleri çalıştırmak için Node.js (LTS). Ek paket gerekmez.
 - Görsel üretmek için isteğe bağlı olarak ChatGPT veya benzeri bir araç
 
 ## Çalıştırma
 
-Galeri sayfası bütün görselleri açıklamalarıyla birlikte gösterir. Açmak için `gallery/index.html` dosyasını tarayıcıda açman yeterli; sunucu gerekmez.
+İki yol var. İkisinde de kurulum veya derleme gerekmez.
+
+- **Çift tıklama:** `index.html` dosyasını tarayıcıda açarsın.
+- **VS Code + Live Server (geliştirirken önerilir):** "Live Server" eklentisini kurarsın. `index.html` dosyasına sağ tıklayıp **Open with Live Server** seçersin. Dosyalar değişince sayfa kendiliğinden yenilenir.
+
+İki yolun ilerleme kayıtları birbirinden ayrıdır. Test ederken hep aynı yolu kullan.
+
+İlerlemeyi sıfırlamak için ana ekrandaki ayarlar (dişli) butonuna basıp **İlerlemeyi sıfırla** seçilir.
+
+Görsel galerisi için `gallery/index.html` açılır.
+
+### Testler
+
+Proje klasöründe şu komut çalıştırılır:
+
+```bash
+node --test
+```
+
+Testler seviye kilidi, grup kilidi, yıldız kaydı ve yıldız hesabı kurallarını denetler.
 
 ## Klasör yapısı
 
 ```
+index.html                 Uygulama çerçevesi ve script sırası
+css/
+  base.css                 Renk paleti, butonlar, kartlar, üst çubuk
+  screens/                 Ana ekran, seviye seçimi ve oyun ekranı stilleri
+js/
+  core/                    Ortak çekirdek
+    config.js              Sabitler: seviye sayısı, zorluk grupları, kayıt anahtarı
+    storage.js             localStorage okuma/yazma
+    stars.js               Yıldız hesabı (1–3)
+    progress.js            İlerleme, seviye ve grup kilitleri
+    dom.js, components.js  DOM yardımcısı ve ortak arayüz parçaları
+    router.js              Ekran geçişleri (#/, #/game/<oyun>, #/game/<oyun>/level/<n>)
+    games-registry.js      Oyun listesi
+  games/                   Oyun modülleri (şimdilik geçici deneme oyunu)
+  screens/                 Ana ekran, seviye seçimi, oyun ekranı, ayarlar penceresi
+  app.js                   Başlangıç: servisleri oluşturur, ekranlara verir
+tests/                     node --test ile çalışan testler
 assets/
   characters/    Robot ve diğer karakterler
   backgrounds/   Ekran arka planları
@@ -26,6 +65,19 @@ assets/
   asset-manifest.js  Tüm görsellerin listesi ve açıklamaları
 gallery/         Görsel galerisi (index.html, gallery.css, gallery.js)
 ```
+
+## Kod düzeni
+
+- Kod modül sistemi kullanmaz, klasik `<script>` etiketleriyle yüklenir. Böylece dosya çift tıklanarak da çalışır. Script sırası `index.html` içinde belirlenir.
+- Bütün kod tek bir ortak nesne (`MKD`) altında toplanır. Başka global değişken oluşturulmaz.
+- Servisler (ilerleme, yönlendirme) `app.js` içinde bir kez oluşturulur ve ekranlara parametre olarak verilir.
+- **Yeni oyun eklemek için:**
+  1. `js/games/<oyun-adı>/` klasörü açılır.
+  2. Oyun kendini `MKD.gameModules["<oyun-id>"] = { mount(container, { game, level, onComplete }) }` şeklinde kaydeder.
+  3. `games-registry.js` dosyasına oyun bilgisi eklenir.
+  4. Dosya `index.html` içine eklenir.
+
+  Oyun bitince `onComplete(yıldız)` çağrılır. Yıldız `MKD.calculateStars({ hintUsed, targetMet })` ile hesaplanır.
 
 ## Görsel türleri
 

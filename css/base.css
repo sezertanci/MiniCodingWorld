@@ -1,0 +1,169 @@
+/* Ortak stiller: renk paleti, yazı, butonlar, kartlar ve üst çubuk.
+   Renkler assets/ klasöründeki görsellerle aynı paletten gelir. */
+:root {
+  --yellow: #ffd24d;
+  --yellow-dark: #e8a920;
+  --blue: #4da6ff;
+  --blue-dark: #2b7bd9;
+  --green: #6cd46c;
+  --green-dark: #3da845;
+  --purple: #a97cff;
+  --purple-dark: #7c4fe0;
+  --orange: #ffa24a;
+  --orange-dark: #e8781c;
+  --red: #ff6e6e;
+  --red-dark: #d94848;
+  --navy: #1f2d4f;
+  --white: #ffffff;
+  --panel: rgba(255, 255, 255, 0.92);
+  --shadow: rgba(31, 45, 79, 0.15);
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --lip: 6px; /* Butonların altındaki kabarık kenar */
+  --touch: 64px; /* Çocuk parmağı için en küçük dokunma alanı */
+  --font: "Nunito", "Baloo 2", "Segoe UI Rounded", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; min-height: 100%; }
+
+body {
+  font-family: var(--font);
+  font-size: 18px;
+  color: var(--navy);
+  background: #bde7ff url("../assets/backgrounds/meadow.svg") center / cover no-repeat fixed;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img { display: block; }
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+button:disabled { cursor: not-allowed; }
+
+:focus-visible { outline: 4px solid var(--navy); outline-offset: 3px; }
+
+.app {
+  max-width: 1100px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.screen { display: flex; flex-direction: column; gap: 20px; }
+
+/* Renk sınıfları: oyun kartları ve zorluk grupları bunları kullanır */
+.color-blue, .group-medium { --tone: var(--blue); --tone-dark: var(--blue-dark); }
+.color-green, .group-easy { --tone: var(--green); --tone-dark: var(--green-dark); }
+.color-purple, .group-hard { --tone: var(--purple); --tone-dark: var(--purple-dark); }
+.color-orange { --tone: var(--orange); --tone-dark: var(--orange-dark); }
+.group-expert { --tone: var(--red); --tone-dark: var(--red-dark); }
+
+/* Üst çubuk */
+.top-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.top-bar-side { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.top-bar-right { justify-content: flex-end; }
+
+.top-bar-title {
+  margin: 0;
+  padding: 8px 24px;
+  text-align: center;
+  font-size: clamp(22px, 4vw, 34px);
+  background: var(--panel);
+  border-radius: var(--radius-md);
+  box-shadow: 0 var(--lip) 0 var(--shadow);
+}
+
+/* Butonlar */
+.icon-button {
+  width: var(--touch);
+  height: var(--touch);
+  padding: 0;
+  border: 0;
+  background: none;
+  flex-shrink: 0;
+  transition: transform 0.1s;
+}
+
+.icon-button img { width: 100%; height: 100%; }
+.icon-button:active { transform: translateY(3px); }
+
+.btn {
+  min-height: var(--touch);
+  padding: 0 28px;
+  border: 0;
+  border-radius: var(--radius-md);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  background: var(--tone);
+  box-shadow: 0 var(--lip) 0 var(--tone-dark);
+  text-shadow: 0 2px 0 var(--tone-dark);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn:active { transform: translateY(var(--lip)); box-shadow: none; }
+.btn-primary { --tone: var(--green); --tone-dark: var(--green-dark); }
+.btn-secondary { --tone: var(--blue); --tone-dark: var(--blue-dark); }
+.btn-danger { --tone: var(--red); --tone-dark: var(--red-dark); }
+
+.button-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+/* Kart ve yıldızlar */
+.card {
+  padding: 24px;
+  background: var(--panel);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 var(--lip) 0 var(--shadow);
+}
+
+.star-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px 6px 8px;
+  font-size: 22px;
+  font-weight: 800;
+  background: var(--panel);
+  border-radius: 999px;
+}
+
+.star-counter img { width: 36px; height: 36px; }
+.star-row { display: flex; gap: 2px; }
+.star-row img { width: 22px; height: 22px; }
+
+/* Ayarlar penceresi */
+.dialog {
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 28px;
+  border: 0;
+  border-radius: var(--radius-lg);
+  color: var(--navy);
+  text-align: center;
+}
+
+.dialog[open] { display: flex; flex-direction: column; gap: 16px; }
+.dialog h2, .dialog p { margin: 0; }
+.dialog::backdrop { background: rgba(31, 45, 79, 0.45); }
+
+/* Dar ekranlar (telefon) */
+@media (max-width: 560px) {
+  :root { --touch: 56px; }
+  .top-bar { grid-template-columns: auto 1fr auto; gap: 8px; }
+  .top-bar-title { padding: 6px 12px; }
+  .star-counter { font-size: 18px; padding: 4px 12px 4px 6px; }
+  .star-counter img { width: 28px; height: 28px; }
+}
