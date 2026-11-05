@@ -126,6 +126,7 @@ button:disabled { cursor: not-allowed; }
 .btn-primary { --tone: var(--green); --tone-dark: var(--green-dark); }
 .btn-secondary { --tone: var(--blue); --tone-dark: var(--blue-dark); }
 .btn-danger { --tone: var(--red); --tone-dark: var(--red-dark); }
+.btn-hint { --tone: var(--purple); --tone-dark: var(--purple-dark); }
 
 .button-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
@@ -191,4 +192,20 @@ button:disabled { cursor: not-allowed; }
   .top-bar-icon { width: 32px; height: 32px; }
   .star-counter { font-size: 18px; padding: 4px 12px 4px 6px; }
   .star-counter img { width: 28px; height: 28px; }
+}
+
+/* Sürükle-bırak */
+.is-draggable { touch-action: none; user-select: none; -webkit-user-select: none; }
+.is-drag-source { opacity: 0.35; }
+.is-drop-over { outline: 4px dashed var(--navy); outline-offset: 2px; }
+
+.drag-ghost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  margin: 0;
+  pointer-events: none;
+  opacity: 0.9;
+  rotate: 3deg;
 }

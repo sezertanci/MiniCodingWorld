@@ -8,6 +8,8 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
 
 ## Çalışma düzeni (kullanıcıyla anlaşılanlar)
 
+- **2026-11-06 itibarıyla otomatik mod:** Kullanıcı, Prompt 4–7'nin onay beklenmeden sırayla yapılmasını ve her birinin ayrı commit'lenmesini istedi. Sonra tek HTML betiği yazılacak, her şey baştan kontrol edilip düzeltilecek ve kullanıcı dönünce okuyacağı bir rapor hazırlanacak. Push yine yapılmaz.
+- **Yalnızca bu oturum için:** Bütün işler bitince devlog worklog kaydı ve gerekiyorsa devlog todo kayıtları kullanıcı onayı beklenmeden oluşturulur. Sonraki oturumlarda bu izin geçerli değildir.
 - Kullanıcı bilgi verirken hiçbir şey yapılmaz. İşe yalnızca açıkça "başla" veya "uygula" denince geçilir.
 - Promptlar sırayla uygulanır. Kullanıcı bir promptu "tamam" diye onaylamadan sonrakine geçilmez.
 - Her prompt ayrı bir commit olur. Commit kullanıcı onayladıktan sonra atılır. Push yalnızca kullanıcı isterse yapılır.
@@ -32,13 +34,16 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - Kullanıcı isteğiyle: komut listesi haritanın üstünde, başlıksız; sayaç sağ üst köşede rozet. Robot geçtiği karelere yön oku bırakır (karede son geçişin oku), başlangıç karesi kesik çizgili. Telefonda Başlat normal boyutta.
   - Masaüstü ve telefonda tarayıcıda denendi; 74 test geçiyor.
 
+- [x] Prompt 4 (Komutları Sırala). Otomatik modda yapıldı, commit atıldı.
+  - Ortak parçalar: `MKD.components.speechBubble` (robot balonu), `.game-layout`, `js/core/drag-drop.js` (Pointer Events ile sürükle-bırak; dokunuş tıklama sayılır), `.btn-hint` base.css'e taşındı.
+  - Dosyalar: `js/games/command-order/` (`engine.js`, `levels.js`, `game.js`), `css/games/command-order.css`, `tests/command-order.test.js`.
+  - Kartlar dokunarak (seçili ya da ilk boş kutuya) veya sürüklenerek yerleşir. Zor/Uzman seviyelerinde kutular aşama başlıklarıyla gruplanır; Uzman'da göreve ait olmayan kartlar var.
+  - Yanlışta yalnızca ilk yanlış kutu ve nedeni söylenir. 3 yıldız: ipucu yok ve hiç yanlış kontrol yok.
+
 ## Sıradaki adımlar
 
-1. Prompt 4: kullanıcı "başla" deyince.
-2. (Kullanıcı devlog todo ve worklog sorularını yanıtlamadı. Tekrar sorulmayacak.)
-3. Prompt 4–6: kalan üç oyun. Her oyun `js/games/<id>/` altında olur ve `MKD.gameModules` sözleşmesine uyar (README'de anlatılıyor).
-4. Prompt 7: son kontrol
-5. Tek HTML dosyası üreten betik
+1. Prompt 5 (Eğer Böyleyse), Prompt 6 (Tekrar Et), Prompt 7 (son kontrol), tek HTML betiği; her biri ayrı commit.
+2. Hepsi bitince baştan uçtan uca kontrol, rapor, ardından worklog ve todo kayıtları.
 
 ## Notlar
 

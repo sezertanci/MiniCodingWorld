@@ -58,5 +58,15 @@
     ]);
   }
 
-  MKD.components = Object.freeze({ ICONS, iconButton, starCounter, starRow, progressBar, topBar });
+  // Oyunlarda robotun konuşma balonu. Dönen say(text) mesajı değiştirir; ekran okuyucular yeni mesajı duyurur.
+  function speechBubble(text) {
+    const message = el("p", { className: "speech-message", "aria-live": "polite", text });
+    const element = el("div", { className: "speech-bubble" }, [
+      el("img", { className: "speech-robot", src: "assets/characters/robot.svg", alt: "" }),
+      message,
+    ]);
+    return { element, say: (next) => { message.textContent = next; } };
+  }
+
+  MKD.components = Object.freeze({ ICONS, iconButton, starCounter, starRow, progressBar, topBar, speechBubble });
 })((globalThis.MKD ??= {}));

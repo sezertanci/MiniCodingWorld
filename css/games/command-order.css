@@ -1,0 +1,170 @@
+/* Komutları Sırala */
+
+/* Görev kartı solda, kutular ve kartlar sağda */
+.co-main {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  align-items: start;
+  gap: 16px;
+}
+
+.co-task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 14px;
+  text-align: center;
+}
+
+.co-task-icon { font-size: 96px; line-height: 1; }
+.co-task-title { margin: 0; font-size: 24px; }
+
+/* Kart ve kutu boyutu tek yerde tanımlanır */
+.co-board {
+  --card-w: 132px;
+  --card-h: 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 18px;
+}
+
+/* Numaralı kutular; Zor ve Uzman seviyelerinde aşama başlıklarıyla gruplanır */
+.co-slots { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 20px; }
+.co-stage { display: flex; flex-direction: column; gap: 6px; }
+
+.co-stage-title {
+  margin: 0;
+  padding: 2px 12px;
+  align-self: flex-start;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--white);
+  background: var(--navy);
+  border-radius: 999px;
+}
+
+.co-stage-slots { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.co-slot {
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: 18px;
+}
+
+.co-slot-empty {
+  width: 100%;
+  height: 100%;
+  font: inherit;
+  font-size: 36px;
+  font-weight: 900;
+  color: rgba(31, 45, 79, 0.35);
+  background: rgba(31, 45, 79, 0.06);
+  border: 4px dashed rgba(31, 45, 79, 0.3);
+  border-radius: 18px;
+}
+
+.co-slot.is-target .co-slot-empty {
+  color: var(--navy);
+  border-color: var(--navy);
+  background: rgba(255, 210, 77, 0.35);
+}
+
+.co-slot.is-wrong .co-card { box-shadow: 0 0 0 5px var(--red); animation: co-shake 0.4s; }
+.co-slot.is-hint .co-slot-empty,
+.co-slot.is-hint .co-card { animation: co-hint 1s ease-in-out infinite; }
+.co-slots.is-solved .co-card { animation: co-pop 0.5s ease-out; }
+
+/* Karışık kartların durduğu havuz */
+.co-pool {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  min-height: 132px;
+  padding: 10px;
+  border-top: 3px solid rgba(31, 45, 79, 0.12);
+  border-radius: 18px;
+}
+
+.co-pool:empty::before {
+  content: "Bütün kartlar yerleşti";
+  align-self: center;
+  font-weight: 800;
+  color: rgba(31, 45, 79, 0.45);
+}
+
+/* Adım kartı: üstte büyük resim, altta kısa yazı */
+.co-card {
+  --tone: var(--blue);
+  --tone-dark: var(--blue-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: var(--card-w);
+  height: var(--card-h);
+  padding: 6px;
+  font: inherit;
+  color: var(--white);
+  background: var(--tone);
+  border: 0;
+  border-radius: 18px;
+  box-shadow: 0 var(--lip) 0 var(--tone-dark);
+  transition: transform 0.1s;
+}
+
+.co-card:not(:disabled):active { transform: translateY(3px); }
+.co-card.is-hint { animation: co-hint 1s ease-in-out infinite; }
+.co-card-icon { font-size: 40px; line-height: 1; }
+.co-card-text { font-size: 16px; font-weight: 800; line-height: 1.15; text-shadow: 0 2px 0 var(--tone-dark); }
+
+.co-tone-1 { --tone: var(--green); --tone-dark: var(--green-dark); }
+.co-tone-2 { --tone: var(--orange); --tone-dark: var(--orange-dark); }
+.co-tone-3 { --tone: var(--purple); --tone-dark: var(--purple-dark); }
+.co-tone-4 { --tone: var(--red); --tone-dark: var(--red-dark); }
+
+.co-actions { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; }
+.co-actions .btn { min-height: 60px; padding: 0 10px; }
+.co-check { font-size: 22px; }
+
+@keyframes co-shake {
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes co-hint {
+  50% { box-shadow: 0 0 0 8px rgba(255, 210, 77, 0.9); }
+}
+
+@keyframes co-pop {
+  50% { transform: scale(1.08); }
+}
+
+/* Tablet ve telefon: görev kartı üstte yatay bir şerit olur */
+@media (max-width: 760px) {
+  .co-main { grid-template-columns: 1fr; }
+  .co-task { flex-direction: row; justify-content: center; padding: 10px 14px; }
+  .co-task-icon { font-size: 48px; }
+  .co-task-title { font-size: 22px; }
+}
+
+@media (max-width: 560px) {
+  /* Üç kart yan yana sığar */
+  .co-board { --card-w: 94px; --card-h: 90px; padding: 10px; gap: 12px; }
+  .co-slots { gap: 8px 14px; }
+  .co-stage-slots { gap: 8px; }
+  .co-card { padding: 4px; }
+  .co-card-icon { font-size: 28px; }
+  .co-card-text { font-size: 13px; }
+  .co-slot-empty { font-size: 28px; }
+  .co-pool { gap: 8px; min-height: 100px; padding: 8px 0; }
+  .co-actions .btn { min-height: 54px; font-size: 16px; }
+  .co-check { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .co-card.is-hint, .co-slot.is-hint .co-slot-empty, .co-slot.is-hint .co-card { animation: none; outline: 5px solid var(--yellow); }
+}

@@ -68,16 +68,14 @@
 
     const state = { commands: [], selected: -1, hintUsed: false, running: false, highlight: null };
 
-    const message = el("p", { className: "pf-message", "aria-live": "polite", text: introText });
+    const bubble = MKD.components.speechBubble(introText);
     const programList = el("ol", { className: "pf-program-list", "aria-label": "Komutlarım" });
     const programCount = el("span", { className: "pf-program-count" });
     const editBar = el("div", { className: "pf-edit-bar" });
     const padButtons = {};
     const actionButtons = {};
 
-    function say(text) {
-      message.textContent = text;
-    }
+    const say = bubble.say;
 
     // Komut listesi değişince robot başa döner, eski ipucu silinir ve liste yeniden çizilir.
     function changeProgram(update) {
@@ -268,11 +266,8 @@
       return button;
     }
 
-    container.append(el("section", { className: "path-game" }, [
-      el("div", { className: "pf-bubble" }, [
-        el("img", { className: "pf-bubble-robot", src: "assets/characters/robot.svg", alt: "" }),
-        message,
-      ]),
+    container.append(el("section", { className: "game-layout" }, [
+      bubble.element,
       el("div", { className: "pf-program card" }, [
         programList,
         programCount,
