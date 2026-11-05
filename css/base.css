@@ -78,6 +78,10 @@ button:disabled { cursor: not-allowed; }
 .top-bar-right { justify-content: flex-end; }
 
 .top-bar-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin: 0;
   padding: 8px 24px;
   text-align: center;
@@ -86,6 +90,8 @@ button:disabled { cursor: not-allowed; }
   border-radius: var(--radius-md);
   box-shadow: 0 var(--lip) 0 var(--shadow);
 }
+
+.top-bar-icon { width: 44px; height: 44px; flex-shrink: 0; }
 
 /* Butonlar */
 .icon-button {
@@ -145,6 +151,23 @@ button:disabled { cursor: not-allowed; }
 .star-row { display: flex; gap: 2px; }
 .star-row img { width: 22px; height: 22px; }
 
+/* İlerleme çubuğu */
+.progress-bar {
+  height: 14px;
+  overflow: hidden;
+  background: var(--shadow);
+  border-radius: 999px;
+}
+
+.progress-bar-fill {
+  display: block;
+  width: var(--value, 0%);
+  height: 100%;
+  background: var(--green);
+  border-radius: inherit;
+  transition: width 0.4s;
+}
+
 /* Ayarlar penceresi */
 .dialog {
   max-width: min(420px, calc(100vw - 32px));
@@ -163,7 +186,8 @@ button:disabled { cursor: not-allowed; }
 @media (max-width: 560px) {
   :root { --touch: 56px; }
   .top-bar { grid-template-columns: auto 1fr auto; gap: 8px; }
-  .top-bar-title { padding: 6px 12px; }
+  .top-bar-title { padding: 6px 12px; gap: 6px; }
+  .top-bar-icon { width: 32px; height: 32px; }
   .star-counter { font-size: 18px; padding: 4px 12px 4px 6px; }
   .star-counter img { width: 28px; height: 28px; }
 }

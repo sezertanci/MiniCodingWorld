@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Robotun Yolunu Bul</title>
+  <desc>Oyun ikonu. Çimen zemin üzerinde kesikli bir yol ve yolun sonunda kırmızı konum iğnesi.</desc>
+  <ellipse cx="64" cy="118" rx="44" ry="6" fill="#1F2D4F" opacity="0.12"/>
+  <!-- Zemin -->
+  <path d="M10 92 L64 66 L118 92 L64 114 Z" fill="#6CD46C" stroke="#3DA845" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M64 114 L118 92 L118 96 L64 118 Z" fill="#3DA845"/>
+  <!-- Kesikli yol -->
+  <path d="M26 92 Q46 80 62 90 T96 86" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 11"/>
+  <!-- Konum iğnesi -->
+  <path d="M84 14 C100 14 110 26 110 40 C110 58 84 84 84 84 C84 84 58 58 58 40 C58 26 68 14 84 14 Z" fill="#FF6E6E" stroke="#D94848" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M92 16 C103 20 110 29 110 40 C110 56 90 78 85 83 C92 70 100 54 100 42 C100 30 97 21 92 16 Z" fill="#D94848" opacity="0.5"/>
+  <circle cx="84" cy="40" r="10" fill="#FFFFFF" stroke="#D94848" stroke-width="4"/>
+  <ellipse cx="70" cy="28" rx="4" ry="8" fill="#FFFFFF" opacity="0.55" transform="rotate(35 70 28)"/>
+</svg>

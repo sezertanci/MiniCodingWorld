@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Eğer Böyleyse</title>
+  <desc>Oyun ikonu. Mor bir soru baklavasından iki yöne ayrılan yol; bir yanda yeşil onay, öbür yanda kırmızı çarpı.</desc>
+  <ellipse cx="64" cy="118" rx="50" ry="6" fill="#1F2D4F" opacity="0.12"/>
+  <!-- Dallanan oklar -->
+  <path d="M52 62 L30 84" stroke="#7C4FE0" stroke-width="8" stroke-linecap="round"/>
+  <path d="M76 62 L98 84" stroke="#7C4FE0" stroke-width="8" stroke-linecap="round"/>
+  <!-- Soru baklavası -->
+  <path d="M64 8 L98 40 L64 72 L30 40 Z" fill="#A97CFF" stroke="#7C4FE0" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M64 72 L98 40 L64 8 L64 18 L88 40 L64 62 Z" fill="#7C4FE0" opacity="0.45"/>
+  <ellipse cx="50" cy="32" rx="4" ry="8" fill="#FFFFFF" opacity="0.55" transform="rotate(45 50 32)"/>
+  <text x="64" y="52" font-family="Nunito, Arial Rounded MT Bold, Arial, sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" text-anchor="middle">?</text>
+  <!-- Evet -->
+  <circle cx="28" cy="94" r="20" fill="#6CD46C" stroke="#3DA845" stroke-width="4"/>
+  <path d="M18 94 L26 102 L39 87" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Hayır -->
+  <circle cx="100" cy="94" r="20" fill="#FF6E6E" stroke="#D94848" stroke-width="4"/>
+  <path d="M92 86 L108 102 M108 86 L92 102" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+</svg>

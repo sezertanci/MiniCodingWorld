@@ -1,9 +1,76 @@
 /* Ana ekran */
+.home-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Başlık satırı: geniş ekranda robot solda, logo ortada.
+   Üçüncü boş sütun, logonun sayfanın tam ortasında kalmasını sağlar. */
+.home-hero {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-top: -56px; /* Logo, yıldız sayacıyla aynı satıra yaklaşsın */
+  pointer-events: none;
+}
+
+/* Logo: yazı olarak çizilir, böylece her boyutta net görünür */
+.home-title {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  line-height: 0.95;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  transform: rotate(-3deg);
+}
+
+.logo span {
+  paint-order: stroke fill;
+  -webkit-text-stroke: 10px var(--navy);
+  text-shadow: 0 6px 0 var(--navy);
+}
+
+.logo-top { font-size: clamp(36px, 7vw, 64px); color: var(--white); }
+.logo-bottom { font-size: clamp(42px, 8vw, 76px); color: var(--yellow); }
+
 .home-tagline {
-  margin: -8px 0 0;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 800;
+  margin: 0;
+  padding: 6px 22px;
+  font-size: clamp(17px, 2.4vw, 22px);
+  font-weight: 900;
+  color: var(--navy);
+  background: var(--yellow);
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--yellow-dark);
+  transform: rotate(-3deg);
+}
+
+.home-robot {
+  grid-column: 1;
+  grid-row: 1;
+  width: 170px;
+  height: auto;
+  justify-self: center;
+  animation: robot-wave 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes robot-wave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-3deg) translateY(-6px); }
 }
 
 .game-grid {
@@ -12,38 +79,81 @@
   gap: 20px;
 }
 
-@media (max-width: 560px) {
-  .game-grid { grid-template-columns: 1fr; }
-}
-
+/* Oyun kartı */
 .game-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 24px 16px 20px;
+  gap: 6px;
+  padding: 18px 16px 16px;
   border: 0;
   border-radius: var(--radius-lg);
   text-align: center;
   color: var(--white);
-  background: var(--tone);
-  box-shadow: 0 var(--lip) 0 var(--tone-dark);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)) var(--tone);
+  box-shadow: 0 var(--lip) 0 var(--tone-dark), inset 0 0 0 4px rgba(255, 255, 255, 0.35);
   text-shadow: 0 2px 0 var(--tone-dark);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
-.game-card:hover { transform: translateY(-2px); }
-.game-card:active { transform: translateY(var(--lip)); box-shadow: none; }
+.game-card:hover { transform: translateY(-3px); }
+.game-card:active { transform: translateY(var(--lip)); box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.35); }
 
-.game-card-icon { width: 80px; height: 64px; object-fit: contain; border-radius: 12px; }
-.game-card-title { font-size: 26px; font-weight: 900; }
-.game-card-desc { font-size: 17px; }
+.game-card-icon {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  background: var(--white);
+  border-radius: 50%;
+  box-shadow: 0 4px 0 var(--tone-dark);
+}
+
+.game-card-icon img { width: 64px; height: 64px; }
+.game-card-title { font-size: clamp(22px, 2.6vw, 28px); font-weight: 900; line-height: 1.1; }
+.game-card-desc { font-size: 16px; font-weight: 700; }
 
 .game-card-progress {
-  margin-top: 4px;
-  padding: 4px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.game-card-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 15px;
   font-weight: 800;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 999px;
+}
+
+.game-card-stars { display: flex; align-items: center; gap: 4px; }
+.game-card-stars img { width: 22px; height: 22px; }
+
+/* Kartın üzerinde beyaz ilerleme çubuğu */
+.game-card .progress-bar { background: rgba(255, 255, 255, 0.35); }
+.game-card .progress-bar-fill { background: var(--white); }
+
+/* Tablet: robot küçülür, başlığın solunda kalır */
+@media (max-width: 860px) {
+  .home-hero { margin-top: -40px; }
+  .home-robot { width: 120px; }
+}
+
+/* Telefon: kartlar tek sütun. Logo ortalamak yerine robotun yanındaki alanı doldurur. */
+@media (max-width: 560px) {
+  .game-grid { grid-template-columns: 1fr; }
+  .home-hero { grid-template-columns: auto 1fr; gap: 8px; margin-top: 0; }
+  .home-title { grid-column: 2; }
+  .home-robot { width: 76px; }
+  .logo-top { font-size: 28px; }
+  .logo-bottom { font-size: 34px; }
+  .logo span { -webkit-text-stroke-width: 7px; text-shadow: 0 3px 0 var(--navy); }
+  .home-tagline { padding: 4px 14px; font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-robot { animation: none; }
 }

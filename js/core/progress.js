@@ -87,6 +87,16 @@
       return count;
     }
 
+    // Sıradaki oynanacak seviye: açık ama henüz bitmemiş ilk seviye. Hepsi bittiyse null.
+    function getNextLevel(gameId) {
+      for (let level = 1; level <= config.LEVELS_PER_GAME; level++) {
+        if (!isCompleted(gameId, level) && isLevelUnlocked(gameId, level)) {
+          return level;
+        }
+      }
+      return null;
+    }
+
     function getTotalStars() {
       return Object.keys(data.games).reduce((sum, gameId) => sum + getGameStars(gameId), 0);
     }
@@ -105,6 +115,7 @@
       completeLevel,
       getGameStars,
       getCompletedCount,
+      getNextLevel,
       getTotalStars,
       reset,
     });

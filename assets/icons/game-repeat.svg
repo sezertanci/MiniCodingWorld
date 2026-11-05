@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Tekrar Et</title>
+  <desc>Oyun ikonu. Bir çember oluşturan iki turuncu ok ve ortasında "x3" yazısı.</desc>
+  <ellipse cx="64" cy="118" rx="40" ry="6" fill="#1F2D4F" opacity="0.12"/>
+  <g fill="none" stroke-linecap="round">
+    <!-- Üst ok (dış çizgi + iç renk) -->
+    <path d="M24 60 A40 40 0 0 1 96 36" stroke="#E8781C" stroke-width="18"/>
+    <path d="M24 60 A40 40 0 0 1 96 36" stroke="#FFA24A" stroke-width="10"/>
+    <!-- Alt ok -->
+    <path d="M104 68 A40 40 0 0 1 32 92" stroke="#E8781C" stroke-width="18"/>
+    <path d="M104 68 A40 40 0 0 1 32 92" stroke="#FFA24A" stroke-width="10"/>
+  </g>
+  <!-- Ok uçları -->
+  <path d="M84 20 L114 30 L96 54 Z" fill="#FFA24A" stroke="#E8781C" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M44 108 L14 98 L32 74 Z" fill="#FFA24A" stroke="#E8781C" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M30 50 A36 36 0 0 1 52 30" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <text x="64" y="74" font-family="Nunito, Arial Rounded MT Bold, Arial, sans-serif" font-size="26" font-weight="900" fill="#E8781C" text-anchor="middle">x3</text>
+</svg>

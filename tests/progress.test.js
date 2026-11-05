@@ -200,6 +200,34 @@ describe("totals and reset", () => {
   });
 });
 
+describe("getNextLevel", () => {
+  test("getNextLevel_NoProgress_ReturnsFirstLevel", () => {
+    const progress = createProgress(createMemoryStorage());
+
+    const result = progress.getNextLevel(GAME_ID);
+
+    assert.equal(result, 1);
+  });
+
+  test("getNextLevel_FirstGroupCompleted_ReturnsFirstLevelOfNextGroup", () => {
+    const progress = createProgress(createMemoryStorage());
+    completeLevels(progress, 1, 5);
+
+    const result = progress.getNextLevel(GAME_ID);
+
+    assert.equal(result, 6);
+  });
+
+  test("getNextLevel_AllLevelsCompleted_ReturnsNull", () => {
+    const progress = createProgress(createMemoryStorage());
+    completeLevels(progress, 1, config.LEVELS_PER_GAME);
+
+    const result = progress.getNextLevel(GAME_ID);
+
+    assert.equal(result, null);
+  });
+});
+
 describe("calculateStars", () => {
   test("calculateStars_HintUsed_ReturnsOne", () => {
     assert.equal(calculateStars({ hintUsed: true, targetMet: true }), 1);

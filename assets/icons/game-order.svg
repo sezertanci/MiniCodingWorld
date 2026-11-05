@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Komutları Sırala</title>
+  <desc>Oyun ikonu. Merdiven gibi sıralanmış, üzerinde 1, 2, 3 yazan sarı, mavi ve yeşil bloklar.</desc>
+  <ellipse cx="64" cy="118" rx="50" ry="6" fill="#1F2D4F" opacity="0.12"/>
+  <!-- 1 -->
+  <rect x="10" y="76" width="34" height="38" rx="8" fill="#FFD24D" stroke="#E8A920" stroke-width="4"/>
+  <rect x="12" y="102" width="30" height="10" rx="4" fill="#E8A920" opacity="0.6"/>
+  <text x="27" y="102" font-family="Nunito, Arial Rounded MT Bold, Arial, sans-serif" font-size="26" font-weight="900" fill="#FFFFFF" stroke="#E8A920" stroke-width="2" text-anchor="middle">1</text>
+  <!-- 2 -->
+  <rect x="47" y="50" width="34" height="64" rx="8" fill="#4DA6FF" stroke="#2B7BD9" stroke-width="4"/>
+  <rect x="49" y="102" width="30" height="10" rx="4" fill="#2B7BD9" opacity="0.6"/>
+  <text x="64" y="80" font-family="Nunito, Arial Rounded MT Bold, Arial, sans-serif" font-size="26" font-weight="900" fill="#FFFFFF" stroke="#2B7BD9" stroke-width="2" text-anchor="middle">2</text>
+  <!-- 3 -->
+  <rect x="84" y="24" width="34" height="90" rx="8" fill="#6CD46C" stroke="#3DA845" stroke-width="4"/>
+  <rect x="86" y="102" width="30" height="10" rx="4" fill="#3DA845" opacity="0.6"/>
+  <text x="101" y="54" font-family="Nunito, Arial Rounded MT Bold, Arial, sans-serif" font-size="26" font-weight="900" fill="#FFFFFF" stroke="#3DA845" stroke-width="2" text-anchor="middle">3</text>
+  <!-- Parlamalar -->
+  <rect x="15" y="81" width="6" height="12" rx="3" fill="#FFFFFF" opacity="0.55"/>
+  <rect x="52" y="55" width="6" height="14" rx="3" fill="#FFFFFF" opacity="0.55"/>
+  <rect x="89" y="29" width="6" height="16" rx="3" fill="#FFFFFF" opacity="0.55"/>
+</svg>

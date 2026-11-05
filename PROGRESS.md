@@ -19,12 +19,16 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
 ## Yapılanlar
 
 - [x] Görsel sistemi: commit `624529d`
-- [x] Prompt 1 (iskelet, ilerleme ve kilit sistemi, geçici oyun ekranı, ayarlarda "İlerlemeyi sıfırla"). Tarayıcıda test edildi, 21 test geçiyor. **Kullanıcı onayı ve commit bekleniyor.**
+- [x] Prompt 1 (iskelet, ilerleme ve kilit sistemi, geçici oyun ekranı, ayarlarda "İlerlemeyi sıfırla"). Kullanıcı çift tıklama dahil test edip onayladı. Commit `c7ff1d3`.
+- [x] Prompt 2 (ana ekran ve seviye seçimi tasarımı). Kullanıcı onayladı, commit atıldı.
+  - Logo CSS yazısıyla yapıldı (kesilen logo.png'nin arka planı saydam değildi). Dört oyun ikonu SVG olarak çizildi (`assets/icons/game-*.svg`).
+  - Ana ekran: robot her genişlikte başlığın solunda (ekran daraldıkça küçülür; kullanıcı isteği), kartlarda ilerleme çubuğu, seviye sayısı ve yıldız.
+  - Seviye seçimi: başlıkta oyun ikonu, grup başlığında "x/5", kilitli grupta "Önce … seviyelerini bitir" ipucu, sıradaki seviye sarı halkayla vurgulanır (`progress.getNextLevel`).
 
 ## Sıradaki adımlar
 
-1. Kullanıcı Prompt 1'i onaylayınca commit: `feat: proje iskeleti, ilerleme ve seviye kilidi sistemi`
-2. Prompt 2: ana ekran ve seviye seçimi tasarımı (görsel cila, logo, robot)
+1. Prompt 3 (Robotun Yolunu Bul): kullanıcı "başla/devam et" deyince.
+2. (Kullanıcı devlog todo ve worklog sorularını yanıtlamadı. Tekrar sorulmayacak.)
 3. Prompt 3–6: dört oyun. Her oyun `js/games/<id>/` altında olur ve `MKD.gameModules` sözleşmesine uyar (README'de anlatılıyor).
 4. Prompt 7: son kontrol
 5. Tek HTML dosyası üreten betik

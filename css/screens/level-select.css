@@ -1,35 +1,73 @@
 /* Seviye seçimi */
 .level-groups {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  align-items: start;
 }
 
+@media (max-width: 960px) {
+  .level-groups { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .level-groups { grid-template-columns: 1fr; }
+}
+
+/* Grup paneli: başlık grubun renginde, gövde aynı rengin açık tonunda */
 .level-group {
   overflow: hidden;
-  background: var(--panel);
+  background: color-mix(in srgb, var(--tone) 14%, var(--white));
+  border: 4px solid var(--tone);
   border-radius: var(--radius-lg);
-  box-shadow: 0 var(--lip) 0 var(--shadow);
+  box-shadow: 0 var(--lip) 0 var(--tone-dark);
 }
 
 .level-group-title {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 8px;
   margin: 0;
-  padding: 12px;
-  font-size: 24px;
+  padding: 10px 16px;
+  font-size: 26px;
   color: var(--white);
   background: var(--tone);
   text-shadow: 0 2px 0 var(--tone-dark);
 }
 
-.level-group.is-locked .level-group-title { opacity: 0.7; }
-.group-lock { width: 28px; height: 28px; }
+.level-group-count {
+  padding: 2px 12px;
+  font-size: 17px;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+}
 
-.level-list { display: flex; flex-direction: column; gap: 10px; padding: 16px; }
+.group-lock { width: 32px; height: 32px; }
 
+.level-group-hint {
+  margin: 12px 14px 0;
+  padding: 6px 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--tone-dark);
+  background: var(--white);
+  border-radius: var(--radius-md);
+}
+
+/* Kilitli grup soluk görünür */
+.level-group.is-locked {
+  background: color-mix(in srgb, var(--tone) 6%, var(--white));
+  border-color: color-mix(in srgb, var(--tone) 55%, var(--white));
+  box-shadow: 0 var(--lip) 0 var(--shadow);
+}
+
+.level-group.is-locked .level-group-title { background: color-mix(in srgb, var(--tone) 55%, var(--white)); }
+
+.level-list { display: flex; flex-direction: column; gap: 10px; padding: 14px; }
+
+/* Seviye butonu */
 .level-button {
   display: flex;
   align-items: center;
@@ -44,8 +82,25 @@
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
+.level-button:not(:disabled):hover { transform: translateY(-2px); }
 .level-button:not(:disabled):active { transform: translateY(4px); box-shadow: none; }
-.level-button.is-locked { opacity: 0.55; box-shadow: none; }
+.level-button.is-locked { opacity: 0.6; box-shadow: none; background: rgba(255, 255, 255, 0.6); }
+.level-button.is-locked .level-number { filter: grayscale(0.6); }
+
+/* Sıradaki seviye: nabız gibi atan bir halka ile vurgulanır */
+.level-button.is-next {
+  box-shadow: 0 4px 0 var(--shadow), 0 0 0 4px var(--yellow);
+  animation: next-level-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes next-level-pulse {
+  0%, 100% { box-shadow: 0 4px 0 var(--shadow), 0 0 0 4px var(--yellow); }
+  50% { box-shadow: 0 4px 0 var(--shadow), 0 0 0 9px rgba(255, 210, 77, 0.45); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .level-button.is-next { animation: none; }
+}
 
 .level-number {
   display: grid;
@@ -58,7 +113,8 @@
   background: var(--tone);
   border-radius: 50%;
   box-shadow: inset 0 -4px 0 var(--tone-dark);
+  text-shadow: 0 2px 0 var(--tone-dark);
 }
 
-.level-button .star-row img { width: 26px; height: 26px; }
+.level-button .star-row img { width: 28px; height: 28px; }
 .level-lock { width: 30px; height: 30px; }

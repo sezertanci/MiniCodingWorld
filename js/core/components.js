@@ -32,13 +32,31 @@
     return el("div", { className: "star-row", role: "img", "aria-label": `${stars} yıldız` }, items);
   }
 
-  function topBar({ left = null, title, right = [] }) {
+  // Doluluk çubuğu. Genişlik CSS'e --value değişkeniyle verilir.
+  function progressBar(value, max, label) {
+    const percent = max > 0 ? Math.round((value / max) * 100) : 0;
+    return el("div", {
+      className: "progress-bar",
+      role: "progressbar",
+      "aria-valuemin": "0",
+      "aria-valuemax": String(max),
+      "aria-valuenow": String(value),
+      "aria-label": label,
+      style: `--value: ${percent}%`,
+    }, [el("span", { className: "progress-bar-fill" })]);
+  }
+
+  // Başlığın yanında isteğe bağlı küçük bir ikon gösterilebilir (ör. oyun ikonu).
+  function topBar({ left = null, title, icon = null, right = [] }) {
     return el("header", { className: "top-bar" }, [
       el("div", { className: "top-bar-side" }, [left]),
-      el("h1", { className: "top-bar-title", text: title }),
+      el("h1", { className: "top-bar-title" }, [
+        icon && el("img", { className: "top-bar-icon", src: icon, alt: "" }),
+        el("span", { text: title }),
+      ]),
       el("div", { className: "top-bar-side top-bar-right" }, right),
     ]);
   }
 
-  MKD.components = Object.freeze({ ICONS, iconButton, starCounter, starRow, topBar });
+  MKD.components = Object.freeze({ ICONS, iconButton, starCounter, starRow, progressBar, topBar });
 })((globalThis.MKD ??= {}));
