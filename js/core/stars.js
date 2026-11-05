@@ -20,6 +20,5 @@
     return targetMet ? STARS.PERFECT : STARS.NO_HINT;
   }
 
-  MKD.STARS = STARS;
   MKD.calculateStars = calculateStars;
 })((globalThis.MKD ??= {}));

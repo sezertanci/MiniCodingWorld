@@ -4,12 +4,26 @@
 
 Ana ekranda dört mini oyun bulunur: Robotun Yolunu Bul, Komutları Sırala, Eğer Böyleyse ve Tekrar Et. Her oyunda dört zorluk grubunda 20 seviye vardır: Kolay (1–5), Orta (6–10), Zor (11–15) ve Uzman (16–20). Seviyeler sırayla açılır. Bir grup, önceki grup bitmeden açılmaz. Her seviye 1–3 yıldız verir. İlerleme tarayıcının `localStorage` alanında saklanır.
 
-> Şu an oyunların yerinde geçici bir deneme ekranı var. Bu ekranda seviyeyi 1, 2 veya 3 yıldızla bitirerek kilit sistemi denenebilir. Gerçek oyunlar sırayla eklenecek.
+## Oyunlar
+
+| Oyun | Çocuk ne yapar? | Öğrettiği fikir |
+|---|---|---|
+| **Robotun Yolunu Bul** | Yön oklarını sıraya koyar, robotu taş ve sulardan kaçırarak bayrağa götürür. Uzman seviyelerinde önce altınları toplar. | Sıralı komut (algoritma) |
+| **Komutları Sırala** | Diş fırçalama, kek yapma gibi günlük işlerin karışık adım kartlarını doğru sıraya dizer. Uzman seviyelerinde göreve ait olmayan kartları dışarıda bırakır. | Adım adım düşünme |
+| **Eğer Böyleyse** | "Eğer taş varsa → Zıpla" gibi kurallar kurar; robot yolda karşılaştığı her şeye kurala göre tepki verir. | Koşul (eğer / değilse) |
+| **Tekrar Et** | Aynı hareketleri tek tek eklemek yerine "3 kez tekrarla" bloğunun içine koyar. Blok sınırı bunu gerekli kılar. | Döngü (tekrar) |
+
+Ortak kurallar:
+
+- **Yıldız:** İpucu kullanılırsa 1, ipucusuz bitirilirse 2, ipucusuz ve en kısa/en doğru çözümle bitirilirse 3 yıldız. Bir sonraki seviyeyi açmak için 1 yıldız yeter; yıldız sayısı ilerlemeyi engellemez.
+- **Yanlış cevap cezalandırılmaz.** Robot neyin neden olmadığını tek cümleyle söyler, yanlış yer kırmızıyla gösterilir ve çocuk hemen yeniden dener.
+- **Dokunmatik ekran:** Sürükle-bırak olan yerlerde dokunarak seçme de çalışır.
+- **İpucu** cevabı vermez; sıradaki doğru adımı ya da yanlış yeri gösterir.
 
 ## Gereksinimler
 
 - Güncel bir tarayıcı (Chrome, Firefox, Edge veya Safari)
-- Testleri çalıştırmak için Node.js (LTS). Ek paket gerekmez.
+- Testleri çalıştırmak için Node.js (LTS). Ek paket gerekmez, `npm install` yapılmaz.
 - Görsel üretmek için isteğe bağlı olarak ChatGPT veya benzeri bir araç
 
 ## Çalıştırma
@@ -33,25 +47,31 @@ Proje klasöründe şu komut çalıştırılır:
 node --test
 ```
 
-Testler seviye kilidi, grup kilidi, yıldız kaydı ve yıldız hesabı kurallarını denetler.
+Testler seviye kilidi, grup kilidi, yıldız kaydı ve yıldız hesabı kurallarını denetler. Ayrıca dört oyunun kurallarını ve 80 seviyenin her birinin çözülebildiğini (çözümün sınırlara sığdığını) dener.
 
 ## Klasör yapısı
 
 ```
 index.html                 Uygulama çerçevesi ve script sırası
 css/
-  base.css                 Renk paleti, butonlar, kartlar, üst çubuk
+  base.css                 Renk paleti, butonlar, kartlar, üst çubuk, sürükleme
   screens/                 Ana ekran, seviye seçimi ve oyun ekranı stilleri
+  games/                   Her oyunun kendi stili
 js/
   core/                    Ortak çekirdek
     config.js              Sabitler: seviye sayısı, zorluk grupları, kayıt anahtarı
     storage.js             localStorage okuma/yazma
     stars.js               Yıldız hesabı (1–3)
     progress.js            İlerleme, seviye ve grup kilitleri
-    dom.js, components.js  DOM yardımcısı ve ortak arayüz parçaları
+    dom.js, components.js  DOM yardımcısı ve ortak arayüz parçaları (robot konuşma balonu dahil)
+    drag-drop.js           Fare ve dokunmatikte aynı çalışan sürükle-bırak
     router.js              Ekran geçişleri (#/, #/game/<oyun>, #/game/<oyun>/level/<n>)
     games-registry.js      Oyun listesi
-  games/                   Oyun modülleri (şimdilik geçici deneme oyunu)
+  games/                   Her oyun ayrı klasörde:
+    path-finder/           Robotun Yolunu Bul
+    command-order/         Komutları Sırala
+    if-then/               Eğer Böyleyse
+    repeat/                Tekrar Et (harita ve yön tuşlarını path-finder'dan kullanır)
   screens/                 Ana ekran, seviye seçimi, oyun ekranı, ayarlar penceresi
   app.js                   Başlangıç: servisleri oluşturur, ekranlara verir
 tests/                     node --test ile çalışan testler
@@ -71,11 +91,15 @@ gallery/         Görsel galerisi (index.html, gallery.css, gallery.js)
 - Kod modül sistemi kullanmaz, klasik `<script>` etiketleriyle yüklenir. Böylece dosya çift tıklanarak da çalışır. Script sırası `index.html` içinde belirlenir.
 - Bütün kod tek bir ortak nesne (`MKD`) altında toplanır. Başka global değişken oluşturulmaz.
 - Servisler (ilerleme, yönlendirme) `app.js` içinde bir kez oluşturulur ve ekranlara parametre olarak verilir.
+- Her oyun klasöründe aynı düzen vardır:
+  - `engine.js`: oyunun kuralları. Ekrandan bağımsızdır, testler doğrudan bunu çağırır.
+  - `levels.js`: 20 seviyenin verisi. Seviyeler buradan kod değiştirmeden düzenlenir; testler her seviyenin çözülebildiğini denetler.
+  - `game.js`: ekran ve etkileşim (gerekirse ayrı bir görünüm dosyası: `board-view.js`, `scene-view.js`).
 - **Yeni oyun eklemek için:**
   1. `js/games/<oyun-adı>/` klasörü açılır.
   2. Oyun kendini `MKD.gameModules["<oyun-id>"] = { mount(container, { game, level, onComplete }) }` şeklinde kaydeder.
   3. `games-registry.js` dosyasına oyun bilgisi eklenir.
-  4. Dosya `index.html` içine eklenir.
+  4. Dosyalar `index.html` içine eklenir (kurallar, seviyeler, ekran sırasıyla).
 
   Oyun bitince `onComplete(yıldız)` çağrılır. Yıldız `MKD.calculateStars({ hintUsed, targetMet })` ile hesaplanır.
 

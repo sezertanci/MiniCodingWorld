@@ -36,6 +36,5 @@
   MKD.findGame = (id) => MKD.games.find((game) => game.id === id) ?? null;
 
   // Oyun modülleri kendi dosyalarında buraya kaydolur: MKD.gameModules["path-finder"] = { mount }.
-  // Kaydı olmayan oyunlar için geçici oyun ekranı kullanılır.
   MKD.gameModules = {};
 })((globalThis.MKD ??= {}));

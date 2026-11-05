@@ -54,9 +54,15 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - Her seviyede blok sınırı var ve tek tek oklarla sığmaz; çocuk tekrar bloğunu kullanmak zorunda kalır. Çalışırken blokta "2/3" tur rozeti görünür.
   - Yanlışta: ilk turda çarparsa yanlış ok, sonraki turda çarparsa tekrar sayısı önerilir. 3 yıldız: ipucu yok ve blok sayısı çözümdeki kadar.
 
+- [x] Prompt 7 (son kontrol). Otomatik modda yapıldı, commit atıldı.
+  - Kontrol listesi tarayıcıda denendi: dört oyunda 20 seviye, grup kilitleri, kilitli seviyeye adresle girilemiyor, biten seviye yeniden oynanabiliyor, ilerleme yenilemede korunuyor, konsolda hata yok.
+  - Geçici deneme oyunu (`placeholder-game.js`) ve stilleri kaldırıldı; kullanılmayan `MKD.STARS` dışa açılması silindi.
+  - Telefonda Komutları Sırala kart yazısı 13 → 14 px yapıldı (kartlar 100×94 px; uzun kelime taşmaz).
+  - README oyunları, yıldız kuralını ve klasör düzenini anlatacak şekilde güncellendi.
+
 ## Sıradaki adımlar
 
-1. Prompt 7 (son kontrol), tek HTML betiği; her biri ayrı commit.
+1. Tek HTML betiği (`tools/build-single-html.js`), ayrı commit.
 2. Hepsi bitince baştan uçtan uca kontrol, rapor, ardından worklog ve todo kayıtları.
 
 ## Notlar

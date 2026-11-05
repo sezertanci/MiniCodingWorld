@@ -30,7 +30,6 @@
 /* Tek sütun ekran genişliğini aşmaz; içeriği geniş oyunlar (ör. uzun yol) kendi içinde kayar */
 .game-stage { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; min-height: 50vh; }
 
-.placeholder-game,
 .result-panel {
   display: flex;
   flex-direction: column;
@@ -39,9 +38,6 @@
   max-width: 560px;
   text-align: center;
 }
-
-.placeholder-game p { margin: 0; }
-.placeholder-title { font-size: 24px; font-weight: 800; }
 
 .result-panel h2 { margin: 0; font-size: 28px; }
 .result-panel .star-row img { width: 64px; height: 64px; }

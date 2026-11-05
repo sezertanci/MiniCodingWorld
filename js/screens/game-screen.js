@@ -32,7 +32,7 @@
     function render({ game, level }) {
       const group = progress.findGroup(level);
       const stage = el("div", { className: "game-stage" });
-      const gameModule = MKD.gameModules[game.id] ?? MKD.placeholderGame;
+      const gameModule = MKD.gameModules[game.id];
 
       gameModule.mount(stage, {
         game,
