@@ -41,6 +41,8 @@
    */
   function makeDraggable(element, { canDrag = () => true, onDrop }) {
     element.classList.add("is-draggable");
+    // İçindeki resimlerin tarayıcıya özgü sürüklenmesi kapatılır; yoksa bizim sürüklememiz yarıda kesilir.
+    element.addEventListener("dragstart", (event) => event.preventDefault());
 
     element.addEventListener("pointerdown", (down) => {
       if (down.button !== 0 || !canDrag()) return;

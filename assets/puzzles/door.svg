@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kapı</title>
+  <desc>Robotun yolunu kapatan ahşap kapı. "Eğer Böyleyse" oyununda koşul nesnesi olarak kullanılır.</desc>
+  <ellipse cx="64" cy="120" rx="44" ry="5" fill="#1F2D4F" opacity="0.12"/>
+  <path d="M22 118 V50 A42 42 0 0 1 106 50 V118 Z" fill="#8C5A2B" stroke="#5E3A17" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M32 114 V52 A32 32 0 0 1 96 52 V114 Z" fill="#B97A3D"/>
+  <g stroke="#8C5A2B" stroke-width="4"><line x1="53" y1="24" x2="53" y2="114"/><line x1="75" y1="24" x2="75" y2="114"/></g>
+  <rect x="30" y="58" width="68" height="8" rx="3" fill="#5E3A17"/>
+  <rect x="30" y="92" width="68" height="8" rx="3" fill="#5E3A17"/>
+  <circle cx="86" cy="80" r="6" fill="#FFD24D" stroke="#E8A920" stroke-width="3"/>
+</svg>

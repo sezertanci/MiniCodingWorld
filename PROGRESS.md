@@ -40,9 +40,16 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - Kartlar dokunarak (seçili ya da ilk boş kutuya) veya sürüklenerek yerleşir. Zor/Uzman seviyelerinde kutular aşama başlıklarıyla gruplanır; Uzman'da göreve ait olmayan kartlar var.
   - Yanlışta yalnızca ilk yanlış kutu ve nedeni söylenir. 3 yıldız: ipucu yok ve hiç yanlış kontrol yok.
 
+- [x] Prompt 5 (Eğer Böyleyse). Otomatik modda yapıldı, commit atıldı.
+  - Dosyalar: `js/games/if-then/` (`engine.js`, `levels.js`, `scene-view.js`, `game.js`), `css/games/if-then.css`, `tests/if-then.test.js`, yeni `assets/puzzles/door.svg`.
+  - Robot düz bir yolda ilerler; her karede ilk uyan "Eğer ... varsa" kuralını, hiçbiri uymazsa "Değilse" hareketini uygular. Her nesnenin tek doğru hareketi var (taş→Zıpla, su→Köprü Kur, kapı→Kapıyı Aç, yıldız→Topla, boş→İleri Git).
+  - Kolay: tek kural, "Değilse" hazır. Orta: kural + değilse. Zor: 2 kural. Uzman: 3 kural. Testler her seviyenin bloklarla çözülebildiğini dener.
+  - 3 yıldız: ipucu yok ve ilk çalıştırmada doğru. Yanlışta hangi kuralın çalıştığı ve neden olmadığı söylenir.
+  - Ortak düzeltmeler: sürüklenen öğedeki resmin tarayıcıya özgü sürüklenmesi kapatıldı; `.game-stage` tek sütunu ekran genişliğini aşmaz.
+
 ## Sıradaki adımlar
 
-1. Prompt 5 (Eğer Böyleyse), Prompt 6 (Tekrar Et), Prompt 7 (son kontrol), tek HTML betiği; her biri ayrı commit.
+1. Prompt 6 (Tekrar Et), Prompt 7 (son kontrol), tek HTML betiği; her biri ayrı commit.
 2. Hepsi bitince baştan uçtan uca kontrol, rapor, ardından worklog ve todo kayıtları.
 
 ## Notlar

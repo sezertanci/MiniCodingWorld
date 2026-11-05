@@ -27,7 +27,8 @@
 /* Oyunların ortak dış düzeni: balon, oyun alanı ve kontroller alt alta */
 .game-layout { display: flex; flex-direction: column; gap: 16px; width: 100%; }
 
-.game-stage { display: grid; place-items: center; min-height: 50vh; }
+/* Tek sütun ekran genişliğini aşmaz; içeriği geniş oyunlar (ör. uzun yol) kendi içinde kayar */
+.game-stage { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; min-height: 50vh; }
 
 .placeholder-game,
 .result-panel {

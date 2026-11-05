@@ -77,6 +77,7 @@ const ASSET_MANIFEST = Object.freeze([
   { file: "puzzles/tile-path.svg", category: "puzzles", source: "svg", description: "Kum yol karesi." },
   { file: "puzzles/tile-water.svg", category: "puzzles", source: "svg", description: "Geçilemeyen su karesi." },
   { file: "puzzles/rock.svg", category: "puzzles", source: "svg", description: "Taş engeli." },
+  { file: "puzzles/door.svg", category: "puzzles", source: "svg", description: "Ahşap kapı engeli (Eğer Böyleyse)." },
   { file: "puzzles/goal-flag.svg", category: "puzzles", source: "svg", description: "Hedef bayrağı." },
   { file: "puzzles/goal-star.png", category: "puzzles", source: "mockup", description: "Parlayan hedef yıldız karesi." },
   { file: "puzzles/rock.png", category: "puzzles", source: "mockup", description: "Taş engeli." },
