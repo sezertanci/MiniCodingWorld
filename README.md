@@ -39,6 +39,16 @@ Ortak kurallar:
 
 Görsel galerisi için `gallery/index.html` açılır.
 
+### Tek dosyalık sürüm (paylaşmak için)
+
+Oyunu başka bir cihaza göndermek için bütün kod ve görseller tek bir HTML dosyasına gömülebilir:
+
+```bash
+node tools/build-single-html.js
+```
+
+Çıktı `dist/mini-kodlama-dunyasi.html` dosyasıdır (yaklaşık 210 KB). Bu dosya e-posta, mesaj veya USB bellekle gönderilir ve çift tıklanarak açılır; internet gerekmez. `dist/` klasörü sürüm kontrolüne eklenmez, kod değiştikçe komut yeniden çalıştırılır. Tek dosyanın ilerleme kaydı, proje klasöründeki `index.html` kaydından ayrıdır.
+
 ### Testler
 
 Proje klasöründe şu komut çalıştırılır:
@@ -75,6 +85,8 @@ js/
   screens/                 Ana ekran, seviye seçimi, oyun ekranı, ayarlar penceresi
   app.js                   Başlangıç: servisleri oluşturur, ekranlara verir
 tests/                     node --test ile çalışan testler
+tools/
+  build-single-html.js     Tek dosyalık sürümü üretir (dist/ klasörüne)
 assets/
   characters/    Robot ve diğer karakterler
   backgrounds/   Ekran arka planları

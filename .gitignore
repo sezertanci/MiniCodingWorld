@@ -7,3 +7,6 @@ Thumbs.db
 # Geçici görsel çalışmaları
 *.tmp
 assets/**/_draft/
+
+# Tek dosyalık sürüm (node tools/build-single-html.js ile üretilir)
+dist/

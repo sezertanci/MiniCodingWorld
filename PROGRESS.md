@@ -60,10 +60,11 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - Telefonda Komutları Sırala kart yazısı 13 → 14 px yapıldı (kartlar 100×94 px; uzun kelime taşmaz).
   - README oyunları, yıldız kuralını ve klasör düzenini anlatacak şekilde güncellendi.
 
+- [x] Tek HTML betiği: `node tools/build-single-html.js` → `dist/mini-kodlama-dunyasi.html` (~210 KB, `dist/` git'e girmez). CSS/JS gömülür, görseller base64 veri adresine çevrilir. Testi: `tests/build-single-html.test.js`. Sunucudan açılınca hiçbir ek dosya isteği yapmadığı denendi.
+
 ## Sıradaki adımlar
 
-1. Tek HTML betiği (`tools/build-single-html.js`), ayrı commit.
-2. Hepsi bitince baştan uçtan uca kontrol, rapor, ardından worklog ve todo kayıtları.
+1. Baştan uçtan uca kontrol, düzeltmeler ve rapor (`RAPOR.md`), ardından worklog ve todo kayıtları.
 
 ## Notlar
 
