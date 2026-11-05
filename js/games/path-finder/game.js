@@ -38,11 +38,15 @@
   const stepDuration = () =>
     globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? REDUCED_STEP_MS : STEP_MS;
 
-  function blockedMessage(level, position, direction, index) {
+  /** Robotun çarptığı şeyin adı ("taşa", "suya", "harita kenarına"). Tekrar Et oyunu da kullanır. */
+  function obstacleName(level, position, direction) {
     const { dx, dy } = DIRECTIONS[direction];
     const tile = level.blocked.get(`${position.x + dx},${position.y + dy}`);
-    const target = OBSTACLE_NAMES[tile] ?? "harita kenarına";
-    return `Robot ${target} çarptı. ${index + 1}. komutu değiştirmeyi dene.`;
+    return OBSTACLE_NAMES[tile] ?? "harita kenarına";
+  }
+
+  function blockedMessage(level, position, direction, index) {
+    return `Robot ${obstacleName(level, position, direction)} çarptı. ${index + 1}. komutu değiştirmeyi dene.`;
   }
 
   function hintMessage(hint) {
@@ -290,4 +294,5 @@
   }
 
   MKD.gameModules[GAME_ID] = Object.freeze({ mount });
+  MKD.pathFinder = Object.assign(MKD.pathFinder, { COMMANDS, obstacleName });
 })((globalThis.MKD ??= {}));

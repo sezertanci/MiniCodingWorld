@@ -1,0 +1,150 @@
+/* Tekrar Et. Harita, yön tuşları ve komut kutusu path-finder.css sınıflarını kullanır. */
+
+.rp-main-actions { display: grid; gap: 12px; }
+
+/* "Tekrarla" bloğu ekleme düğmesi: turuncu, döngü simgesiyle */
+.rp-add-repeat {
+  --tone: var(--orange);
+  --tone-dark: var(--orange-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.rp-add-repeat img { width: 40px; height: 40px; }
+
+/* Döngü simgesi turuncu zeminde kaybolmasın diye beyaz daire içinde durur */
+.rp-add-repeat img,
+.rp-repeat-label img { padding: 2px; background: var(--white); border-radius: 50%; }
+
+.rp-program-list { align-items: flex-start; }
+
+/* Turuncu tekrar bloğu: başlıkta sayı ve −/+ düğmeleri, gövdede içindeki oklar */
+.rp-repeat-item { max-width: 100%; }
+
+/* Başlık ve gövde yan yana durur; sığmazsa gövde alt satıra geçer */
+.rp-repeat {
+  --chip-size: 54px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  padding: 8px 10px 10px;
+  background: #ffe2c4;
+  border: 4px solid var(--orange);
+  border-radius: 20px;
+  transition: box-shadow 0.15s;
+}
+
+.rp-repeat-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rp-repeat-head .pf-chip-number { top: -16px; left: -16px; }
+
+.rp-repeat-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--white);
+  white-space: nowrap;
+  background: var(--orange);
+  box-shadow: 0 4px 0 var(--orange-dark);
+  text-shadow: 0 2px 0 var(--orange-dark);
+}
+
+.rp-repeat-label img { width: 28px; height: 28px; }
+
+.rp-times-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--orange-dark);
+  background: var(--white);
+  box-shadow: 0 3px 0 var(--orange-dark);
+}
+
+.rp-times-button:disabled { opacity: 0.4; }
+
+/* Çalışırken kaçıncı turda olunduğunu gösteren rozet */
+.rp-round {
+  padding: 2px 10px;
+  font-weight: 900;
+  color: var(--navy);
+  background: var(--yellow);
+  border-radius: 999px;
+  animation: rp-pop 0.25s ease-out;
+}
+
+@keyframes rp-pop {
+  from { scale: 0.6; }
+}
+
+.rp-repeat-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: calc(var(--chip-size) + 4px);
+  margin: 0;
+  padding: 4px 4px 4px 14px;
+  list-style: none;
+  border-left: 6px solid var(--orange);
+  border-radius: 6px;
+}
+
+.rp-drop-hint {
+  display: grid;
+  place-items: center;
+  min-width: var(--chip-size);
+  height: var(--chip-size);
+  padding: 0 12px;
+  font-weight: 800;
+  color: var(--orange-dark);
+  border: 3px dashed var(--orange);
+  border-radius: 16px;
+}
+
+/* İçine ok eklenen blok yeşil halkayla, seçili ya da çalışan blok lacivert/sarı halkayla gösterilir */
+.rp-repeat.is-target { box-shadow: 0 0 0 5px var(--green); }
+.rp-repeat.is-target .rp-drop-hint { animation: pf-pulse 1s ease-in-out infinite; }
+.rp-repeat.is-selected:not(.is-target) { box-shadow: 0 0 0 5px var(--navy); }
+.rp-repeat.is-running { box-shadow: 0 0 0 5px var(--yellow); }
+.rp-repeat.is-wrong { box-shadow: 0 0 0 5px var(--red); }
+
+.rp-leave-button { --tone: var(--orange); --tone-dark: var(--orange-dark); }
+
+@media (max-width: 760px) {
+  .rp-main-actions { justify-items: center; }
+  .rp-add-repeat { width: min(100%, 200px); }
+}
+
+@media (max-width: 560px) {
+  .rp-repeat { --chip-size: 46px; padding: 8px; }
+  .rp-repeat-label { min-height: 40px; padding: 0 8px; font-size: 15px; }
+  .rp-repeat-label .rp-label-word { display: none; }
+  .rp-times-button { width: 36px; height: 36px; font-size: 22px; }
+  .rp-add-repeat { min-height: 56px; font-size: 18px; }
+  .rp-add-repeat img { width: 30px; height: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rp-repeat.is-target .rp-drop-hint, .rp-round { animation: none; }
+}

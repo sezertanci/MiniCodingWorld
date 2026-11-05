@@ -47,9 +47,16 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - 3 yıldız: ipucu yok ve ilk çalıştırmada doğru. Yanlışta hangi kuralın çalıştığı ve neden olmadığı söylenir.
   - Ortak düzeltmeler: sürüklenen öğedeki resmin tarayıcıya özgü sürüklenmesi kapatıldı; `.game-stage` tek sütunu ekran genişliğini aşmaz.
 
+- [x] Prompt 6 (Tekrar Et). Otomatik modda yapıldı, commit atıldı.
+  - Dosyalar: `js/games/repeat/` (`engine.js`, `levels.js`, `game.js`), `css/games/repeat.css`, `tests/repeat.test.js`.
+  - Harita, hareket kuralları, yön tuşları ve görünüm Robotun Yolunu Bul'dan gelir (`MKD.pathFinder`; `COMMANDS` ve `obstacleName` oradan dışa açıldı).
+  - Program: tek oklar ve turuncu "N kez tekrarla" blokları (2–6 kez, −/+ ile). Tekrarla bloğuna dokununca eklenen oklar içine girer; "Dışarıya ekle" ile çıkılır. İç içe tekrar yok.
+  - Her seviyede blok sınırı var ve tek tek oklarla sığmaz; çocuk tekrar bloğunu kullanmak zorunda kalır. Çalışırken blokta "2/3" tur rozeti görünür.
+  - Yanlışta: ilk turda çarparsa yanlış ok, sonraki turda çarparsa tekrar sayısı önerilir. 3 yıldız: ipucu yok ve blok sayısı çözümdeki kadar.
+
 ## Sıradaki adımlar
 
-1. Prompt 6 (Tekrar Et), Prompt 7 (son kontrol), tek HTML betiği; her biri ayrı commit.
+1. Prompt 7 (son kontrol), tek HTML betiği; her biri ayrı commit.
 2. Hepsi bitince baştan uçtan uca kontrol, rapor, ardından worklog ve todo kayıtları.
 
 ## Notlar
