@@ -1,0 +1,309 @@
+/* Robotun Yolunu Bul */
+.path-game {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Robotun konuşma balonu */
+.pf-bubble { display: flex; align-items: center; gap: 12px; }
+.pf-bubble-robot { width: 56px; height: auto; flex-shrink: 0; }
+
+.pf-message {
+  position: relative;
+  flex: 1;
+  margin: 0;
+  padding: 12px 18px;
+  font-size: 20px;
+  font-weight: 800;
+  background: var(--panel);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 0 var(--shadow);
+}
+
+/* Harita solda, kontroller sağda */
+.pf-main {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 16px;
+}
+
+/* Izgara harita */
+.pf-board {
+  position: relative;
+  display: grid;
+  /* Satır ve sütunlar eşit tutulur; taş görseli bulunduğu satırı büyütmez, iz kareleri hizalı kalır */
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  width: 100%;
+  max-width: calc(var(--cols) * 104px);
+  aspect-ratio: var(--cols) / var(--rows);
+  justify-self: center;
+  overflow: hidden;
+  border: 6px solid var(--green-dark);
+  border-radius: var(--radius-md);
+  box-shadow: 0 var(--lip) 0 rgba(31, 45, 79, 0.2);
+}
+
+.pf-tile { display: grid; place-items: center; min-width: 0; min-height: 0; }
+.tile-light { background: #a6e682; }
+.tile-dark { background: #92da6c; }
+.tile-water { background: url("../../assets/puzzles/tile-water.svg") center / cover; }
+.pf-object { width: 80%; height: 80%; }
+
+/* Haritanın üstündeki parçalar: robot, bayrak, altın, ipucu işareti */
+.pf-piece {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: calc(100% / var(--cols));
+  height: calc(100% / var(--rows));
+  transform: translate(calc(var(--x) * 100%), calc(var(--y) * 100%));
+  pointer-events: none;
+}
+
+.pf-piece[hidden] { display: none; }
+.pf-piece img { width: 78%; height: 78%; object-fit: contain; }
+
+.pf-start, .pf-trail { z-index: 1; }
+.pf-goal, .pf-coin { z-index: 2; }
+.pf-hint-marker { z-index: 3; }
+.pf-robot { z-index: 4; transition: transform 0.4s ease-in-out; }
+.pf-robot img { width: 88%; height: 88%; }
+
+/* Başlangıç karesi: kesik çizgili lacivert çerçeve */
+.pf-start::after {
+  content: "";
+  width: 88%;
+  height: 88%;
+  border: 4px dashed var(--navy);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Robotun izi: sarı zemin üstünde gidilen yönü gösteren ok */
+.pf-trail::before,
+.pf-trail::after { content: ""; grid-area: 1 / 1; }
+
+.pf-trail::before {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 210, 77, 0.45);
+}
+
+.pf-trail::after {
+  width: 40%;
+  height: 40%;
+  background: var(--navy);
+  clip-path: var(--arrow);
+  animation: pf-trail-in 0.3s ease-out;
+}
+
+/* Her yön için ayrı ok şekli; döndürme kenarlarda ince çizgi bıraktığı için kullanılmaz */
+.pf-trail[data-direction="right"] { --arrow: polygon(0 30%, 50% 30%, 50% 0, 100% 50%, 50% 100%, 50% 70%, 0 70%); }
+.pf-trail[data-direction="left"] { --arrow: polygon(100% 30%, 50% 30%, 50% 0, 0 50%, 50% 100%, 50% 70%, 100% 70%); }
+.pf-trail[data-direction="down"] { --arrow: polygon(30% 0, 70% 0, 70% 50%, 100% 50%, 50% 100%, 0 50%, 30% 50%); }
+.pf-trail[data-direction="up"] { --arrow: polygon(30% 100%, 70% 100%, 70% 50%, 100% 50%, 50% 0, 0 50%, 30% 50%); }
+
+@keyframes pf-trail-in {
+  from { opacity: 0; scale: 0.4; }
+}
+
+.pf-coin.is-collected img { animation: coin-collect 0.5s forwards; }
+
+@keyframes coin-collect {
+  50% { transform: scale(1.4) translateY(-20%); opacity: 1; }
+  100% { transform: scale(0.4) translateY(-60%); opacity: 0; }
+}
+
+.pf-hint-marker::after {
+  content: "";
+  width: 86%;
+  height: 86%;
+  border: 5px dashed var(--yellow);
+  border-radius: 14px;
+  background: rgba(255, 210, 77, 0.35);
+  animation: pf-pulse 1s ease-in-out infinite;
+}
+
+/* Çarpma: robot gideceği yöne doğru sarsılır */
+.pf-robot[data-direction="up"] { --bx: 0; --by: -1; }
+.pf-robot[data-direction="down"] { --bx: 0; --by: 1; }
+.pf-robot[data-direction="left"] { --bx: -1; --by: 0; }
+.pf-robot[data-direction="right"] { --bx: 1; --by: 0; }
+.pf-robot.is-bumping img { animation: pf-bump 0.4s ease-in-out; }
+
+@keyframes pf-bump {
+  40% { transform: translate(calc(var(--bx) * 22%), calc(var(--by) * 22%)) rotate(6deg); }
+  70% { transform: translate(calc(var(--bx) * -6%), calc(var(--by) * -6%)) rotate(-4deg); }
+}
+
+.pf-robot.is-happy img { animation: pf-jump 0.45s ease-in-out 2; }
+
+@keyframes pf-jump {
+  50% { transform: translateY(-22%); }
+}
+
+@keyframes pf-pulse {
+  50% { transform: scale(0.88); opacity: 0.6; }
+}
+
+/* Kontrol paneli */
+.pf-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+  width: 270px;
+  padding: 18px;
+}
+
+.pf-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  grid-template-areas: ". up ." "left . right" ". down .";
+  justify-content: center;
+  gap: 4px;
+}
+
+.pad-up { grid-area: up; }
+.pad-left { grid-area: left; }
+.pad-right { grid-area: right; }
+.pad-down { grid-area: down; }
+
+.pf-pad-button {
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: none;
+  transition: transform 0.1s;
+}
+
+.pf-pad-button img { width: 100%; height: 100%; }
+.pf-pad-button:not(:disabled):active { transform: translateY(4px); }
+.pf-pad-button:disabled { opacity: 0.45; }
+.pf-pad-button.is-hint { animation: pf-hint-ring 1s ease-in-out infinite; }
+
+@keyframes pf-hint-ring {
+  50% { box-shadow: 0 0 0 8px rgba(255, 210, 77, 0.8); }
+}
+
+.pf-run { min-height: 72px; font-size: 26px; }
+
+.pf-secondary-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pf-secondary-actions .btn { min-height: 52px; padding: 0 6px; font-size: 16px; }
+.btn-hint { --tone: var(--purple); --tone-dark: var(--purple-dark); }
+
+/* Komut listesi: komutlar soldan dizilir, satır dolunca alta geçer.
+   Sayaç kutunun sağ üst köşesinde rozet olarak durur; kutu boşken satırın sağında görünür. */
+.pf-program {
+  --chip-size: 64px;
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 18px 18px 12px;
+}
+
+.pf-program-count {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  z-index: 1;
+  padding: 2px 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  background: var(--white);
+  border-radius: 999px;
+  box-shadow: 0 2px 0 var(--shadow);
+}
+
+.pf-program-list:empty { display: none; }
+.pf-program-list:empty + .pf-program-count { position: static; justify-self: end; background: var(--shadow); box-shadow: none; }
+.pf-program:has(.pf-program-list:empty) { padding-top: 12px; }
+
+.pf-program-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 6px 0 0 6px;
+  list-style: none;
+}
+
+.pf-chip {
+  position: relative;
+  width: var(--chip-size);
+  height: var(--chip-size);
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.pf-chip img { width: 100%; height: 100%; }
+
+.pf-chip-number {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--white);
+  background: var(--navy);
+  border-radius: 50%;
+}
+
+.pf-chip.is-selected { transform: translateY(-4px); box-shadow: 0 0 0 4px var(--navy); }
+.pf-chip.is-active { transform: scale(1.12); box-shadow: 0 0 0 5px var(--yellow); }
+.pf-chip.is-wrong { box-shadow: 0 0 0 5px var(--red); animation: pf-shake 0.4s; }
+
+@keyframes pf-shake {
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.pf-edit-bar { display: flex; flex-wrap: wrap; gap: 8px; }
+.pf-edit-bar[hidden] { display: none; }
+.pf-edit-button { --tone: var(--blue); --tone-dark: var(--blue-dark); min-height: 52px; padding: 0 16px; font-size: 17px; }
+
+/* Tablet ve telefon: kontroller haritanın altına iner.
+   Yön tuşları solda, Başlat sağda, diğer butonlar alt satırda. */
+@media (max-width: 760px) {
+  .pf-main { grid-template-columns: 1fr; }
+  .pf-controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    width: 100%;
+  }
+  .pf-run { align-self: center; justify-self: center; width: min(100%, 200px); }
+  .pf-secondary-actions { grid-column: 1 / -1; }
+}
+
+@media (max-width: 560px) {
+  .pf-message { font-size: 17px; padding: 10px 14px; }
+  .pf-bubble-robot { width: 44px; }
+  .pf-pad { grid-template-columns: repeat(3, 52px); }
+  .pf-pad-button { width: 52px; height: 52px; }
+  .pf-controls { padding: 12px; gap: 10px; }
+  .pf-run { min-height: 64px; padding: 0 10px; font-size: 22px; white-space: nowrap; }
+  .pf-secondary-actions .btn { min-height: 48px; }
+  .pf-program { --chip-size: 54px; padding: 18px 12px 12px; }
+  .pf-program-count { right: 12px; font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-robot { transition-duration: 0.12s; }
+  .pf-hint-marker::after, .pf-pad-button.is-hint { animation: none; }
+}

@@ -28,5 +28,6 @@
 .result-panel .star-row img { width: 64px; height: 64px; }
 
 @media (max-width: 560px) {
-  .level-badge { padding: 6px 10px; font-size: 15px; }
+  .level-badge { padding: 6px 10px; font-size: 13px; white-space: normal; text-align: center; }
+  .game-screen .top-bar-title { font-size: 18px; }
 }

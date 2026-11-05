@@ -25,11 +25,18 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - Ana ekran: robot her genişlikte başlığın solunda (ekran daraldıkça küçülür; kullanıcı isteği), kartlarda ilerleme çubuğu, seviye sayısı ve yıldız.
   - Seviye seçimi: başlıkta oyun ikonu, grup başlığında "x/5", kilitli grupta "Önce … seviyelerini bitir" ipucu, sıradaki seviye sarı halkayla vurgulanır (`progress.getNextLevel`).
 
+- [x] Prompt 3 (Robotun Yolunu Bul). Kullanıcı onayladı, commit atıldı.
+  - Dosyalar: `js/games/path-finder/` (`engine.js` kurallar ve BFS ipucu, `levels.js` 20 seviye, `board-view.js` harita çizimi, `game.js` ekran), `css/games/path-finder.css`, `tests/path-finder.test.js`.
+  - Harita işaretleri: S başlangıç, G bayrak, # taş, ~ su, * altın, . çimen. Uzman seviyelerinde altın toplama ve komut sınırı var.
+  - 3 yıldız: ipucu yok ve komut sayısı en kısa çözüm kadar. Çözüm ekranda gösterilmez; testler her seviyenin çözülebildiğini denetler.
+  - Kullanıcı isteğiyle: komut listesi haritanın üstünde, başlıksız; sayaç sağ üst köşede rozet. Robot geçtiği karelere yön oku bırakır (karede son geçişin oku), başlangıç karesi kesik çizgili. Telefonda Başlat normal boyutta.
+  - Masaüstü ve telefonda tarayıcıda denendi; 74 test geçiyor.
+
 ## Sıradaki adımlar
 
-1. Prompt 3 (Robotun Yolunu Bul): kullanıcı "başla/devam et" deyince.
+1. Prompt 4: kullanıcı "başla" deyince.
 2. (Kullanıcı devlog todo ve worklog sorularını yanıtlamadı. Tekrar sorulmayacak.)
-3. Prompt 3–6: dört oyun. Her oyun `js/games/<id>/` altında olur ve `MKD.gameModules` sözleşmesine uyar (README'de anlatılıyor).
+3. Prompt 4–6: kalan üç oyun. Her oyun `js/games/<id>/` altında olur ve `MKD.gameModules` sözleşmesine uyar (README'de anlatılıyor).
 4. Prompt 7: son kontrol
 5. Tek HTML dosyası üreten betik
 

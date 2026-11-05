@@ -121,7 +121,8 @@ button:disabled { cursor: not-allowed; }
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
-.btn:active { transform: translateY(var(--lip)); box-shadow: none; }
+.btn:not(:disabled):active { transform: translateY(var(--lip)); box-shadow: none; }
+.btn:disabled { opacity: 0.5; }
 .btn-primary { --tone: var(--green); --tone-dark: var(--green-dark); }
 .btn-secondary { --tone: var(--blue); --tone-dark: var(--blue-dark); }
 .btn-danger { --tone: var(--red); --tone-dark: var(--red-dark); }
