@@ -22,6 +22,10 @@ describe("buildSingleHtml", () => {
     assert.equal(countMatches(html, /<script>/g), countMatches(indexHtml, /<script src=/g));
   });
 
+  test("buildSingleHtml_Output_KeepsLoadWarningForViewersWithoutJavaScript", () => {
+    assert.match(html, /class="load-warning card"/);
+  });
+
   test("buildSingleHtml_Images_BecomeDataUris", () => {
     assert.match(html, /data:image\/svg\+xml;base64,/);
   });

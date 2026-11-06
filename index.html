@@ -15,7 +15,17 @@
   <link rel="stylesheet" href="css/games/repeat.css">
 </head>
 <body>
-  <main id="app" class="app"></main>
+  <main id="app" class="app">
+    <!-- Oyun başlayınca bu uyarı ekrandan kalkar. JavaScript çalışmayan bir görüntüleyicide
+         (örneğin tabletin dosya önizlemesi) ya da çok eski bir tarayıcıda ekranda kalır. -->
+    <div class="load-warning card" role="alert">
+      <div class="load-warning-icon" aria-hidden="true">🤖</div>
+      <h1>Oyun burada açılamadı</h1>
+      <p>Bu dosyayı <strong>Chrome</strong> veya <strong>Safari</strong> ile aç.</p>
+      <p class="load-warning-steps">Dosyaya basılı tut → <strong>Birlikte aç</strong> → <strong>Chrome</strong></p>
+      <p class="load-warning-note">Chrome'da da bu yazıyı görürsen Chrome'u güncelle.</p>
+    </div>
+  </main>
 
   <!-- Sıra önemlidir: önce çekirdek, sonra oyunlar, ekranlar ve en son app.js -->
   <script src="js/core/config.js"></script>
