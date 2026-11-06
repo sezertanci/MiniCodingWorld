@@ -10,7 +10,7 @@
   const levels = [
     // Kolay 1–5: tek ve kısa hareketler, yönleri tanıma
     { map: ["....", "SG..", "...."], solution: "R", intro: "Robotu bayrağa götür. Sağa okuna bas, sonra Başlat'a dokun." },
-    { map: ["..G.", "..S.", "...."], solution: "U", intro: "Bayrak robotun üstünde. Hangi oku seçmelisin?" },
+    { map: ["..G.", "..S.", "...."], solution: "U", intro: "Bayrak robotun yukarısında. Hangi oku seçmelisin?" },
     { map: [".....", "G.S..", "....."], solution: "LL", intro: "Bayrak solda ve iki kare uzakta." },
     { map: [".S..", "....", ".G.."], solution: "DD", intro: "Robot aşağı inmeli. Kaç kez?" },
     { map: ["...G", ".S..", "...."], solution: "URR", intro: "Bu kez iki farklı yön kullanacaksın." },

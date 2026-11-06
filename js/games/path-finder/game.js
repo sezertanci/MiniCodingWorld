@@ -210,6 +210,7 @@
         const step = result.steps[index];
         board.moveRobot(step, state.commands[index]);
         await wait(duration);
+        if (!container.isConnected) return;
         if (step.coin >= 0) board.collectCoin(step.coin);
       }
     }

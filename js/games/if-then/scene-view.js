@@ -24,6 +24,7 @@
   const ROBOT_CLASSES = Object.freeze({ jump: "is-jumping", bump: "is-bumping", happy: "is-happy" });
   const MARK_CLASSES = ["is-wrong", "is-hint", ...Object.values(CELL_EFFECT)];
   const START_OFFSET = 1;
+  const BUMP_MS = 400;
 
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -84,7 +85,7 @@
       jumpPending = false;
       cells[index].classList.add("is-wrong");
       robot.classList.add(ROBOT_CLASSES.bump);
-      setTimeout(() => robot.classList.remove(ROBOT_CLASSES.bump), 400);
+      setTimeout(() => robot.classList.remove(ROBOT_CLASSES.bump), BUMP_MS);
     }
 
     function reset() {

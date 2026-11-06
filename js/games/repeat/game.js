@@ -11,6 +11,8 @@
   const NO_TARGET = -1;
   const STEP_MS = 450;
   const REDUCED_STEP_MS = 150;
+  // Tekrarla bloğu ile içindeki bir ok: en az iki blok yer kaplar
+  const REPEAT_WITH_MOVE = 2;
   const CELEBRATE_MS = 900;
   const REPEAT_ICON = "assets/icons/game-repeat.svg";
 
@@ -262,7 +264,8 @@
       programCount.textContent = `${blockCount()} / ${definition.maxBlocks}`;
       renderEditBar();
       Object.values(padButtons).forEach((button) => { button.disabled = state.running || full; });
-      actionButtons.repeat.disabled = state.running || full;
+      // Tekrarla bloğu ve içine en az bir ok sığmıyorsa eklenmez; yoksa boş blokla sınır dolar.
+      actionButtons.repeat.disabled = state.running || blockCount() + REPEAT_WITH_MOVE > definition.maxBlocks;
       ["run", "hint", "restart", "clear"].forEach((key) => { actionButtons[key].disabled = state.running; });
     }
 
@@ -301,6 +304,7 @@
         const step = result.steps[index];
         board.moveRobot(step, direction);
         await wait(duration);
+        if (!container.isConnected) return;
         if (step.coin >= 0) board.collectCoin(step.coin);
       }
     }

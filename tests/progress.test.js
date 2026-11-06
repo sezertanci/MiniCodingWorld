@@ -190,6 +190,15 @@ describe("totals and reset", () => {
     assert.equal(progress.isLevelUnlocked(GAME_ID, 1), true);
   });
 
+  test("createProgress_GamesStoredAsArray_StartsEmptyAndSavesAgain", () => {
+    const storage = createMemoryStorage({ games: [] });
+
+    createProgress(storage).completeLevel(GAME_ID, 1, 2);
+
+    const saved = JSON.parse(JSON.stringify(storage.data));
+    assert.equal(createProgress(createMemoryStorage(saved)).getStars(GAME_ID, 1), 2);
+  });
+
   test("getStars_InvalidStoredValue_ReturnsZero", () => {
     const storage = createMemoryStorage({ games: { [GAME_ID]: { 1: 7, 2: "3" } } });
 

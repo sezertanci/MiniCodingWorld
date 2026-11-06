@@ -69,7 +69,7 @@
         step("Alarm çalınca uyan", "⏰"), step("Okul kıyafetini giy", "👕"),
         step("Çantanı sırtına tak", "🎒"), step("Servise bin", "🚌"),
       ],
-      hint: "Uyumadan giyinmek olmaz. Sabah ilk ne olur?",
+      hint: "Uyanmadan giyinmek olmaz. Sabah ilk ne olur?",
     },
     {
       title: "Mektup gönder", icon: "✉️",

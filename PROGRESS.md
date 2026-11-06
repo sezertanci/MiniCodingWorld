@@ -4,12 +4,10 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
 
 ## Kaynak
 
-İş tanımı: `~/İndirilenler/Mini_Kodlama_Dunyasi_Claude_Code_Promptlari_ve_Gorseller.docx`. Belgede 7 prompt ve 6 örnek ekran görseli var.
+İş tanımı: "Mini Kodlama Dünyası — Claude Code Promptları ve Görseller" belgesi (repoda değil). Belgede 7 prompt ve 6 örnek ekran görseli var.
 
 ## Çalışma düzeni (kullanıcıyla anlaşılanlar)
 
-- **2026-11-06 itibarıyla otomatik mod:** Kullanıcı, Prompt 4–7'nin onay beklenmeden sırayla yapılmasını ve her birinin ayrı commit'lenmesini istedi. Sonra tek HTML betiği yazılacak, her şey baştan kontrol edilip düzeltilecek ve kullanıcı dönünce okuyacağı bir rapor hazırlanacak. Push yine yapılmaz.
-- **Yalnızca bu oturum için:** Bütün işler bitince devlog worklog kaydı ve gerekiyorsa devlog todo kayıtları kullanıcı onayı beklenmeden oluşturulur. Sonraki oturumlarda bu izin geçerli değildir.
 - Kullanıcı bilgi verirken hiçbir şey yapılmaz. İşe yalnızca açıkça "başla" veya "uygula" denince geçilir.
 - Promptlar sırayla uygulanır. Kullanıcı bir promptu "tamam" diye onaylamadan sonrakine geçilmez.
 - Her prompt ayrı bir commit olur. Commit kullanıcı onayladıktan sonra atılır. Push yalnızca kullanıcı isterse yapılır.

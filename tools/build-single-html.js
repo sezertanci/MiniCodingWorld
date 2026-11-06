@@ -49,7 +49,8 @@ function inlineStylesheet(file, toDataUri) {
   const css = readText(file).replace(CSS_URL, (_, url) =>
     `url("${toDataUri(path.join(path.dirname(file), url))}")`
   );
-  return `<style>\n/* ${file} */\n${css}</style>`;
+  // Gömülü CSS'te "</style" geçerse tarayıcı style etiketini erken kapatır; bu yüzden kaçırılır.
+  return `<style>\n/* ${file} */\n${css.replace(/<\/style/gi, "<\\/style")}</style>`;
 }
 
 // Gömülü kodda "</script" geçerse tarayıcı script etiketini erken kapatır; bu yüzden kaçırılır.

@@ -22,20 +22,22 @@
       <div class="preview"><img loading="lazy" alt=""></div>
       <p class="name"></p>
       <p class="desc"></p>
-      <span class="badge ${asset.source}"></span>`;
+      <span class="badge"></span>`;
     const img = item.querySelector("img");
     img.src = ASSET_ROOT + asset.file;
     img.alt = asset.description;
     item.querySelector(".name").textContent = asset.file;
     item.querySelector(".desc").textContent = asset.description;
-    item.querySelector(".badge").textContent = SOURCE_LABELS[asset.source];
+    const badge = item.querySelector(".badge");
+    badge.classList.add(asset.source);
+    badge.textContent = SOURCE_LABELS[asset.source];
     return item;
   }
 
   function render(source) {
     container.replaceChildren();
     for (const [category, title] of Object.entries(CATEGORY_TITLES)) {
-      const assets = ASSET_MANIFEST.filter(
+      const assets = MKD.assetManifest.filter(
         (a) => a.category === category && (source === ALL || a.source === source)
       );
       if (assets.length === 0) continue;

@@ -8,7 +8,8 @@
 
     // Bozuk veya eski kayıtlar oyunu çökertmesin diye yalnızca beklenen biçim kabul edilir.
     function normalize(raw) {
-      const games = raw && typeof raw.games === "object" && raw.games !== null ? raw.games : {};
+      const isRecord = (value) => typeof value === "object" && value !== null && !Array.isArray(value);
+      const games = isRecord(raw) && isRecord(raw.games) ? raw.games : {};
       return { games };
     }
 

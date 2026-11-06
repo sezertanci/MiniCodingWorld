@@ -4,7 +4,7 @@
 //         "mockup" → tasarım görsellerinden kesilmiş geçici PNG (düşük çözünürlük, arka planlı)
 //         "ai"   → yapay zekâ ile üretilmiş PNG (ChatGPT vb.)
 // Klasik <script> ile yüklenir; böylece sunucu olmadan file:// üzerinden de çalışır.
-const ASSET_MANIFEST = Object.freeze([
+(globalThis.MKD ??= {}).assetManifest = Object.freeze([
   // Karakterler
   { file: "characters/robot.svg", category: "characters", source: "svg", description: "Ana karakter Robi. El sallayan robot." },
   { file: "characters/robot-wave.png", category: "characters", source: "mockup", description: "Ana ekrandaki büyük robot (başparmak yukarı)." },

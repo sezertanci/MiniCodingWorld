@@ -26,6 +26,11 @@ describe("buildSingleHtml", () => {
     assert.match(html, /class="load-warning card"/);
   });
 
+  test("buildSingleHtml_Output_HasNoClosingTagInsideInlinedCode", () => {
+    assert.equal(countMatches(html, /<\/style>/g), countMatches(html, /<style>/g));
+    assert.equal(countMatches(html, /<\/script>/g), countMatches(html, /<script>/g));
+  });
+
   test("buildSingleHtml_Images_BecomeDataUris", () => {
     assert.match(html, /data:image\/svg\+xml;base64,/);
   });

@@ -43,6 +43,7 @@
     success: "Harika! Robot kurallarını izleyip bayrağa ulaştı!",
     solved: "Kuralların doğru! Çalıştır'a dokun.",
     noSlot: "Bu blok için boş kutu yok. Değiştirmek istediğin kutuya dokunup onu boşalt.",
+    lockedSlot: "Bu kutu hazır geldi, değiştirilemez. Bloğu boş bir kutuya koy.",
     wrongType: "Bu blok oraya uymaz. Nesneler «Eğer» kutusuna, hareketler ok işaretinin yanına gider.",
   });
 
@@ -151,7 +152,11 @@
 
     function dropBlock(type, value, zone) {
       const key = zone.dataset.slot;
-      if (!isOpen(key) || slotType(key) !== type) {
+      if (!isOpen(key)) {
+        say(MESSAGES.lockedSlot);
+        return;
+      }
+      if (slotType(key) !== type) {
         say(MESSAGES.wrongType);
         return;
       }
