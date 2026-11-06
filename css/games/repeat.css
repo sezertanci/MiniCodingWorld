@@ -19,16 +19,15 @@
 .rp-add-repeat img,
 .rp-repeat-label img { padding: 2px; background: var(--white); border-radius: 50%; }
 
-.rp-program-list { align-items: flex-start; }
+/* Şerit, tekrar bloğunun boyuna göre biraz daha yüksektir; blok olsa da olmasa da yükseklik sabittir. */
+.rp-program-list.pf-strip { height: calc(var(--chip-size) + 56px); }
 
-/* Turuncu tekrar bloğu: başlıkta sayı ve −/+ düğmeleri, gövdede içindeki oklar */
-.rp-repeat-item { max-width: 100%; }
-
-/* Başlık ve gövde yan yana durur; sığmazsa gövde alt satıra geçer */
+/* Turuncu tekrar bloğu: başlıkta sayı ve −/+ düğmeleri, gövdede içindeki oklar.
+   Başlık ve gövde şeritte yan yana tek satırda durur. */
 .rp-repeat {
   --chip-size: 54px;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 8px 10px;
   padding: 8px 10px 10px;
@@ -97,9 +96,9 @@
 }
 
 .rp-repeat-body {
-  flex: 1 1 auto;
+  flex: none;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 8px;
   min-height: calc(var(--chip-size) + 4px);

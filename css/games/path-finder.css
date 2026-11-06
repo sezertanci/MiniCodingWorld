@@ -177,8 +177,7 @@
 .pf-secondary-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .pf-secondary-actions .btn { min-height: 52px; padding: 0 6px; font-size: 16px; }
 
-/* Komut listesi: komutlar soldan dizilir, satır dolunca alta geçer.
-   Sayaç kutunun sağ üst köşesinde rozet olarak durur; kutu boşken satırın sağında görünür. */
+/* Komut listesi: iki oyunda da tek satırlık şerit (.pf-strip). Sayaç kutunun sağ üst köşesinde rozet olarak durur. */
 .pf-program {
   --chip-size: 64px;
   position: relative;
@@ -200,9 +199,6 @@
   box-shadow: 0 2px 0 var(--shadow);
 }
 
-.pf-program-list:empty { display: none; }
-.pf-program-list:empty + .pf-program-count { position: static; justify-self: end; background: var(--shadow); box-shadow: none; }
-.pf-program:has(.pf-program-list:empty) { padding-top: 12px; }
 
 .pf-program-list {
   display: flex;
@@ -250,9 +246,73 @@
   75% { transform: translateX(5px); }
 }
 
-.pf-edit-bar { display: flex; flex-wrap: wrap; gap: 8px; }
-.pf-edit-bar[hidden] { display: none; }
-.pf-edit-button { --tone: var(--blue); --tone-dark: var(--blue-dark); min-height: 52px; padding: 0 16px; font-size: 17px; }
+/* Komut şeridi: tek satır ve sabit yükseklik. Komut eklenince ekran kaymaz;
+   satır dolunca şerit yana kayar. Yatay kaydırma için parmak komutun üstünde sağa sola çekilebilir,
+   sürüklemeye başlamak için komut önce biraz aşağı ya da yukarı çekilir. */
+.pf-strip {
+  flex-wrap: nowrap;
+  align-items: center;
+  height: calc(var(--chip-size) + 36px);
+  padding: 12px 10px 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+.pf-strip > li { flex: none; }
+.pf-strip .pf-chip.is-draggable { touch-action: pan-x; }
+
+.pf-strip > .pf-strip-empty {
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;
+  height: var(--chip-size);
+  padding: 0 12px;
+  font-weight: 700;
+  text-align: center;
+  color: rgba(31, 45, 79, 0.55);
+  border: 3px dashed var(--shadow);
+  border-radius: var(--radius-md);
+}
+
+/* Seçili komutun altında açılan balon. Haritanın üstüne biner, hiçbir şeyi aşağı itmez. */
+.pf-edit-popover {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  white-space: nowrap;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(31, 45, 79, 0.28);
+}
+.pf-edit-popover[hidden] { display: none; }
+.pf-edit-popover::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: calc(var(--arrow-x, 50%) - 10px);
+  border: 10px solid transparent;
+  border-top: 0;
+  border-bottom-color: var(--white);
+}
+.pf-edit-button {
+  --tone: var(--blue);
+  --tone-dark: var(--blue-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 16px;
+  font-size: 17px;
+}
+.pf-edit-button img { width: 34px; height: 34px; margin-left: -6px; }
+.pf-edit-button:disabled img { filter: grayscale(1); }
+/* Sağa düğmesinde ok, yazının sağında durur. */
+.pf-edit-button.pf-icon-end { flex-direction: row-reverse; }
+.pf-edit-button.pf-icon-end img { margin-left: 0; margin-right: -6px; }
+.pf-delete-button { --tone: var(--red); --tone-dark: var(--red-dark); }
 
 /* Tablet ve telefon: kontroller haritanın altına iner.
    Yön tuşları solda, Başlat sağda, diğer butonlar alt satırda. */

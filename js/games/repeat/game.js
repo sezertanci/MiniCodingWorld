@@ -21,7 +21,8 @@
     coinIntro: "Önce bütün altınları topla, sonra bayrağa git. Tekrarla bloğu işini kolaylaştırır.",
     empty: "Önce bir ok ya da Tekrarla bloğu ekle.",
     full: "Blok sınırına ulaştın. Hazırsan Başlat'a dokun; değiştirmek istersen bir bloğu seçip sil.",
-    insideRepeat: "Şimdi eklediğin oklar turuncu bloğun içine girecek.",
+    insideRepeat: "Şimdi eklediğin oklar turuncu bloğun içine girecek. Bitince bloğun turuncu düğmesine yeniden dokun.",
+    emptyStrip: "Ok ya da Tekrarla bloğu ekle, bloklar burada sıralansın.",
     outsideRepeat: "Şimdi eklediğin oklar bloğun dışına, sona eklenecek.",
     emptyRepeat: "Turuncu bloğun içi boş. Onu seçtim; şimdi içine bir ok ekle.",
     running: "Robot yola çıktı...",
@@ -36,6 +37,8 @@
   const stepDuration = () =>
     globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? REDUCED_STEP_MS : STEP_MS;
   const samePlace = (a, b) => a !== null && b !== null && a.block === b.block && a.inner === b.inner;
+  // Şeritteki öğeyi bulmak için yer bilgisi data-place özelliğine yazılır (ör. "2:-1").
+  const placeKey = ({ block, inner }) => `${block}:${inner}`;
 
   function placeName({ block, inner }) {
     return inner === TOP_LEVEL ? `${block + 1}. blok` : `${block + 1}. bloğun içindeki ${inner + 1}. ok`;
@@ -77,9 +80,14 @@
     const state = { program: [], target: NO_TARGET, selected: null, highlight: null, hintUsed: false, running: false };
 
     const bubble = MKD.components.speechBubble(introText);
-    const programList = el("ol", { className: "pf-program-list rp-program-list", "aria-label": "Bloklarım" });
+    const programList = el("ol", { className: "pf-program-list pf-strip rp-program-list", "aria-label": "Bloklarım" });
     const programCount = el("span", { className: "pf-program-count" });
-    const editBar = el("div", { className: "pf-edit-bar" });
+    const editBar = el("div", { className: "pf-edit-popover", role: "toolbar", "aria-label": "Seçili blok" });
+    const programCard = el("div", { className: "pf-program card" }, [programList, programCount, editBar]);
+    const placeEditBar = MKD.pathFinder.trackPopover({
+      popover: editBar, card: programCard, strip: programList, container,
+      getAnchor: () => placeElement(state.selected),
+    });
     const padButtons = {};
     const actionButtons = {};
     const say = bubble.say;
@@ -102,6 +110,7 @@
         else state.program.push(engine.move(direction));
         state.selected = null;
       });
+      revealPlace({ block: state.target === NO_TARGET ? state.program.length - 1 : state.target, inner: TOP_LEVEL });
       if (blockCount() >= definition.maxBlocks) say(MESSAGES.full);
     }
 
@@ -180,6 +189,7 @@
         el("button", {
           type: "button",
           className: placeClasses(place, "pf-chip"),
+          "data-place": placeKey(place),
           "aria-label": `${label}: ${COMMANDS[direction].label}`,
           "aria-pressed": String(samePlace(state.selected, place)),
           disabled: state.running,
@@ -211,7 +221,7 @@
       if (isTarget) classes.push("is-target");
       if (state.highlight?.block === index) classes.push("is-running");
       return el("li", { className: "rp-repeat-item" }, [
-        el("div", { className: classes.join(" ") }, [
+        el("div", { className: classes.join(" "), "data-place": placeKey(place) }, [
           el("div", { className: "rp-repeat-head" }, [
             el("span", { className: "pf-chip-number", text: String(index + 1) }),
             timesButton("−", "Tekrar sayısını azalt", index, -1, block.times <= TIMES.MIN),
@@ -238,31 +248,52 @@
       ]);
     }
 
+    // Balon yalnızca bir şey seçiliyken açılır; bloğun içine ok eklerken haritanın üstünü kapatmaz.
     function renderEditBar() {
-      const buttons = [];
-      if (!state.running && state.selected) {
-        buttons.push(el("button", {
-          type: "button", className: "btn pf-edit-button", text: "Sil ✕",
+      const visible = !state.running && state.selected !== null;
+      const buttons = visible ? [
+        el("button", {
+          type: "button", className: "btn pf-edit-button pf-delete-button", text: "Sil ✕",
           "aria-label": "Seçili bloğu sil", onClick: deleteSelected,
-        }));
-      }
-      if (!state.running && state.target !== NO_TARGET) {
-        buttons.push(el("button", {
+        }),
+        state.target !== NO_TARGET && el("button", {
           type: "button", className: "btn pf-edit-button rp-leave-button", text: "Dışarıya ekle ⤵",
           "aria-label": "Sonraki okları turuncu bloğun dışına ekle", onClick: leaveTarget,
-        }));
-      }
-      editBar.hidden = buttons.length === 0;
+        }),
+      ].filter(Boolean) : [];
+      editBar.hidden = !visible;
       editBar.replaceChildren(...buttons);
+    }
+
+    function placeElement(place) {
+      return place && programList.querySelector(`[data-place="${placeKey(place)}"]`);
+    }
+
+    function revealPlace(place) {
+      const element = placeElement(place);
+      if (element) MKD.pathFinder.scrollIntoStrip(programList, element);
+    }
+
+    // Balon açıkken başka bir yere dokunulursa seçim kalkar; turuncu bloğa ok ekleme durumu sürer.
+    function closeOnOutsideTap(event) {
+      if (state.selected !== null && !programCard.contains(event.target)) {
+        state.selected = null;
+        render();
+      }
     }
 
     function render() {
       const full = blockCount() >= definition.maxBlocks;
-      programList.replaceChildren(...state.program.map((block, index) =>
+      const empty = el("li", { className: "pf-strip-empty", text: MESSAGES.emptyStrip });
+      programList.replaceChildren(...(state.program.length > 0 ? state.program.map((block, index) =>
         block.type === BLOCK.REPEAT ? repeatBlock(block, index, full) : moveChip(block.direction, { block: index, inner: TOP_LEVEL })
-      ));
+      ) : [empty]));
       programCount.textContent = `${blockCount()} / ${definition.maxBlocks}`;
       renderEditBar();
+      // Çalışan, hatalı, seçili ya da ok eklenen yer şeritte görünür hale getirilir.
+      const target = state.target === NO_TARGET ? null : { block: state.target, inner: TOP_LEVEL };
+      revealPlace(state.highlight ?? state.selected ?? target);
+      placeEditBar();
       Object.values(padButtons).forEach((button) => { button.disabled = state.running || full; });
       // Tekrarla bloğu ve içine en az bir ok sığmıyorsa eklenmez; yoksa boş blokla sınır dolar.
       actionButtons.repeat.disabled = state.running || blockCount() + REPEAT_WITH_MOVE > definition.maxBlocks;
@@ -374,9 +405,9 @@
       return button;
     }
 
-    container.append(el("section", { className: "game-layout" }, [
+    const layout = el("section", { className: "game-layout" }, [
       bubble.element,
-      el("div", { className: "pf-program card" }, [programList, programCount, editBar]),
+      programCard,
       el("div", { className: "pf-main" }, [
         board.element,
         el("div", { className: "pf-controls card" }, [
@@ -392,7 +423,9 @@
           ]),
         ]),
       ]),
-    ]));
+    ]);
+    layout.addEventListener("pointerdown", closeOnOutsideTap);
+    container.append(layout);
     render();
   }
 

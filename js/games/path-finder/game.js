@@ -10,6 +10,11 @@
   const STEP_MS = 450;
   const REDUCED_STEP_MS = 150;
   const CELEBRATE_MS = 900;
+  const CHIP_ZONE = "chip";
+  const LIST_ZONE = "list";
+  const STRIP_EDGE_PX = 12;
+  const POPOVER_GAP_PX = 14;
+  const POPOVER_ARROW_MIN_PX = 20;
 
   // Yön tuşları artı şeklinde dizilir; sıra CSS ızgarasındaki yerleri belirler.
   const COMMANDS = Object.freeze({
@@ -30,6 +35,7 @@
     missingCoins: "Bayrağa ulaştın ama bütün altınları toplamadın. Önce altınları topla.",
     tooMany: "Bu komutlarla sınır içinde bitiremezsin. Gereksiz adımları silmeyi dene.",
     solved: "Komutların doğru! Başlat'a dokun.",
+    emptyStrip: "Yön tuşlarına bas, komutların burada sıralansın.",
   });
 
   const OBSTACLE_NAMES = Object.freeze({ [TILE.ROCK]: "taşa", [TILE.WATER]: "suya" });
@@ -43,6 +49,49 @@
     const { dx, dy } = DIRECTIONS[direction];
     const tile = level.blocked.get(`${position.x + dx},${position.y + dy}`);
     return OBSTACLE_NAMES[tile] ?? "harita kenarına";
+  }
+
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+  // Yana kayan şeritte öğe görünmüyorsa şerit yalnızca yatayda kaydırılır; sayfa kaymaz.
+  function scrollIntoStrip(strip, item) {
+    const box = item.getBoundingClientRect();
+    const view = strip.getBoundingClientRect();
+    if (box.left < view.left) strip.scrollLeft -= view.left - box.left + STRIP_EDGE_PX;
+    else if (box.right > view.right) strip.scrollLeft += box.right - view.right + STRIP_EDGE_PX;
+  }
+
+  // Balon, seçili komutun altına ortalanır ama kartın dışına taşmaz; oku komutu gösterir.
+  function placePopover(popover, card, anchor) {
+    const cardBox = card.getBoundingClientRect();
+    const anchorBox = anchor.getBoundingClientRect();
+    const center = anchorBox.left + anchorBox.width / 2 - cardBox.left;
+    const width = popover.offsetWidth;
+    const left = clamp(center - width / 2, 0, Math.max(0, cardBox.width - width));
+    popover.style.left = `${left}px`;
+    popover.style.top = `${anchorBox.bottom - cardBox.top + POPOVER_GAP_PX}px`;
+    popover.style.setProperty("--arrow-x", `${clamp(center - left, POPOVER_ARROW_MIN_PX, width - POPOVER_ARROW_MIN_PX)}px`);
+  }
+
+  /**
+   * Balonu seçili öğenin altında tutar: şerit kayınca ya da pencere boyu değişince yeniden yerleştirir.
+   * Tekrar Et oyunu da kullanır. Dönen fonksiyon her çizimden sonra çağrılır.
+   */
+  function trackPopover({ popover, card, strip, container, getAnchor }) {
+    function place() {
+      const anchor = getAnchor();
+      if (!popover.hidden && anchor) placePopover(popover, card, anchor);
+    }
+    function onResize() {
+      if (!container.isConnected) {
+        globalThis.removeEventListener("resize", onResize);
+        return;
+      }
+      place();
+    }
+    strip.addEventListener("scroll", place, { passive: true });
+    globalThis.addEventListener("resize", onResize);
+    return place;
   }
 
   function blockedMessage(level, position, direction, index) {
@@ -73,9 +122,16 @@
     const state = { commands: [], selected: -1, hintUsed: false, running: false, highlight: null };
 
     const bubble = MKD.components.speechBubble(introText);
-    const programList = el("ol", { className: "pf-program-list", "aria-label": "Komutlarım" });
+    const programList = el("ol", {
+      className: "pf-program-list pf-strip", "aria-label": "Komutlarım", "data-drop-zone": LIST_ZONE,
+    });
     const programCount = el("span", { className: "pf-program-count" });
-    const editBar = el("div", { className: "pf-edit-bar" });
+    const editBar = el("div", { className: "pf-edit-popover", role: "toolbar", "aria-label": "Seçili komut" });
+    const programCard = el("div", { className: "pf-program card" }, [programList, programCount, editBar]);
+    const placeEditBar = trackPopover({
+      popover: editBar, card: programCard, strip: programList, container,
+      getAnchor: () => programList.children[state.selected],
+    });
     const padButtons = {};
     const actionButtons = {};
 
@@ -96,6 +152,7 @@
         state.commands.push(direction);
         state.selected = -1;
       });
+      revealChip(state.commands.length - 1);
       if (state.commands.length >= maxCommands) {
         say(MESSAGES.full);
       }
@@ -110,6 +167,17 @@
       changeProgram(() => {
         [state.commands[from], state.commands[to]] = [state.commands[to], state.commands[from]];
         state.selected = to;
+      });
+    }
+
+    // Sürüklenen komut, bırakıldığı komutun yerine geçer; listenin boş yerine bırakılırsa sona gider.
+    function dropCommand(from, zone) {
+      const to = zone.dataset.dropZone === LIST_ZONE ? state.commands.length - 1 : Number(zone.dataset.index);
+      if (to === from) return;
+      changeProgram(() => {
+        const [direction] = state.commands.splice(from, 1);
+        state.commands.splice(to, 0, direction);
+        state.selected = -1;
       });
     }
 
@@ -142,23 +210,28 @@
       const classes = ["pf-chip"];
       if (index === state.selected) classes.push("is-selected");
       if (state.highlight?.index === index) classes.push(state.highlight.className);
-      return el("li", {}, [
-        el("button", {
-          type: "button",
-          className: classes.join(" "),
-          "aria-label": `${index + 1}. komut: ${COMMANDS[direction].label}`,
-          "aria-pressed": String(index === state.selected),
-          disabled: state.running,
-          onClick: () => toggleSelect(index),
-        }, [
-          el("span", { className: "pf-chip-number", text: String(index + 1) }),
-          el("img", { src: COMMANDS[direction].icon, alt: "" }),
-        ]),
+      const button = el("button", {
+        type: "button",
+        className: classes.join(" "),
+        "aria-label": `${index + 1}. komut: ${COMMANDS[direction].label}`,
+        "aria-pressed": String(index === state.selected),
+        disabled: state.running,
+        onClick: () => toggleSelect(index),
+      }, [
+        el("span", { className: "pf-chip-number", text: String(index + 1) }),
+        el("img", { src: COMMANDS[direction].icon, alt: "" }),
       ]);
+      MKD.dragDrop.makeDraggable(button, {
+        canDrag: () => !state.running,
+        onDrop: (zone) => dropCommand(index, zone),
+      });
+      return el("li", { "data-drop-zone": CHIP_ZONE, "data-index": String(index) }, [button]);
     }
 
-    function editButton(text, label, onClick, disabled) {
-      return el("button", { type: "button", className: "btn pf-edit-button", text, "aria-label": label, onClick, disabled });
+    function editButton({ text, label, onClick, disabled = false, icon, className = "" }) {
+      return el("button", {
+        type: "button", className: `btn pf-edit-button ${className}`.trim(), "aria-label": label, onClick, disabled,
+      }, [icon && el("img", { src: icon, alt: "" }), el("span", { text })]);
     }
 
     function renderEditBar() {
@@ -166,17 +239,41 @@
       const visible = index >= 0 && !state.running;
       editBar.hidden = !visible;
       editBar.replaceChildren(...(visible ? [
-        editButton("◀ Öne", "Seçili komutu bir öne taşı", () => moveSelected(-1), index === 0),
-        editButton("Sona ▶", "Seçili komutu bir sona taşı", () => moveSelected(1), index === state.commands.length - 1),
-        editButton("Sil ✕", "Seçili komutu sil", deleteSelected, false),
+        editButton({
+          text: COMMANDS.left.label, icon: COMMANDS.left.icon, label: "Seçili komutu bir sola taşı",
+          onClick: () => moveSelected(-1), disabled: index === 0,
+        }),
+        editButton({
+          text: COMMANDS.right.label, icon: COMMANDS.right.icon, label: "Seçili komutu bir sağa taşı",
+          onClick: () => moveSelected(1), disabled: index === state.commands.length - 1, className: "pf-icon-end",
+        }),
+        editButton({ text: "Sil ✕", label: "Seçili komutu sil", onClick: deleteSelected, className: "pf-delete-button" }),
       ] : []));
     }
 
     function renderProgram() {
-      programList.replaceChildren(...state.commands.map(chip));
+      const empty = el("li", { className: "pf-strip-empty", text: MESSAGES.emptyStrip });
+      programList.replaceChildren(...(state.commands.length > 0 ? state.commands.map(chip) : [empty]));
       programCount.textContent = `${state.commands.length} / ${maxCommands}`;
       renderEditBar();
+      // Çalışan, hatalı ya da seçili komut şeritte görünür hale getirilir.
+      const focus = state.highlight?.index ?? state.selected;
+      if (focus >= 0) revealChip(focus);
+      placeEditBar();
       updateButtons();
+    }
+
+    function revealChip(index) {
+      const item = programList.children[index];
+      if (item) scrollIntoStrip(programList, item);
+    }
+
+    // Balon açıkken başka bir yere dokunulursa seçim kalkar ve balon kapanır.
+    function closeOnOutsideTap(event) {
+      if (state.selected >= 0 && !programCard.contains(event.target)) {
+        state.selected = -1;
+        renderProgram();
+      }
     }
 
     function updateButtons() {
@@ -271,13 +368,9 @@
       return button;
     }
 
-    container.append(el("section", { className: "game-layout" }, [
+    const layout = el("section", { className: "game-layout" }, [
       bubble.element,
-      el("div", { className: "pf-program card" }, [
-        programList,
-        programCount,
-        editBar,
-      ]),
+      programCard,
       el("div", { className: "pf-main" }, [
         board.element,
         el("div", { className: "pf-controls card" }, [
@@ -290,10 +383,12 @@
           ]),
         ]),
       ]),
-    ]));
+    ]);
+    layout.addEventListener("pointerdown", closeOnOutsideTap);
+    container.append(layout);
     renderProgram();
   }
 
   MKD.gameModules[GAME_ID] = Object.freeze({ mount });
-  MKD.pathFinder = Object.assign(MKD.pathFinder, { COMMANDS, obstacleName });
+  MKD.pathFinder = Object.assign(MKD.pathFinder, { COMMANDS, obstacleName, scrollIntoStrip, trackPopover });
 })((globalThis.MKD ??= {}));
