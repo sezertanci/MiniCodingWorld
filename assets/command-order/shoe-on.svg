@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Ayakkabını giy</title>
+  <desc>Çoraplı ayak, açık duran mavi ayakkabının içine giriyor.</desc>
+  <g transform="translate(0 6)">
+  <path d="M20 86 C20 76 30 72 40 72 C48 72 52 80 64 80 C76 80 80 72 88 72 C104 74 116 86 120 100 V108 H14 V96 C14 90 16 88 20 86 Z" fill="#4D8DF7" stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="10" y="104" width="114" height="14" rx="7" fill="#FFFFFF" stroke="#1F2D4F" stroke-width="4"/>
+  <path d="M90 80 L102 92" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <ellipse cx="46" cy="82" rx="20" ry="5" fill="#1F2D4F"/>
+  <g transform="translate(14 -16) scale(0.62)">
+  <path d="M42 18 H66 V42 H42 Z" fill="#F7CBA4" stroke="#1F2D4F" stroke-width="6"/>
+  <path d="M40 40 H68 V84 C68 90 74 92 82 94 L106 98 C120 101 120 120 104 120 H48 C38 120 38 112 38 104 Z" fill="#FF6B6B" stroke="#1F2D4F" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M40 56 H68 M40 72 H68" stroke="#FFFFFF" stroke-width="8"/>
+  <path d="M40 40 H68 V84 C68 90 74 92 82 94 L106 98 C120 101 120 120 104 120 H48 C38 120 38 112 38 104 Z" fill="none" stroke="#1F2D4F" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <path d="M104 12 V58 M94 46 L104 58 L114 46" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

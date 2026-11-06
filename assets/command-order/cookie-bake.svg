@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Fırında pişir</title>
+  <desc>Fırının içinde tepsideki kurabiyeler sıcakta pişiyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="14" y="40" width="100" height="82" rx="8" fill="#C9D3E3"/>
+    <path d="M14 58 H114" fill="none"/>
+    <circle cx="30" cy="49" r="4" fill="#1F2D4F" stroke="none"/><circle cx="44" cy="49" r="4" fill="#1F2D4F" stroke="none"/>
+    <rect x="26" y="66" width="76" height="46" rx="6" fill="#FFE9A8"/>
+    <path d="M34 80 L40 74 L46 80 L52 74 L58 80 L64 74 L70 80 L76 74 L82 80 L88 74 L94 80" fill="none" stroke="#FF9F43" stroke-width="3"/>
+    <rect x="32" y="100" width="64" height="6" rx="2" fill="#C9D3E3" stroke-width="3"/>
+    <g fill="#D9A25F" stroke-width="3"><ellipse cx="44" cy="96" rx="9" ry="4"/><ellipse cx="64" cy="96" rx="9" ry="4"/><ellipse cx="84" cy="96" rx="9" ry="4"/></g>
+    <path d="M40 32 C36 26 44 22 40 14 M64 32 C60 26 68 22 64 14 M88 32 C84 26 92 22 88 14" fill="none" stroke="#FF9F43" stroke-width="3.5"/>
+  </g>
+</svg>

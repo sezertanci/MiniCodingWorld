@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kutuyu rafa kaldır</title>
+  <desc>Kapağı kapalı kutu yukarıdaki rafa konuyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="4" y="66" width="120" height="10" rx="3" fill="#A9744F"/>
+    <rect x="4" y="118" width="120" height="8" rx="3" fill="#A9744F"/>
+    <rect x="10" y="8" width="8" height="118" fill="#8A5A3A"/><rect x="110" y="8" width="8" height="118" fill="#8A5A3A"/>
+    <rect x="42" y="22" width="56" height="44" rx="4" fill="#D9A066"/>
+    <path d="M60 34 H80" stroke-width="5"/>
+    <rect x="38" y="16" width="64" height="12" rx="4" fill="#C98B5A"/>
+  </g>
+  <path d="M70 112 L70 82 M76.2 91.1 L70 82 L63.8 91.1" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

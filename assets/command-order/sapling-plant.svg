@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Bahçeye dik</title>
+  <desc>Büyüyen çiçek saksıdan çıkarılıp bahçedeki toprağa dikilmiş.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="2" y="96" width="124" height="30" rx="4" fill="#5CC45C"/>
+    <path d="M64 98 V48" fill="none" stroke="#3DA845" stroke-width="6"/>
+    <ellipse cx="78" cy="76" rx="13" ry="6" fill="#5CC45C" stroke-width="3" transform="rotate(-30 78 76)"/>
+    <ellipse cx="50" cy="82" rx="13" ry="6" fill="#5CC45C" stroke-width="3" transform="rotate(30 50 82)"/>
+    <g fill="#FF8FB1" stroke-width="3">
+      <circle cx="64" cy="22" r="11"/><circle cx="80" cy="34" r="11"/><circle cx="48" cy="34" r="11"/>
+      <circle cx="55" cy="51" r="10"/><circle cx="73" cy="51" r="10"/>
+    </g>
+    <circle cx="64" cy="37" r="10" fill="#FFD24D" stroke-width="3"/>
+    <ellipse cx="64" cy="98" rx="20" ry="5" fill="#7A4B2A" stroke-width="3"/>
+    <g transform="translate(2 62) scale(0.45)">    <path d="M34 80 H94 L86 120 H42 Z" fill="#E07A4F"/>
+    <rect x="28" y="68" width="72" height="12" rx="3" fill="#E07A4F"/>
+</g>
+    <path d="M106 34 V96" fill="none" stroke-width="9"/>
+    <path d="M106 34 V96" fill="none" stroke="#C98B5A" stroke-width="4"/>
+    <path d="M96 92 H116 V104 C116 112 96 112 96 104 Z" fill="#C9D3E3"/>
+  </g>
+  <path d="M28 86 Q22 60 40 64 M29.8 68.1 L40 64 L32.5 56.0" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

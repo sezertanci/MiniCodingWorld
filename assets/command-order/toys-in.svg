@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Oyuncakları kutuya koy</title>
+  <desc>Oyuncak ayı ve top açık kutunun içine konuyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <g transform="translate(46 30) scale(0.95)">
+      <circle cx="-13" cy="-14" r="7" fill="#B07A4F"/><circle cx="13" cy="-14" r="7" fill="#B07A4F"/>
+      <circle cx="0" cy="0" r="17" fill="#B07A4F"/>
+      <ellipse cx="0" cy="6" rx="7" ry="5" fill="#E8C29A" stroke-width="3"/>
+      <circle cx="-6" cy="-4" r="2.5" fill="#1F2D4F" stroke="none"/><circle cx="6" cy="-4" r="2.5" fill="#1F2D4F" stroke="none"/>
+    </g>
+    <circle cx="88" cy="34" r="14" fill="#4D8DF7"/>
+    <path d="M88 20 C79.6 27 79.6 41 88 48 C96.4 41 96.4 27 88 20 Z" fill="#FFD24D" stroke-width="2.5"/>
+    <circle cx="88" cy="34" r="14" fill="none"/>
+    <rect x="24" y="72" width="80" height="50" rx="4" fill="#D9A066"/>
+    <path d="M54 84 H74" stroke-width="5"/>
+    <path d="M24 72 L12 60 H36 L48 72 Z M104 72 L116 60 H92 L80 72 Z" fill="#E8B784"/>
+  </g>
+  <path d="M64 40 L64 66 M57.8 56.9 L64 66 L70.2 56.9" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

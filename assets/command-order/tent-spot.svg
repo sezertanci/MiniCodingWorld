@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Düz bir yer bul</title>
+  <desc>Ağaçların arasındaki düz çimenlik yer bayrakla işaretlenmiş.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="2" y="96" width="124" height="30" rx="6" fill="#5CC45C"/>
+    <rect x="16" y="84" width="8" height="16" fill="#A9744F"/>
+    <circle cx="20" cy="72" r="16" fill="#3DA845"/>
+    <rect x="104" y="84" width="8" height="16" fill="#A9744F"/>
+    <circle cx="108" cy="72" r="16" fill="#3DA845"/>
+    <path d="M64 100 V44" fill="none"/>
+    <path d="M64 44 L92 54 L64 64 Z" fill="#F25C54"/>
+    <ellipse cx="64" cy="108" rx="30" ry="6" fill="#3DA845" stroke="none"/>
+    <circle cx="44" cy="22" r="13" fill="#5CC45C"/>
+    <path d="M38 22 L43 27 L51 17" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+  </g>
+</svg>

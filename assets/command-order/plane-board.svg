@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Uçağa bin</title>
+  <desc>Uçak bulutların arasında gökyüzünde uçuyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <g fill="#FFFFFF" stroke-width="3"><path d="M10 112 C6 102 18 96 24 100 C28 90 44 92 46 100 C54 98 58 108 52 112 Z"/><path d="M80 30 C76 22 88 16 94 20 C98 12 112 14 114 22 C122 22 124 32 118 34 Z"/></g>
+    <path d="M30 56 L20 30 H34 L52 56 Z" fill="#4D8DF7"/>
+    <path d="M14 66 C14 58 30 54 50 54 H98 C112 54 124 60 124 66 C124 72 112 78 98 78 H30 C20 78 14 74 14 66 Z" fill="#FFFFFF"/>
+    <path d="M56 70 H84 L66 104 H50 Z" fill="#4D8DF7"/>
+    <g fill="#A8DCFF" stroke-width="2.5"><circle cx="46" cy="64" r="3.5"/><circle cx="58" cy="64" r="3.5"/><circle cx="70" cy="64" r="3.5"/><circle cx="82" cy="64" r="3.5"/></g>
+    <path d="M104 58 C112 58 118 62 120 64 H104 Z" fill="#A8DCFF" stroke-width="3"/>
+  </g>
+</svg>

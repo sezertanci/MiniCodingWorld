@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Şemsiye aç</title>
+  <desc>Yağmur yağarken kırmızı şemsiye açılmış.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M64 64 V108 C64 118 50 118 50 108" fill="none" stroke-width="5"/>
+    <path d="M14 64 C14 22 114 22 114 64 Q98 54 81 64 Q64 54 47 64 Q31 54 14 64 Z" fill="#F25C54"/>
+    <path d="M64 30 C56 40 50 52 47 64 M64 30 C72 40 78 52 81 64" fill="none" stroke-width="3"/>
+  </g>
+  <g fill="#4FB3F6" stroke="#1F2D4F" stroke-width="2.5"><path d="M16 6 C16 6 11 13 11 16 A5 5 0 0 0 21 16 C21 13 16 6 16 6 Z"/><path d="M44 2 C44 2 39 9 39 12 A5 5 0 0 0 49 12 C49 9 44 2 44 2 Z"/><path d="M86 4 C86 4 81 11 81 14 A5 5 0 0 0 91 14 C91 11 86 4 86 4 Z"/><path d="M112 8 C112 8 107 15 107 18 A5 5 0 0 0 117 18 C117 15 112 8 112 8 Z"/><path d="M8 78 C8 78 3 85 3 88 A5 5 0 0 0 13 88 C13 85 8 78 8 78 Z"/><path d="M118 80 C118 80 113 87 113 90 A5 5 0 0 0 123 90 C123 87 118 80 118 80 Z"/><path d="M100 98 C100 98 95 105 95 108 A5 5 0 0 0 105 108 C105 105 100 98 100 98 Z"/><path d="M26 96 C26 96 21 103 21 106 A5 5 0 0 0 31 106 C31 103 26 96 26 96 Z"/></g>
+</svg>

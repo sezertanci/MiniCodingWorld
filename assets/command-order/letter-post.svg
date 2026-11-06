@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Posta kutusuna at</title>
+  <desc>Kapalı zarf kırmızı posta kutusunun ağzından içeri atılıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="58" y="112" width="12" height="14" fill="#555E70"/>
+    <path d="M30 58 C30 36 98 36 98 58 V112 H30 Z" fill="#F25C54"/>
+    <rect x="44" y="60" width="40" height="8" rx="4" fill="#1F2D4F"/>
+    <rect x="48" y="82" width="32" height="18" rx="4" fill="#FFFFFF" stroke-width="3"/>
+    <g transform="rotate(-20 64 30)">
+      <rect x="42" y="14" width="44" height="28" rx="3" fill="#FFFFFF"/>
+      <path d="M42 14 L64 30 L86 14" fill="none" stroke-width="3"/>
+    </g>
+  </g>
+  <path d="M104 14 L82 54 M80.9 43.1 L82 54 L91.8 49.0" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

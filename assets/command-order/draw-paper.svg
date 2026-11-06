@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kâğıdı al</title>
+  <desc>El, masadaki desteden boş bir beyaz kâğıt alıp kaldırıyor.</desc>
+  <rect x="20" y="104" width="88" height="12" rx="3" fill="#FFFFFF" stroke="#1F2D4F" stroke-width="4"/>
+  <rect x="16" y="96" width="88" height="12" rx="3" fill="#FFFFFF" stroke="#1F2D4F" stroke-width="4"/>
+  <g transform="rotate(-8 64 50)">
+    <rect x="24" y="12" width="66" height="64" rx="4" fill="#FFFFFF" stroke="#1F2D4F" stroke-width="4"/>
+  <g fill="#F7CBA4" stroke="#1F2D4F" stroke-width="3.5" stroke-linejoin="round" transform="translate(88 64) rotate(-70) scale(0.9)"><g><rect x="-17" y="-24" width="8" height="30" rx="4"/><rect x="-8" y="-28" width="8" height="34" rx="4"/><rect x="1" y="-27" width="8" height="33" rx="4"/><rect x="10" y="-22" width="8" height="28" rx="4"/><ellipse cx="-20" cy="10" rx="6" ry="12" transform="rotate(-30 -20 10)"/><rect x="-18" y="-2" width="36" height="34" rx="12"/></g></g>
+  </g>
+  <path d="M14 70 V22 M4 34 L14 22 L24 34" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Çorabını giy</title>
+  <desc>Ayağa kırmızı beyaz çizgili çorap yukarı doğru çekilerek giyiliyor.</desc>
+  <path d="M42 4 H66 V42 H42 Z" fill="#F7CBA4" stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M40 40 H68 V84 C68 90 74 92 82 94 L106 98 C120 101 120 120 104 120 H48 C38 120 38 112 38 104 Z" fill="#FF6B6B" stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M40 56 H68 M40 72 H68" stroke="#FFFFFF" stroke-width="6"/>
+  <path d="M40 40 H68 V84 C68 90 74 92 82 94 L106 98 C120 101 120 120 104 120 H48 C38 120 38 112 38 104 Z" fill="none" stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="36" y="36" width="36" height="12" rx="5" fill="#FFFFFF" stroke="#1F2D4F" stroke-width="4"/>
+  <path d="M20 80 V30 M10 42 L20 30 L30 42" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M92 70 V24 M82 36 L92 24 L102 36" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

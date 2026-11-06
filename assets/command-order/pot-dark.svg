@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Saksıyı karanlığa koy</title>
+  <desc>Karanlık bir yerde ışık almayan filiz boynunu bükmüş.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="2" y="2" width="124" height="124" rx="10" fill="#2B3A67"/>
+    <path d="M24 14 A12 12 0 1 0 36 32 A10 10 0 1 1 24 14 Z" fill="#FFD24D" stroke-width="2.5"/>
+    <path d="M34 80 H94 L86 120 H42 Z" fill="#E07A4F"/>
+    <rect x="28" y="68" width="72" height="12" rx="3" fill="#E07A4F"/>
+    <ellipse cx="64" cy="70" rx="30" ry="4" fill="#7A4B2A" stroke-width="3"/>
+    <path d="M64 70 V54 C64 44 74 42 78 50" fill="none" stroke="#A8B860" stroke-width="5"/>
+    <path d="M78 50 C86 52 88 62 82 66 C78 60 76 56 78 50 Z" fill="#C9B860" stroke-width="3"/>
+  </g>
+</svg>

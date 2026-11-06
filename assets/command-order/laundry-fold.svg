@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kuruyunca katla</title>
+  <desc>Kuru tişört katlanıyor, katlananlar masada üst üste duruyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="4" y="104" width="120" height="16" rx="4" fill="#C98B5A"/>
+    <rect x="8" y="88" width="46" height="16" rx="4" fill="#5CC45C"/>
+    <rect x="10" y="72" width="42" height="16" rx="4" fill="#FFD24D"/>
+    <rect x="12" y="56" width="38" height="16" rx="4" fill="#FF8FB1"/>
+    <path d="M25 56 L31 62 L37 56" fill="none" stroke-width="3"/>
+    <g transform="translate(90 52) rotate(0) scale(0.9)"><path d="M-10 0 L-20 4 L-28 16 L-20 22 L-16 18 V40 H16 V18 L20 22 L28 16 L20 4 L10 0 C6 6 -6 6 -10 0 Z" fill="#4D8DF7"/></g>
+  </g>
+  <path d="M118 54 Q110 22 92 40 M94.0 29.2 L92 40 L102.8 38.0" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

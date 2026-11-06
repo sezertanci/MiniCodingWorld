@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Arkadaşlarına ikram et</title>
+  <desc>Çocuk kurabiye tabağını arkadaşına uzatıyor, arkadaşı bir kurabiye alıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M21 94 V118 M31 94 V118" fill="none" stroke-width="7"/>
+    <path d="M32 76 L52 66" fill="none" stroke="#1F2D4F" stroke-width="9"/>
+    <path d="M32 76 L52 66" fill="none" stroke="#F7CBA4" stroke-width="5"/>
+    <rect x="14" y="68" width="24" height="30" rx="9" fill="#5CC45C"/>
+    <circle cx="26" cy="56" r="12" fill="#F7CBA4"/>
+    <path d="M14 54 C15 38 37 38 38 54 C32 48 20 48 14 54 Z" fill="#7A4B2A"/>
+
+    <path d="M97 94 V118 M107 94 V118" fill="none" stroke-width="7"/>
+    <path d="M96 76 L76 62" fill="none" stroke="#1F2D4F" stroke-width="9"/>
+    <path d="M96 76 L76 62" fill="none" stroke="#F7CBA4" stroke-width="5"/>
+    <rect x="90" y="68" width="24" height="30" rx="9" fill="#FF8FB1"/>
+    <circle cx="102" cy="56" r="12" fill="#F7CBA4"/>
+    <path d="M90 54 C91 38 113 38 114 54 C108 48 96 48 90 54 Z" fill="#7A4B2A"/>
+
+    <ellipse cx="62" cy="68" rx="20" ry="5" fill="#FFFFFF"/>
+    <ellipse cx="56" cy="62" rx="10" ry="6" fill="#D9A25F"/>
+    <g fill="#5A3A22" stroke="none"><circle cx="50" cy="61" r="2"/><circle cx="61" cy="63" r="2"/></g>
+    <ellipse cx="70" cy="58" rx="10" ry="6" fill="#D9A25F"/>
+    <g fill="#5A3A22" stroke="none"><circle cx="64" cy="57" r="2"/><circle cx="75" cy="59" r="2"/></g>
+  </g>
+  <path d="M44 22 L84 22 M74.9 28.2 L84 22 L74.9 15.8" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

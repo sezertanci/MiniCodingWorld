@@ -21,6 +21,13 @@
     solved: "Sıralama doğru! Yeşil Kontrol et tuşuna dokun.",
   });
 
+  // Görsel yolu <img> olarak, henüz çizilmemiş görevlerin emojisi yazı olarak gösterilir.
+  function picture(icon, className) {
+    return icon.endsWith(".svg")
+      ? el("img", { className, src: icon, alt: "" })
+      : el("span", { className, text: icon });
+  }
+
   function wrongMessage(result, card) {
     if (result.reason === REASON.EXTRA) {
       return `«${card.text}» bu görev için gerekli değil. Onu kutudan çıkar.`;
@@ -126,7 +133,7 @@
         disabled: state.done,
         onClick: () => (slot >= 0 ? returnToPool(slot) : tapPoolCard(cardId)),
       }, [
-        el("span", { className: "co-card-icon", text: card.icon }),
+        picture(card.icon, "co-card-icon"),
         el("span", { className: "co-card-text", text: card.text }),
       ]);
       MKD.dragDrop.makeDraggable(button, {
@@ -219,7 +226,7 @@
       bubble.element,
       el("div", { className: "co-main" }, [
         el("div", { className: "co-task card" }, [
-          el("span", { className: "co-task-icon", text: level.icon }),
+          picture(level.icon, "co-task-icon"),
           el("h2", { className: "co-task-title", text: level.title }),
         ]),
         el("div", { className: "co-board card" }, [

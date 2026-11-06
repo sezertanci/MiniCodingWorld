@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Çamaşırları as</title>
+  <desc>Yıkanmış tişörtler mandallarla ipe asılmış, güneşte kuruyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M76.0 12.0 L83.0 12.0 M72.5 20.5 L77.4 25.4 M64.0 24.0 L64.0 31.0 M55.5 20.5 L50.6 25.4 M52.0 12.0 L45.0 12.0 M55.5 3.5 L50.6 -1.4 M64.0 0.0 L64.0 -7.0 M72.5 3.5 L77.4 -1.4" fill="none" stroke="#FFB020" stroke-width="4"/>
+    <circle cx="64" cy="12" r="7" fill="#FFD24D"/>
+    <rect x="2" y="114" width="124" height="12" rx="4" fill="#5CC45C"/>
+    <path d="M8 22 V116 M120 22 V116" fill="none" stroke-width="5"/>
+    <path d="M8 26 Q64 42 120 26" fill="none" stroke-width="2.5"/>
+    <g transform="translate(36 32) rotate(0) scale(0.85)"><path d="M-10 0 L-20 4 L-28 16 L-20 22 L-16 18 V40 H16 V18 L20 22 L28 16 L20 4 L10 0 C6 6 -6 6 -10 0 Z" fill="#F25C54"/></g>
+    <g transform="translate(92 32) rotate(0) scale(0.85)"><path d="M-10 0 L-20 4 L-28 16 L-20 22 L-16 18 V40 H16 V18 L20 22 L28 16 L20 4 L10 0 C6 6 -6 6 -10 0 Z" fill="#4D8DF7"/></g>
+    <g fill="#FFD24D" stroke-width="2.5"><rect x="22" y="26" width="6" height="12" rx="2"/><rect x="44" y="28" width="6" height="12" rx="2"/><rect x="78" y="28" width="6" height="12" rx="2"/><rect x="100" y="26" width="6" height="12" rx="2"/></g>
+  </g>
+</svg>

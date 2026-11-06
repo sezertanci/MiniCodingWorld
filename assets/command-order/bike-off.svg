@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Bisikletten in</title>
+  <desc>Çocuk bisikletten inmiş, yanında ayakta duruyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="2" y="116" width="124" height="10" rx="4" fill="#5CC45C"/>
+    <circle cx="60" cy="100" r="14" fill="#FFFFFF" stroke-width="5"/>
+    <circle cx="112" cy="100" r="14" fill="#FFFFFF" stroke-width="5"/>
+    <circle cx="60" cy="100" r="3" fill="#1F2D4F"/><circle cx="112" cy="100" r="3" fill="#1F2D4F"/>
+    <path d="M60 100 L81.84 100 L76.64 73.4 Z M76.64 73.4 L105.75999999999999 73.4 L81.84 100 M105.75999999999999 73.4 L112 100" fill="none" stroke-width="9"/>
+    <path d="M60 100 L81.84 100 L76.64 73.4 Z M76.64 73.4 L105.75999999999999 73.4 L81.84 100 M105.75999999999999 73.4 L112 100" fill="none" stroke="#F25C54" stroke-width="4"/>
+    <path d="M105.75999999999999 73.4 L103.75999999999999 63.400000000000006 H93.75999999999999" fill="none" stroke-width="5"/>
+    <rect x="67.64" y="67.4" width="18" height="6" rx="3" fill="#1F2D4F"/>
+    <circle cx="81.84" cy="100" r="5" fill="#1F2D4F"/>
+    <path d="M17 92 V116 M27 92 V116" fill="none" stroke-width="7"/>
+    <path d="M22 72 L10 52" fill="none" stroke="#1F2D4F" stroke-width="9"/>
+    <path d="M22 72 L10 52" fill="none" stroke="#F7CBA4" stroke-width="5"/>
+    <path d="M22 72 L34 84" fill="none" stroke="#1F2D4F" stroke-width="9"/>
+    <path d="M22 72 L34 84" fill="none" stroke="#F7CBA4" stroke-width="5"/>
+    <rect x="10" y="66" width="24" height="30" rx="9" fill="#FF9F43"/>
+    <circle cx="22" cy="54" r="12" fill="#F7CBA4"/>
+    <path d="M10 52 C11 36 33 36 34 52 C28 46 16 46 10 52 Z" fill="#7A4B2A"/>
+
+  </g>
+  <path d="M70 56 Q56 20 40 34 M42.7 23.3 L40 34 L50.9 32.7" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

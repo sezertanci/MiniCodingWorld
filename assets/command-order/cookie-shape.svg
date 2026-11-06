@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Hamura şekil ver</title>
+  <desc>Yıldız kalıbı açılmış hamura bastırılıyor, kesilmiş yıldızlar hamurun üstünde.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <ellipse cx="64" cy="96" rx="58" ry="24" fill="#F2D49B"/>
+    <path d="M36.0 82.0 L39.7 90.9 L49.3 91.7 L42.0 97.9 L44.2 107.3 L36.0 102.3 L27.8 107.3 L30.0 97.9 L22.7 91.7 L32.3 90.9 Z" fill="#D9A25F" stroke-width="3"/>
+    <path d="M92.0 86.0 L95.7 94.9 L105.3 95.7 L98.0 101.9 L100.2 111.3 L92.0 106.3 L83.8 111.3 L86.0 101.9 L78.7 95.7 L88.3 94.9 Z" fill="#D9A25F" stroke-width="3"/>
+    <path d="M64.0 10.0 L69.3 22.7 L83.0 23.8 L72.6 32.8 L75.8 46.2 L64.0 39.0 L52.2 46.2 L55.4 32.8 L45.0 23.8 L58.7 22.7 Z" fill="none" stroke-width="9"/>
+    <path d="M64.0 10.0 L69.3 22.7 L83.0 23.8 L72.6 32.8 L75.8 46.2 L64.0 39.0 L52.2 46.2 L55.4 32.8 L45.0 23.8 L58.7 22.7 Z" fill="none" stroke="#C9D3E3" stroke-width="4"/>
+  </g>
+  <path d="M64 56 L64 80 M57.8 70.9 L64 80 L70.2 70.9" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

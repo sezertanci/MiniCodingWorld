@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Makineye koy</title>
+  <desc>Tişört, kapağı açık çamaşır makinesinin içine konuyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="4" y="14" width="84" height="108" rx="10" fill="#FFFFFF"/>
+    <path d="M4 34 H88" fill="none"/>
+    <circle cx="72" cy="24" r="5" fill="#C9D3E3" stroke-width="3"/>
+    <circle cx="46" cy="78" r="30" fill="#C9D3E3"/>
+    <circle cx="46" cy="78" r="22.8" fill="#2B2F3A"/>
+    <ellipse cx="46" cy="90" rx="14" ry="6" fill="#FF8FB1" stroke-width="3"/>
+    <g transform="translate(106 20) rotate(0) scale(0.6)"><path d="M-10 0 L-20 4 L-28 16 L-20 22 L-16 18 V40 H16 V18 L20 22 L28 16 L20 4 L10 0 C6 6 -6 6 -10 0 Z" fill="#F25C54"/></g>
+  </g>
+  <path d="M108 52 Q100 82 72 80 M81.5 74.5 L72 80 L80.6 86.8" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

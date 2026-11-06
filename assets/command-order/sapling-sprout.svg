@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Filizi bekle</title>
+  <desc>Saksıdaki topraktan iki yapraklı küçük bir filiz çıkmış.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M34 80 H94 L86 120 H42 Z" fill="#E07A4F"/>
+    <rect x="28" y="68" width="72" height="12" rx="3" fill="#E07A4F"/>
+    <ellipse cx="64" cy="70" rx="30" ry="4" fill="#7A4B2A" stroke-width="3"/>
+    <path d="M64 70 V46" fill="none" stroke="#3DA845" stroke-width="5"/>
+    <path d="M64 54 C56 42 44 44 42 50 C50 58 58 58 64 54 Z" fill="#5CC45C" stroke-width="3"/>
+    <path d="M64 50 C72 38 84 40 86 46 C78 54 70 54 64 50 Z" fill="#5CC45C" stroke-width="3"/>
+    <circle cx="104" cy="22" r="16" fill="#FFFFFF"/>
+    <path d="M104 12.4 V22 L111.2 26" fill="none" stroke-width="3.5"/>
+  </g>
+</svg>

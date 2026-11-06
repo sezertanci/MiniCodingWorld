@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Afiyetle ye</title>
+  <desc>Gülümseyen çocuk sandviçten bir ısırık alıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="50" cy="60" r="44" fill="#F7CBA4"/>
+    <path d="M12.600000000000001 44.6 C19.200000000000003 5 80.8 5 87.4 44.6 C72 29.200000000000003 28 29.200000000000003 12.600000000000001 44.6 Z" fill="#7A4B2A"/>
+    <circle cx="34.6" cy="60" r="3.96" fill="#1F2D4F" stroke="none"/><circle cx="65.4" cy="60" r="3.96" fill="#1F2D4F" stroke="none"/>
+    <path d="M30 76 Q50 98 70 76 Z" fill="#C0392B"/>
+    <circle cx="26" cy="72" r="6" fill="#FF8FB1" stroke="none" opacity="0.6"/>
+    <path d="M70 100 V91 C70 87 74 86 78 86 H112 C117 86 120 87 120 91 V100 Z" fill="#F2B866"/>
+    <rect x="80" y="90" width="34" height="5" rx="2.5" fill="#FFE2A8" stroke="none"/>
+    <path d="M68 100 H122 L120 107 H70 Z" fill="#FFD24D"/>
+    <path d="M70 122 V111 C70 108 74 107 78 107 H112 C117 107 120 108 120 111 V122 Z" fill="#F2B866"/>
+    <rect x="80" y="111" width="34" height="5" rx="2.5" fill="#FFE2A8" stroke="none"/>
+    <path d="M94 82 V86 A8 8 0 0 0 105 96 A8 8 0 0 0 114 106 A7 7 0 0 0 126 110 V82 Z" fill="#FFFFFF" stroke="none"/>
+    <path d="M95 86 A8 8 0 0 0 105 96 A8 8 0 0 0 114 106 A7 7 0 0 0 123 109" fill="none"/>
+  </g>
+  <g fill="#F2B866" stroke="#1F2D4F" stroke-width="2"><circle cx="82" cy="70" r="3"/><circle cx="92" cy="62" r="2.5"/><circle cx="100" cy="72" r="3"/></g>
+</svg>

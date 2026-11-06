@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kitabı eve getir</title>
+  <desc>Çocuk elindeki kitapla evine yürüyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M60 52 L92 26 L124 52 Z" fill="#F25C54"/>
+    <rect x="66" y="52" width="52" height="56" fill="#FFE9C8"/>
+    <rect x="84" y="78" width="16" height="30" rx="2" fill="#A9744F"/>
+    <path d="M23 92 V116 M33 92 V116" fill="none" stroke-width="7"/>
+
+    <rect x="16" y="66" width="24" height="30" rx="9" fill="#5CC45C"/>
+    <circle cx="28" cy="54" r="12" fill="#F7CBA4"/>
+    <path d="M16 52 C17 36 39 36 40 52 C34 46 22 46 16 52 Z" fill="#7A4B2A"/>
+    <rect x="30" y="64" width="22" height="28" rx="3" fill="#F25C54"/>
+    <path d="M35 64 V92" fill="none" stroke-width="3"/>
+  </g>
+  <path d="M46 24 L70 24 M60.9 30.2 L70 24 L60.9 17.8" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

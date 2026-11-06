@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Köpükleri durula</title>
+  <desc>Duştan akan su, çocuğun saçındaki köpükleri aşağı akıtıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M6 10 H30 V18" fill="none" stroke="#C9D3E3" stroke-width="8"/>
+    <path d="M18 18 H46 L42 28 H22 Z" fill="#C9D3E3"/>
+    <circle cx="72" cy="82" r="34" fill="#F7CBA4"/>
+    <path d="M43.1 70.1 C48.2 39.5 95.8 39.5 100.9 70.1 C89 58.2 55 58.2 43.1 70.1 Z" fill="#7A4B2A"/>
+    <circle cx="60.1" cy="82" r="3.06" fill="#1F2D4F" stroke="none"/><circle cx="83.9" cy="82" r="3.06" fill="#1F2D4F" stroke="none"/>
+    <path d="M58 96 Q72 108 86 96" fill="none" stroke-width="3.5"/>
+    <g fill="#FFFFFF" stroke-width="3"><circle cx="34" cy="96" r="6"/><circle cx="30" cy="112" r="5"/><circle cx="112" cy="100" r="6"/><circle cx="116" cy="116" r="5"/></g>
+  </g>
+  <g fill="#4FB3F6" stroke="#1F2D4F" stroke-width="2.5"><path d="M26 34 C26 34 21 41 21 44 A5 5 0 0 0 31 44 C31 41 26 34 26 34 Z"/><path d="M40 36 C40 36 35 43 35 46 A5 5 0 0 0 45 46 C45 43 40 36 40 36 Z"/><path d="M54 32 C54 32 49 39 49 42 A5 5 0 0 0 59 42 C59 39 54 32 54 32 Z"/><path d="M34 50 C34 50 29 57 29 60 A5 5 0 0 0 39 60 C39 57 34 50 34 50 Z"/><path d="M48 52 C48 52 43 59 43 62 A5 5 0 0 0 53 62 C53 59 48 52 48 52 Z"/></g>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Fren yap</title>
+  <desc>Bisiklet durma levhasının önünde fren yapıp duruyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="2" y="116" width="124" height="10" rx="4" fill="#5CC45C"/>
+    <rect x="114" y="40" width="6" height="76" fill="#C9D3E3"/>
+    <path d="M104 18 L111 11 H123 L130 18 V30 L123 37 H111 L104 30 Z" fill="#F25C54" transform="translate(-6 0)"/>
+    <rect x="102" y="22" width="18" height="6" fill="#FFFFFF" stroke="none"/>
+    <g transform="translate(-14 0)">    <circle cx="26" cy="98" r="17" fill="#FFFFFF" stroke-width="5"/>
+    <circle cx="96" cy="98" r="17" fill="#FFFFFF" stroke-width="5"/>
+    <circle cx="26" cy="98" r="3" fill="#1F2D4F"/><circle cx="96" cy="98" r="3" fill="#1F2D4F"/>
+    <path d="M26 98 L55.4 98 L48.400000000000006 65.7 Z M48.400000000000006 65.7 L87.6 65.7 L55.4 98 M87.6 65.7 L96 98" fill="none" stroke-width="9"/>
+    <path d="M26 98 L55.4 98 L48.400000000000006 65.7 Z M48.400000000000006 65.7 L87.6 65.7 L55.4 98 M87.6 65.7 L96 98" fill="none" stroke="#F25C54" stroke-width="4"/>
+    <path d="M87.6 65.7 L85.6 55.7 H75.6" fill="none" stroke-width="5"/>
+    <rect x="39.400000000000006" y="59.7" width="18" height="6" rx="3" fill="#1F2D4F"/>
+    <circle cx="55.4" cy="98" r="5" fill="#1F2D4F"/>
+    <path d="M48.400000000000006 59.7 L65.4 69.7 L62 108" fill="none" stroke="#1F2D4F" stroke-width="11"/>
+    <path d="M48.400000000000006 59.7 L65.4 69.7 L62 108" fill="none" stroke="#4D8DF7" stroke-width="7"/>
+    <path d="M48.400000000000006 59.7 L58.400000000000006 35.7" fill="none" stroke="#1F2D4F" stroke-width="16"/>
+    <path d="M48.400000000000006 59.7 L58.400000000000006 35.7" fill="none" stroke="#FF9F43" stroke-width="12"/>
+    <path d="M58.400000000000006 35.7 L75.6 55.7" fill="none" stroke="#1F2D4F" stroke-width="9"/>
+    <path d="M58.400000000000006 35.7 L75.6 55.7" fill="none" stroke="#F7CBA4" stroke-width="5"/>
+    <circle cx="63.400000000000006" cy="20.700000000000003" r="11" fill="#F7CBA4"/>
+    <path d="M52.400000000000006 18.700000000000003 C53.400000000000006 3.700000000000003 73.4 3.700000000000003 74.4 18.700000000000003 Z" fill="#F25C54"/>
+    <circle cx="55.4" cy="98" r="5" fill="#1F2D4F"/></g>
+    <g fill="#C9D3E3" stroke-width="2.5"><circle cx="6" cy="110" r="5"/><circle cx="12" cy="102" r="4"/></g>
+  </g>
+</svg>

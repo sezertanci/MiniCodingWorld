@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Makineyi çalıştır</title>
+  <desc>Yeşil düğmeye basılınca makinenin içinde çamaşırlar dönüyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="14" y="6" width="100" height="116" rx="10" fill="#FFFFFF"/>
+    <path d="M14 26 H114" fill="none"/>
+    <circle cx="98" cy="16" r="5" fill="#C9D3E3" stroke-width="3"/>
+    <circle cx="64" cy="78" r="34" fill="#C9D3E3"/>
+    <circle cx="64" cy="78" r="25.84" fill="#A8DCFF"/>
+    <circle cx="98" cy="16" r="8" fill="#5CC45C" stroke-width="3"/>
+    <path d="M95 12 L102 16 L95 20 Z" fill="#FFFFFF" stroke-width="1.5"/>
+    <path d="M50 66 C56 58 70 58 76 66 M52 92 C60 98 72 96 78 88" fill="none" stroke="#F25C54" stroke-width="5"/>
+    <g fill="#FFFFFF" stroke-width="3"><circle cx="56" cy="78" r="4"/><circle cx="72" cy="76" r="3"/><circle cx="62" cy="86" r="3"/></g>
+  </g>
+  <path d="M20 46 Q4 78 22 108 M12.0 103.4 L22 108 L22.7 97.0" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M108 108 Q124 78 106 46 M115.9 50.9 L106 46 L105.0 57.0" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

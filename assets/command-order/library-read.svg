@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kitabı oku</title>
+  <desc>Çocuk açık kitaba bakarak okuyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="64" cy="56" r="34" fill="#F7CBA4"/>
+    <path d="M35.1 44.1 C40.2 13.5 87.8 13.5 92.9 44.1 C81 32.2 47 32.2 35.1 44.1 Z" fill="#7A4B2A"/>
+    <circle cx="52.1" cy="56" r="3.06" fill="#1F2D4F" stroke="none"/><circle cx="75.9" cy="56" r="3.06" fill="#1F2D4F" stroke="none"/>
+
+    <path d="M14 92 C34 84 54 86 64 94 C74 86 94 84 114 92 V120 C94 112 74 114 64 122 C54 114 34 112 14 120 Z" fill="#FFFFFF"/>
+    <path d="M64 94 V122" fill="none" stroke-width="3"/>
+    <path d="M24 100 H52 M24 108 H52 M76 100 H104 M76 108 H104" fill="none" stroke="#C9D3E3" stroke-width="3"/>
+  </g>
+</svg>

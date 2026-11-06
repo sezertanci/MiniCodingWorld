@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Saksıya toprak koy</title>
+  <desc>Kürekten dökülen toprak boş saksının içine doluyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M34 80 H94 L86 120 H42 Z" fill="#E07A4F"/>
+    <rect x="28" y="68" width="72" height="12" rx="3" fill="#E07A4F"/>
+    <ellipse cx="64" cy="70" rx="30" ry="4" fill="#7A4B2A" stroke-width="3"/>
+    <g fill="#7A4B2A" stroke="none"><circle cx="56" cy="50" r="3.5"/><circle cx="62" cy="58" r="3"/><circle cx="54" cy="62" r="3.5"/><circle cx="60" cy="44" r="3"/></g>
+    <g transform="rotate(-40 86 36)"><path d="M58 26 H106 C106 46 96 56 82 56 C68 56 58 46 58 26 Z" fill="#C9D3E3"/><ellipse cx="82" cy="26" rx="24" ry="6" fill="#7A4B2A"/></g>
+    <path d="M100 22 L120 4" fill="none" stroke-width="12"/>
+    <path d="M100 22 L120 4" fill="none" stroke="#C98B5A" stroke-width="7"/>
+  </g>
+</svg>

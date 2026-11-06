@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Dişlerini fırçala</title>
+  <desc>Gülümseyen çocuk diş fırçasıyla dişlerini fırçalıyor, ağzının çevresinde köpükler var.</desc>
+  <circle cx="58" cy="62" r="50" fill="#F7CBA4" stroke="#1F2D4F" stroke-width="4"/>
+  <path d="M18 40 C24 10 92 6 100 40 C90 26 30 26 18 40 Z" fill="#7A4B2A" stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M34 50 Q40 44 46 50 M70 50 Q76 44 82 50" fill="none" stroke="#1F2D4F" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="30" cy="66" r="6" fill="#FF8FB1" opacity="0.6"/><circle cx="88" cy="66" r="6" fill="#FF8FB1" opacity="0.6"/>
+  <path d="M30 72 H88 C86 96 32 96 30 72 Z" fill="#C0392B" stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M32 73 H86 V80 H32 Z" fill="#FFFFFF"/>
+  <path d="M46 73 V80 M58 73 V80 M70 73 V80" stroke="#C9D3E3" stroke-width="2"/>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round">
+    <rect x="40" y="76" width="22" height="9" rx="2" fill="#FFFFFF"/>
+    <rect x="36" y="84" width="30" height="9" rx="4" fill="#4D8DF7"/>
+    <rect x="64" y="86" width="60" height="8" rx="4" fill="#4D8DF7"/>
+  </g>
+  <g fill="#FFFFFF" stroke="#A8DCFF" stroke-width="2.5">
+    <circle cx="28" cy="84" r="6"/><circle cx="22" cy="94" r="5"/><circle cx="34" cy="96" r="4"/><circle cx="90" cy="78" r="4"/>
+  </g>
+  <path d="M100 104 H120 M104 112 H116" stroke="#1F2D4F" stroke-width="3" stroke-linecap="round"/>
+</svg>

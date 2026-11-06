@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Küveti suyla doldur</title>
+  <desc>Musluktan akan su küvetin içini dolduruyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M10 18 H34 V30" fill="none" stroke="#C9D3E3" stroke-width="10"/>
+    <path d="M10 18 H34 V30" fill="none" stroke-width="2"/>
+    <rect x="16" y="8" width="10" height="8" rx="2" fill="#4D8DF7"/>
+    <path d="M34 36 V72" fill="none" stroke="#4FB3F6" stroke-width="7"/>
+    <path d="M10 70 H118 V84 C118 102 104 112 84 112 H44 C24 112 10 102 10 84 Z" fill="#FFFFFF"/>
+    <ellipse cx="64" cy="70" rx="54" ry="12" fill="#A8DCFF"/>
+    <circle cx="32" cy="116" r="5" fill="#1F2D4F" stroke="none"/><circle cx="96" cy="116" r="5" fill="#1F2D4F" stroke="none"/>
+  </g>
+  <g fill="#4FB3F6" stroke="#1F2D4F" stroke-width="2.5"><path d="M22 52 C22 52 17 59 17 62 A5 5 0 0 0 27 62 C27 59 22 52 22 52 Z"/><path d="M46 50 C46 50 41 57 41 60 A5 5 0 0 0 51 60 C51 57 46 50 46 50 Z"/></g>
+  <path d="M104 56 L104 26 M110.2 35.1 L104 26 L97.8 35.1" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

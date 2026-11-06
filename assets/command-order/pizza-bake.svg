@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Pişmesini bekle</title>
+  <desc>Fırının camından pizza görünüyor, saat süreyi sayıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="14" y="40" width="100" height="82" rx="8" fill="#C9D3E3"/>
+    <path d="M14 58 H114" fill="none"/>
+    <circle cx="30" cy="49" r="4" fill="#1F2D4F" stroke="none"/><circle cx="44" cy="49" r="4" fill="#1F2D4F" stroke="none"/>
+    <rect x="26" y="66" width="76" height="46" rx="6" fill="#FFE9A8"/>
+    <ellipse cx="64" cy="98" rx="30" ry="8" fill="#E9B866"/>
+    <ellipse cx="64" cy="96" rx="24" ry="5" fill="#FFD24D" stroke-width="2.5"/>
+    <g fill="#C0392B" stroke-width="2"><circle cx="54" cy="96" r="3"/><circle cx="72" cy="95" r="3"/></g>
+    <circle cx="100" cy="22" r="17" fill="#FFFFFF"/>
+    <path d="M100 11.8 V22 L107.65 26.25" fill="none" stroke-width="3.5"/>
+    <path d="M30 32 C26 26 34 22 30 14 M48 32 C44 26 52 22 48 14" fill="none" stroke="#FF9F43" stroke-width="3.5"/>
+  </g>
+</svg>

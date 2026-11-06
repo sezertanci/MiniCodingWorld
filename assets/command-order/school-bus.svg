@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Servise bin</title>
+  <desc>Çocuk sarı okul servisinin açık kapısından içeri biniyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="4" y="24" width="112" height="70" rx="12" fill="#FFD24D"/>
+    <rect x="12" y="34" width="22" height="20" rx="4" fill="#A8DCFF"/>
+    <rect x="40" y="34" width="22" height="20" rx="4" fill="#A8DCFF"/>
+    <rect x="80" y="34" width="28" height="56" rx="4" fill="#FFF3C4"/>
+    <path d="M4 66 H80" fill="none" stroke-width="3"/>
+    <circle cx="28" cy="98" r="11" fill="#555E70"/><circle cx="96" cy="98" r="11" fill="#555E70"/>
+    <rect x="68" y="102" width="36" height="8" rx="3" fill="#C9D3E3"/>
+    <g transform="translate(94 60) scale(0.55)">
+      <rect x="-22" y="40" width="44" height="52" rx="16" fill="#4D8DF7"/>
+      <rect x="-30" y="44" width="16" height="36" rx="6" fill="#FF9F43"/>
+    <circle cx="0" cy="20" r="20" fill="#F7CBA4"/>
+    <path d="M-17 13 C-14 -5 14 -5 17 13 C10 6 -10 6 -17 13 Z" fill="#7A4B2A"/>
+    <circle cx="-7" cy="20" r="1.7999999999999998" fill="#1F2D4F" stroke="none"/><circle cx="7" cy="20" r="1.7999999999999998" fill="#1F2D4F" stroke="none"/>
+
+    </g>
+  </g>
+</svg>

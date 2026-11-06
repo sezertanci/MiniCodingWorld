@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Pişmesini bekle</title>
+  <desc>Fırının camından kabaran kek görünüyor, saat süreyi sayıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="14" y="40" width="100" height="82" rx="8" fill="#C9D3E3"/>
+    <path d="M14 58 H114" fill="none"/>
+    <circle cx="30" cy="49" r="4" fill="#1F2D4F" stroke="none"/><circle cx="44" cy="49" r="4" fill="#1F2D4F" stroke="none"/>
+    <rect x="26" y="66" width="76" height="46" rx="6" fill="#FFE9A8"/>
+    <path d="M40 104 V92 C40 76 88 76 88 92 V104 Z" fill="#C98B5A"/>
+    <rect x="36" y="100" width="56" height="8" rx="2" fill="#C9D3E3"/>
+    <circle cx="100" cy="22" r="17" fill="#FFFFFF"/>
+    <path d="M100 12 V22 L108 26" fill="none" stroke-width="3.5"/>
+    <path d="M30 32 C26 26 34 22 30 14 M48 32 C44 26 52 22 48 14" fill="none" stroke="#FF9F43" stroke-width="3.5"/>
+  </g>
+</svg>

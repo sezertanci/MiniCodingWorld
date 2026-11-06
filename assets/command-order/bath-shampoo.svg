@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Saçını şampuanla</title>
+  <desc>Şampuan saça dökülüyor, çocuğun başı köpük dolu.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="56" cy="82" r="34" fill="#F7CBA4"/>
+    <path d="M27.1 70.1 C32.2 39.5 79.8 39.5 84.9 70.1 C73 58.2 39 58.2 27.1 70.1 Z" fill="#7A4B2A"/>
+    <circle cx="44.1" cy="82" r="3.06" fill="#1F2D4F" stroke="none"/><circle cx="67.9" cy="82" r="3.06" fill="#1F2D4F" stroke="none"/>
+    <path d="M42 96 Q56 108 70 96" fill="none" stroke-width="3.5"/>
+    <g fill="#FFFFFF" stroke-width="3"><circle cx="28" cy="52" r="9"/><circle cx="42" cy="42" r="10"/><circle cx="58" cy="38" r="11"/><circle cx="74" cy="42" r="10"/><circle cx="86" cy="54" r="8"/></g>
+    <g transform="rotate(150 104 22)"><rect x="94" y="10" width="20" height="30" rx="6" fill="#FF8FB1"/><rect x="99" y="2" width="10" height="9" rx="2" fill="#FFFFFF"/></g>
+  </g>
+  <path d="M104 44 L84 46 M92.4 38.9 L84 46 L93.7 51.3" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Üstünü toprakla ört</title>
+  <desc>Kürekteki toprak, tohumun olduğu çukurun üstüne dökülüyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="2" y="70" width="124" height="56" rx="6" fill="#A9744F"/>
+    <path d="M2 74 H126" stroke="#5CC45C" stroke-width="8"/>
+    <path d="M38 76 C46 60 82 60 90 76 Z" fill="#8A5A3A"/>
+    <g transform="rotate(-25 90 40)">
+      <rect x="86" y="-4" width="10" height="44" rx="4" fill="#C98B5A"/>
+      <path d="M78 36 H104 V50 C104 60 78 60 78 50 Z" fill="#C9D3E3"/>
+      <path d="M80 40 C86 32 98 32 102 40 Z" fill="#8A5A3A" stroke-width="3"/>
+    </g>
+  </g>
+  <g fill="#8A5A3A" stroke="#1F2D4F" stroke-width="2"><circle cx="72" cy="56" r="3"/><circle cx="64" cy="48" r="2.5"/><circle cx="58" cy="58" r="3"/></g>
+</svg>

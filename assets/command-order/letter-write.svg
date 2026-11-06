@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Mektubu yaz</title>
+  <desc>Kalemle kâğıda mavi satırlar halinde mektup yazılıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="12" y="8" width="84" height="108" rx="4" fill="#FFFFFF"/>
+    <path d="M48 26 C44 20 36 22 36 28 C36 34 48 40 48 40 C48 40 60 34 60 28 C60 22 52 20 48 26 Z" fill="#F25C54" stroke-width="3"/>
+  </g>
+    <path d="M24 54 C39 50 54 58 69 54 S84 52 84 54" fill="none" stroke="#4D8DF7" stroke-width="3"/>
+    <path d="M24 66 C39 62 54 70 69 66 S84 64 84 66" fill="none" stroke="#4D8DF7" stroke-width="3"/>
+    <path d="M24 78 C39 74 54 82 69 78 S84 76 84 78" fill="none" stroke="#4D8DF7" stroke-width="3"/>
+    <path d="M24 90 C39 86 54 94 69 90 S84 88 84 90" fill="none" stroke="#4D8DF7" stroke-width="3"/>
+  <g transform="translate(82 92) rotate(-45)" stroke="#1F2D4F" stroke-width="3.5" stroke-linejoin="round">
+    <path d="M0 0 L10 -8 H58 V8 H10 Z" fill="#FFD24D"/>
+    <path d="M0 0 L10 -8 V8 Z" fill="#F7CBA4"/>
+    <path d="M0 0 L4 -3 V3 Z" fill="#1F2D4F"/>
+    <rect x="58" y="-8" width="12" height="16" rx="3" fill="#FF8FB1"/>
+  </g>
+</svg>

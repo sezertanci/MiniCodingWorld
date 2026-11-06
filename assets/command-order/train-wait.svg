@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Treni bekle</title>
+  <desc>Çocuk peronda duruyor, saat trenin gelmesini sayıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M2 92 H126" fill="none" stroke="#A9744F" stroke-width="6"/>
+    <rect x="2" y="98" width="124" height="26" rx="4" fill="#C9D3E3"/>
+    <path d="M4 104 H124" fill="none" stroke="#FFD24D" stroke-width="4"/>
+    <path d="M96 98 V54" fill="none" stroke-width="5"/>
+    <circle cx="96" cy="34" r="20" fill="#FFFFFF"/>
+    <path d="M96 22 V34 L105 39" fill="none" stroke-width="3.5"/>
+    <path d="M35 94 V118 M45 94 V118" fill="none" stroke-width="7"/>
+
+    <rect x="28" y="68" width="24" height="30" rx="9" fill="#4D8DF7"/>
+    <circle cx="40" cy="56" r="12" fill="#F7CBA4"/>
+    <path d="M28 54 C29 38 51 38 52 54 C46 48 34 48 28 54 Z" fill="#7A4B2A"/>
+
+  </g>
+</svg>

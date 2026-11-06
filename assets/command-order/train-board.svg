@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Trene bin</title>
+  <desc>Çocuk peronda, kapısı açık tren vagonuna biniyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="56" y="30" width="92" height="62" rx="10" fill="#F25C54"/>
+    <path d="M56 74 H148" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <rect x="78" y="40" width="22" height="52" rx="3" fill="#2B2F3A"/>
+    <circle cx="76" cy="94" r="7" fill="#1F2D4F"/><circle cx="128" cy="94" r="7" fill="#1F2D4F"/>
+    <rect x="2" y="98" width="124" height="26" rx="4" fill="#C9D3E3"/>
+    <path d="M4 104 H124" fill="none" stroke="#FFD24D" stroke-width="4"/>
+    <path d="M25 94 V118 M35 94 V118" fill="none" stroke-width="7"/>
+    <path d="M30 74 L44 64" fill="none" stroke="#1F2D4F" stroke-width="9"/>
+    <path d="M30 74 L44 64" fill="none" stroke="#F7CBA4" stroke-width="5"/>
+    <rect x="18" y="68" width="24" height="30" rx="9" fill="#4D8DF7"/>
+    <circle cx="30" cy="56" r="12" fill="#F7CBA4"/>
+    <path d="M18 54 C19 38 41 38 42 54 C36 48 24 48 18 54 Z" fill="#7A4B2A"/>
+
+  </g>
+  <path d="M30 20 L76 20 M66.9 26.2 L76 20 L66.9 13.8" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

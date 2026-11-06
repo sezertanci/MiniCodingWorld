@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Fırçaya macun sık</title>
+  <desc>Diş macunu tüpü sıkılıyor, macun diş fırçasının kıllarının üstüne çıkıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <g transform="rotate(28 62 40)">
+      <path d="M14 26 H30 V54 H14 Z" fill="#FF6B6B"/>
+      <path d="M30 24 C50 18 70 22 84 30 V50 C70 58 50 62 30 56 Z" fill="#FFFFFF"/>
+      <rect x="84" y="32" width="14" height="16" rx="3" fill="#4D8DF7"/>
+    </g>
+    <path d="M44 22 L50 30 M38 32 L48 36" fill="none" stroke-width="3"/>
+  </g>
+  <path d="M86 64 C80 66 82 74 88 74 C84 78 90 84 96 80 C100 86 110 82 108 76 C114 74 112 66 104 68 C102 62 90 60 86 64 Z" fill="#FFFFFF" stroke="#1F2D4F" stroke-width="3"/>
+  <path d="M90 72 C96 68 100 76 106 72" fill="none" stroke="#5CC45C" stroke-width="4" stroke-linecap="round"/>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="80" y="82" width="34" height="14" rx="3" fill="#FFFFFF"/>
+    <path d="M88 82 V96 M97 82 V96 M106 82 V96" stroke-width="2.5"/>
+    <rect x="76" y="96" width="42" height="14" rx="6" fill="#4D8DF7"/>
+    <rect x="6" y="99" width="74" height="10" rx="5" fill="#4D8DF7"/>
+  </g>
+</svg>

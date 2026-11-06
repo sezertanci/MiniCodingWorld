@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Televizyon aç</title>
+  <desc>Kumandayla açılan televizyonun ekranında resim var.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="8" y="10" width="102" height="72" rx="8" fill="#3A3F55"/>
+    <rect x="16" y="18" width="86" height="56" rx="4" fill="#A8DCFF"/>
+    <path d="M18 72 L44 46 L60 60 L76 42 L100 72 Z" fill="#5CC45C" stroke-width="3"/>
+    <circle cx="84" cy="30" r="6" fill="#FFD24D" stroke-width="3"/>
+    <path d="M50 82 L44 96 M68 82 L74 96 M38 96 H80" fill="none"/>
+    <g transform="rotate(-25 100 106)"><rect x="90" y="86" width="20" height="38" rx="6" fill="#3A3F55"/><circle cx="100" cy="96" r="4" fill="#F25C54" stroke-width="2.5"/></g>
+  </g>
+  <path d="M112 74 C116 70 120 72 122 76 M108 68 C116 60 124 64 126 72" fill="none" stroke="#1F2D4F" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

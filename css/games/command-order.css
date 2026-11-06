@@ -17,13 +17,23 @@
   text-align: center;
 }
 
-.co-task-icon { font-size: 96px; line-height: 1; }
+.co-task-icon {
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 150px;
+  font-size: 96px;
+  line-height: 1;
+  background: var(--white);
+  border-radius: 24px;
+}
 .co-task-title { margin: 0; font-size: 24px; }
 
-/* Kart ve kutu boyutu tek yerde tanımlanır */
+/* Kart, kutu ve kart resminin boyutu tek yerde tanımlanır */
 .co-board {
-  --card-w: 132px;
-  --card-h: 112px;
+  --card-w: 136px;
+  --card-h: 156px;
+  --art-size: 104px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -95,14 +105,14 @@
   color: rgba(31, 45, 79, 0.45);
 }
 
-/* Adım kartı: üstte büyük resim, altta kısa yazı */
+/* Adım kartı: resim eylemi anlatır ve kartın çoğunu kaplar, yazı altta küçük durur */
 .co-card {
   --tone: var(--blue);
   --tone-dark: var(--blue-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 4px;
   width: var(--card-w);
   height: var(--card-h);
@@ -118,9 +128,20 @@
 
 .co-card:not(:disabled):active { transform: translateY(3px); }
 .co-card.is-hint { animation: co-hint 1s ease-in-out infinite; }
-.co-card-icon { font-size: 40px; line-height: 1; }
-/* Uzun kelime kartın dışına taşmasın diye gerekirse bölünür */
-.co-card-text { font-size: 16px; font-weight: 800; line-height: 1.15; overflow-wrap: anywhere; text-shadow: 0 2px 0 var(--tone-dark); }
+.co-card-icon {
+  display: grid;
+  place-items: center;
+  width: var(--art-size);
+  height: var(--art-size);
+  flex: none;
+  font-size: calc(var(--art-size) * 0.6);
+  line-height: 1;
+  background: var(--white);
+  border-radius: 14px;
+}
+/* Görsel kartın üstünde sabit durur; yazı altta kalan alanı doldurur ve orada ortalanır.
+   Uzun kelime kartın dışına taşmasın diye gerekirse bölünür. */
+.co-card-text { display: flex; flex: 1; align-items: center; justify-content: center; min-height: 0; text-align: center; font-size: 14px; font-weight: 800; line-height: 1.15; overflow-wrap: anywhere; text-shadow: 0 2px 0 var(--tone-dark); }
 
 .co-tone-1 { --tone: var(--green); --tone-dark: var(--green-dark); }
 .co-tone-2 { --tone: var(--orange); --tone-dark: var(--orange-dark); }
@@ -145,18 +166,17 @@
 @media (max-width: 760px) {
   .co-main { grid-template-columns: 1fr; }
   .co-task { flex-direction: row; justify-content: center; padding: 10px 14px; }
-  .co-task-icon { font-size: 48px; }
+  .co-task-icon { width: 64px; height: 64px; font-size: 44px; border-radius: 14px; }
   .co-task-title { font-size: 22px; }
 }
 
 @media (max-width: 560px) {
   /* Üç kart yan yana sığar */
-  .co-board { --card-w: 100px; --card-h: 94px; padding: 10px; gap: 12px; }
+  .co-board { --card-w: 100px; --card-h: 120px; --art-size: 76px; padding: 10px; gap: 12px; }
   .co-slots { gap: 8px 10px; }
   .co-stage-slots { gap: 8px; }
   .co-card { padding: 3px; }
-  .co-card-icon { font-size: 28px; }
-  .co-card-text { font-size: 14px; }
+  .co-card-text { font-size: 12px; }
   .co-slot-empty { font-size: 28px; }
   .co-pool { gap: 8px; min-height: 100px; padding: 8px 0; }
 }

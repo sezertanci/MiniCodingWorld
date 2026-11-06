@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Bir kitap seç</title>
+  <desc>Raftaki kitaplardan biri alınmış, rafta yeri boş kalmış.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="4" y="10" width="80" height="108" rx="4" fill="#C98B5A"/>
+    <rect x="12" y="18" width="64" height="40" fill="#A9744F"/>
+    <rect x="12" y="68" width="64" height="42" fill="#A9744F"/>
+    <rect x="15" y="24" width="11" height="34" fill="#4D8DF7" stroke-width="3"/><rect x="27" y="28" width="11" height="30" fill="#5CC45C" stroke-width="3"/>
+    <rect x="39" y="24" width="11" height="34" fill="#FFD24D" stroke-width="3"/><rect x="51" y="26" width="11" height="32" fill="#FF8FB1" stroke-width="3"/>
+    <rect x="63" y="24" width="11" height="34" fill="#9B6BDF" stroke-width="3"/>
+    <rect x="15" y="74" width="11" height="36" fill="#FF9F43" stroke-width="3"/><rect x="27" y="78" width="11" height="32" fill="#4D8DF7" stroke-width="3"/>
+    <rect x="63" y="74" width="11" height="36" fill="#5CC45C" stroke-width="3"/>
+    <g transform="rotate(15 106 92)"><rect x="94" y="70" width="24" height="42" rx="2" fill="#F25C54"/><path d="M99 70 V112" fill="none" stroke-width="3"/><path d="M103 80 H114" fill="none" stroke="#FFFFFF" stroke-width="3"/></g>
+  </g>
+  <path d="M48 86 Q76 50 100 60 M89.2 62.2 L100 60 L94.0 50.8" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

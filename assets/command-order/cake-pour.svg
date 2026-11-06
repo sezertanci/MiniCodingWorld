@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Hamuru kalıba dök</title>
+  <desc>Eğilen kaptan akan hamur, masadaki kek kalıbına doluyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="4" y="104" width="120" height="16" rx="4" fill="#C98B5A"/>
+    <rect x="30" y="84" width="68" height="20" rx="4" fill="#C9D3E3"/>
+    <rect x="34" y="86" width="60" height="6" fill="#FFE2A8" stroke="none"/>
+    <path d="M58 46 C54 62 62 70 62 88" fill="none" stroke-width="10"/>
+    <path d="M58 46 C54 62 62 70 62 88" fill="none" stroke="#FFE2A8" stroke-width="5"/>
+    <g transform="rotate(-40 86 36)"><path d="M58 26 H114 C114 46 102 56 86 56 C70 56 58 46 58 26 Z" fill="#4D8DF7"/><ellipse cx="86" cy="26" rx="28" ry="6" fill="#FFE2A8"/></g>
+  </g>
+</svg>

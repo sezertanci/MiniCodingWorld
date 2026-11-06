@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Fenerini yak</title>
+  <desc>Gece çadırın önündeki fener yanıyor ve etrafı aydınlatıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="2" y="2" width="124" height="104" rx="10" fill="#2B3A67"/>
+    <path d="M24 14 A12 12 0 1 0 36 32 A10 10 0 1 1 24 14 Z" fill="#FFD24D" stroke-width="2.5"/>
+    <rect x="2" y="100" width="124" height="26" rx="6" fill="#5CC45C"/>
+    <g transform="translate(-16 0)">    <path d="M20 106 L64 34 L108 106 Z" fill="#FF9F43"/>
+    <path d="M48 106 L64 66 L80 106 Z" fill="#FFE9A8"/></g>
+    <path d="M100 66 V62 C100 54 116 54 116 62 V66" fill="none" stroke-width="3.5"/>
+    <rect x="96" y="66" width="24" height="10" rx="3" fill="#555E70"/>
+    <rect x="98" y="76" width="20" height="22" fill="#FFE9A8"/>
+    <rect x="96" y="98" width="24" height="8" rx="3" fill="#555E70"/>
+    <path d="M88 76 L80 72 M88 88 L78 88 M88 100 L80 104 M108 52 L108 44" fill="none" stroke="#FFD24D" stroke-width="4"/>
+  </g>
+  <path d="M60 9 L61.5 12.5 L65 14 L61.5 15.5 L60 19 L58.5 15.5 L55 14 L58.5 12.5 Z" fill="#FFD24D" stroke="#1F2D4F" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M110 18 L111.2 20.8 L114 22 L111.2 23.2 L110 26 L108.8 23.2 L106 22 L108.8 20.8 Z" fill="#FFD24D" stroke="#1F2D4F" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Kirlileri topla</title>
+  <desc>Etrafa dağılmış kirli tişört çamaşır sepetine atılıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <ellipse cx="40" cy="62" rx="16" ry="10" fill="#FF8FB1"/>
+    <ellipse cx="70" cy="60" rx="18" ry="10" fill="#5CC45C"/>
+    <ellipse cx="94" cy="64" rx="12" ry="8" fill="#FFD24D"/>
+    <path d="M16 66 H112 L102 120 H26 Z" fill="#C98B5A"/>
+    <path d="M19 82 H109 M22 98 H106" fill="none" stroke="#A9744F" stroke-width="3"/>
+    <rect x="10" y="62" width="108" height="10" rx="4" fill="#A9744F"/>
+    <g transform="translate(52 6) rotate(-15) scale(0.75)"><path d="M-10 0 L-20 4 L-28 16 L-20 22 L-16 18 V40 H16 V18 L20 22 L28 16 L20 4 L10 0 C6 6 -6 6 -10 0 Z" fill="#4D8DF7"/></g>
+  </g>
+  <path d="M98 10 L98 46 M91.8 36.9 L98 46 L104.2 36.9" fill="none" stroke="#1F2D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

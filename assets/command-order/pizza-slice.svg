@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Dilimle</title>
+  <desc>Pizza kesici, pişmiş pizzayı dilimlere ayırıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="54" cy="72" r="48" fill="#E9B866"/>
+    <circle cx="54" cy="72" r="40.32" fill="#E8573F" stroke-width="3"/>
+    <circle cx="54" cy="72" r="35.519999999999996" fill="#FFD24D" stroke="none"/>
+    <g fill="#C0392B" stroke-width="2.5"><circle cx="77.2" cy="65.8" r="6.2"/><circle cx="71.0" cy="89.0" r="6.2"/><circle cx="47.8" cy="95.2" r="6.2"/><circle cx="30.8" cy="78.2" r="6.2"/><circle cx="37.0" cy="55.0" r="6.2"/><circle cx="60.2" cy="48.8" r="6.2"/></g>
+    <path d="M25.7 100.3 L82.3 43.7 M15.4 61.6 L92.6 82.4 M43.6 33.4 L64.4 110.6" fill="none" stroke-width="3.5"/>
+    <path d="M100 30 L120 10" fill="none" stroke-width="12"/>
+    <path d="M100 30 L120 10" fill="none" stroke="#3A3F55" stroke-width="7"/>
+    <circle cx="92" cy="36" r="13" fill="#E6ECF5"/>
+    <circle cx="92" cy="36" r="3" fill="#1F2D4F" stroke="none"/>
+  </g>
+</svg>

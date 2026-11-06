@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Filizin çıkmasını bekle</title>
+  <desc>Güneş doğuyor ve tohumun gömüldüğü topraktan yeşil filiz çıkıyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="102" cy="24" r="14" fill="#FFD24D"/>
+    <path d="M102 2 V6 M124 24 H120 M118 8 L115 11 M86 8 L89 11" fill="none" stroke-width="3.5"/>
+    <rect x="2" y="70" width="124" height="56" rx="6" fill="#A9744F"/>
+    <path d="M2 74 H126" stroke="#5CC45C" stroke-width="8"/>
+    <path d="M38 76 C46 60 82 60 90 76 Z" fill="#8A5A3A"/>
+    <path d="M64 66 V40" fill="none" stroke="#3DA845" stroke-width="6"/>
+    <path d="M64 46 C52 46 44 38 42 30 C54 28 62 36 64 46 Z M64 40 C76 40 84 32 86 24 C74 22 66 30 64 40 Z" fill="#5CC45C"/>
+  </g>
+</svg>

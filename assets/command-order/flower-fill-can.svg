@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Sulama kabını doldur</title>
+  <desc>Musluktan akan su, yeşil sulama kabının içine doluyor.</desc>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="20" y="4" width="20" height="10" rx="4" fill="#FF6B6B"/>
+    <rect x="6" y="14" width="50" height="14" rx="7" fill="#C9D3E3"/>
+    <rect x="40" y="22" width="16" height="16" rx="4" fill="#C9D3E3"/>
+  </g>
+  <rect x="43" y="38" width="10" height="38" rx="5" fill="#4FB3F6"/>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M28 84 C8 84 8 112 28 112" fill="none" stroke-width="6"/>
+    <path d="M76 92 L110 66 L118 74 L80 104 Z" fill="#3DA845"/>
+    <rect x="26" y="74" width="52" height="46" rx="10" fill="#5CC45C"/>
+    <ellipse cx="48" cy="76" rx="16" ry="6" fill="#4FB3F6"/>
+  </g>
+  <rect x="34" y="90" width="34" height="22" rx="6" fill="#4FB3F6" opacity="0.55"/>
+  <circle cx="34" cy="66" r="3" fill="#4FB3F6"/>
+  <circle cx="62" cy="64" r="3" fill="#4FB3F6"/>
+</svg>

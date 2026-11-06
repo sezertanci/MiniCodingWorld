@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Bağcığını bağla</title>
+  <desc>Ayakkabının sarı bağcıkları büyük bir fiyonk yapılarak bağlanıyor.</desc>
+  <path d="M40 30 H64 V80 H40 Z" fill="#FF6B6B" stroke="#1F2D4F" stroke-width="4"/>
+  <path d="M40 46 H64 M40 62 H64" stroke="#FFFFFF" stroke-width="6"/>
+  <g transform="translate(0 6)">
+  <path d="M20 86 C20 76 30 72 40 72 C48 72 52 80 64 80 C76 80 80 72 88 72 C104 74 116 86 120 100 V108 H14 V96 C14 90 16 88 20 86 Z" fill="#4D8DF7" stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="10" y="104" width="114" height="14" rx="7" fill="#FFFFFF" stroke="#1F2D4F" stroke-width="4"/>
+  <path d="M90 80 L102 92" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g stroke="#1F2D4F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M64 74 L54 100 M64 74 L76 100" fill="none" stroke-width="9"/>
+    <path d="M64 74 L54 100 M64 74 L76 100" fill="none" stroke="#FFD24D" stroke-width="4"/>
+    <path d="M64 74 C48 52 32 58 40 74 C44 82 56 80 64 74 Z" fill="#FFD24D"/>
+    <path d="M64 74 C80 52 96 58 88 74 C84 82 72 80 64 74 Z" fill="#FFD24D"/>
+    <circle cx="64" cy="75" r="7" fill="#FFD24D"/>
+  </g>
+  <path d="M104 9 L107.9 18.1 L117 22 L107.9 25.9 L104 35 L100.1 25.9 L91 22 L100.1 18.1 Z" fill="#FFD24D" stroke="#1F2D4F" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M22 15 L24.7 21.3 L31 24 L24.7 26.7 L22 33 L19.3 26.7 L13 24 L19.3 21.3 Z" fill="#FFD24D" stroke="#1F2D4F" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
