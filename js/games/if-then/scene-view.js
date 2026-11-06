@@ -52,26 +52,43 @@
       scroller.scrollTo?.({ left: cell.offsetLeft - (scroller.clientWidth - cell.offsetWidth) / 2, behavior: "smooth" });
     }
 
+    // Taşın üstüne inilmez. Zıplama kararı bekletilir; robot sonraki karenin hareketiyle birlikte
+    // taşın üstünden atlar ve taştan sonraki kareye (ya da bayrağa) iner. Böylece taştan sonra su
+    // varsa önce köprü kurulur, robot köprüye iner.
+    let jumpPending = false;
+
+    function moveOrJump(position) {
+      robot.classList.toggle(ROBOT_CLASSES.jump, jumpPending);
+      jumpPending = false;
+      moveRobot(position);
+    }
+
     /** Bir yol karesine geçişi oynatır: varsa önce karedeki etki, sonra yürüme ya da zıplama. */
     async function playStep(step, duration) {
+      if (step.action === ACTION.JUMP) {
+        jumpPending = true;
+        await wait(duration / 2);
+        return;
+      }
       const effect = CELL_EFFECT[step.action];
       if (effect) {
         cells[step.index].classList.add(effect);
         await wait(duration / 2);
       }
-      robot.classList.toggle(ROBOT_CLASSES.jump, step.action === ACTION.JUMP);
-      moveRobot(step.index + START_OFFSET);
+      moveOrJump(step.index + START_OFFSET);
       await wait(duration);
       robot.classList.remove(ROBOT_CLASSES.jump);
     }
 
     function fail(index) {
+      jumpPending = false;
       cells[index].classList.add("is-wrong");
       robot.classList.add(ROBOT_CLASSES.bump);
       setTimeout(() => robot.classList.remove(ROBOT_CLASSES.bump), 400);
     }
 
     function reset() {
+      jumpPending = false;
       cells.forEach((cell) => cell.classList.remove(...MARK_CLASSES));
       robot.classList.remove(...Object.values(ROBOT_CLASSES));
       moveRobot(0);
@@ -89,8 +106,11 @@
       fail,
       reset,
       showHint,
-      reachGoal: () => moveRobot(allCells.length - 1),
-      celebrate: () => robot.classList.add(ROBOT_CLASSES.happy),
+      reachGoal: () => moveOrJump(allCells.length - 1),
+      celebrate: () => {
+        robot.classList.remove(ROBOT_CLASSES.jump);
+        robot.classList.add(ROBOT_CLASSES.happy);
+      },
     });
   }
 
