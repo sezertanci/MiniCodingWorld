@@ -208,7 +208,10 @@ button:disabled { cursor: not-allowed; }
 .is-drag-source { opacity: 0.35; }
 .is-drop-over { outline: 4px dashed var(--navy); outline-offset: 2px; }
 
-.drag-ghost {
+/* Hayalet, kopyalandığı öğenin oyun CSS'indeki konum kurallarını da taşır (ör. .pf-chip'in
+   position: relative'i). "body >" seçicisi bu kuralı onlardan güçlü kılar; yoksa hayalet sayfanın
+   altına düşer ve kaydırma çubuğu çıkar. */
+body > .drag-ghost {
   position: fixed;
   top: 0;
   left: 0;
