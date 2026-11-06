@@ -9,15 +9,21 @@
   text-shadow: 0 2px 0 var(--tone-dark);
 }
 
+/* Oyun ekranında haritaya yer kalsın diye üst çubuk ve aralıklar daha sıkıdır */
+.game-screen { gap: 12px; }
+.game-screen .top-bar .icon-button { width: 52px; height: 52px; }
+.game-screen .top-bar-title { padding: 4px 18px; font-size: clamp(20px, 3vw, 28px); }
+.game-screen .top-bar-icon { width: 36px; height: 36px; }
+
 /* Oyunlarda robotun konuşma balonu */
-.speech-bubble { display: flex; align-items: center; gap: 12px; }
-.speech-robot { width: 56px; height: auto; flex-shrink: 0; }
+.speech-bubble { display: flex; align-items: center; gap: 10px; }
+.speech-robot { width: 48px; height: auto; flex-shrink: 0; }
 
 .speech-message {
   flex: 1;
   margin: 0;
-  padding: 12px 18px;
-  font-size: 20px;
+  padding: 8px 16px;
+  font-size: 19px;
   font-weight: 800;
   background: var(--panel);
   border-radius: var(--radius-md);
@@ -25,7 +31,7 @@
 }
 
 /* Oyunların ortak dış düzeni: balon, oyun alanı ve kontroller alt alta */
-.game-layout { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+.game-layout { display: flex; flex-direction: column; gap: 12px; width: 100%; }
 
 /* Tek sütun ekran genişliğini aşmaz; içeriği geniş oyunlar (ör. uzun yol) kendi içinde kayar */
 .game-stage { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; min-height: 50vh; }
@@ -45,6 +51,6 @@
 @media (max-width: 560px) {
   .level-badge { padding: 6px 10px; font-size: 13px; white-space: normal; text-align: center; }
   .game-screen .top-bar-title { font-size: 18px; }
-  .speech-message { font-size: 17px; padding: 10px 14px; }
-  .speech-robot { width: 44px; }
+  .speech-message { font-size: 16px; padding: 6px 12px; }
+  .speech-robot { width: 38px; }
 }

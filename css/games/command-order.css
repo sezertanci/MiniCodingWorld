@@ -127,9 +127,6 @@
 .co-tone-3 { --tone: var(--purple); --tone-dark: var(--purple-dark); }
 .co-tone-4 { --tone: var(--red); --tone-dark: var(--red-dark); }
 
-.co-actions { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; }
-.co-actions .btn { min-height: 60px; padding: 0 10px; }
-.co-check { font-size: 22px; }
 
 @keyframes co-shake {
   25% { transform: translateX(-5px); }
@@ -162,8 +159,6 @@
   .co-card-text { font-size: 14px; }
   .co-slot-empty { font-size: 28px; }
   .co-pool { gap: 8px; min-height: 100px; padding: 8px 0; }
-  .co-actions .btn { min-height: 54px; font-size: 16px; }
-  .co-check { font-size: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

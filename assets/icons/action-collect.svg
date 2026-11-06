@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Topla</title>
+  <desc>Yıldızı tutan el. Eğer Böyleyse oyunundaki Topla bloğunda kullanılır.</desc>
+  <polygon points="64,6 74,28 98,30 80,46 86,70 64,58 42,70 48,46 30,30 54,28" fill="#FFD24D" stroke="#1F2D4F" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M22 88 C22 78 34 76 40 84 L46 90 V74 C46 68 56 68 56 74 V86 V70 C56 64 66 64 66 70 V86 V72 C66 66 76 66 76 72 V88 V78 C76 72 86 72 86 78 V100 C86 114 76 122 62 122 H52 C42 122 36 116 30 108 Z" fill="#FFD9B3" stroke="#1F2D4F" stroke-width="5" stroke-linejoin="round"/>
+</svg>

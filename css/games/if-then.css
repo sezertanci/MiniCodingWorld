@@ -144,7 +144,7 @@
 .if-block-condition { color: var(--navy); background: var(--white); box-shadow: 0 4px 0 var(--shadow); }
 .if-block-action { color: var(--white); background: var(--tone); box-shadow: 0 4px 0 var(--tone-dark); text-shadow: 0 2px 0 var(--tone-dark); }
 .if-block-image { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; }
-.if-block-icon { font-size: 24px; text-shadow: none; }
+.if-block-icon { width: 32px; height: 32px; flex: none; }
 .if-block.is-hint { animation: if-block-hint 1s ease-in-out infinite; }
 .is-locked .if-block { cursor: default; }
 
@@ -158,9 +158,6 @@
 .if-palette-title { margin: 0 0 6px; font-size: 16px; color: rgba(31, 45, 79, 0.7); }
 .if-palette-blocks { display: flex; flex-wrap: wrap; gap: 10px; }
 
-.if-actions { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; }
-.if-actions .btn { min-height: 60px; padding: 0 10px; }
-.if-run { font-size: 22px; }
 
 @keyframes if-jump { 50% { transform: translateY(-45%); } }
 
@@ -192,8 +189,6 @@
   .if-slot-condition { width: 100px; height: 48px; }
   .if-slot-action { width: 150px; height: 52px; }
   .if-block { min-height: 48px; padding: 4px 10px; font-size: 16px; }
-  .if-actions .btn { min-height: 54px; font-size: 16px; }
-  .if-run { font-size: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

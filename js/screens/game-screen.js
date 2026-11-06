@@ -47,7 +47,7 @@
         topBar({
           left: iconButton({ icon: ICONS.back, label: "Seviyelere dön", onClick: () => router.go(MKD.paths.levels(game.id)) }),
           title: game.title,
-          right: [el("span", { className: `level-badge group-${group.id}`, text: `${group.title} · Seviye ${level}` })],
+          right: [el("span", { className: `level-badge group-${group.id}`, text: `${group.title} · ${level}`, "aria-label": `${group.title}, seviye ${level}` })],
         }),
         stage,
       ]);

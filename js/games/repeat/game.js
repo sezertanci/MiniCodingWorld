@@ -15,21 +15,24 @@
   const REPEAT_WITH_MOVE = 2;
   const CELEBRATE_MS = 900;
   const REPEAT_ICON = "assets/icons/game-repeat.svg";
+  // Tekrarla düğmesi, bir blok açıkken (oklar içine eklenirken) bloktan çıkma düğmesine dönüşür.
+  const REPEAT_BUTTON_TEXT = Object.freeze({ add: "Tekrarla", leave: "Bloktan çık ✓" });
 
   const MESSAGES = Object.freeze({
     intro: "Robotu bayrağa götür. Aynı hareketi tekrar tekrar eklemek yerine Tekrarla bloğunu kullan.",
     coinIntro: "Önce bütün altınları topla, sonra bayrağa git. Tekrarla bloğu işini kolaylaştırır.",
     empty: "Önce bir ok ya da Tekrarla bloğu ekle.",
-    full: "Blok sınırına ulaştın. Hazırsan Başlat'a dokun; değiştirmek istersen bir bloğu seçip sil.",
-    insideRepeat: "Şimdi eklediğin oklar turuncu bloğun içine girecek. Bitince bloğun turuncu düğmesine yeniden dokun.",
+    full: "Blok sınırına ulaştın. Hazırsan yeşil Başlat tuşuna dokun; değiştirmek istersen bir bloğu seçip sil.",
+    insideRepeat: "Şimdi eklediğin oklar turuncu bloğun içine girecek. Bitince lacivert Bloktan çık düğmesine dokun.",
     emptyStrip: "Ok ya da Tekrarla bloğu ekle, bloklar burada sıralansın.",
     outsideRepeat: "Şimdi eklediğin oklar bloğun dışına, sona eklenecek.",
+    movedOut: "Ok bloğun dışına çıktı. Şimdi eklediğin oklar da dışarıya, sona eklenecek.",
     emptyRepeat: "Turuncu bloğun içi boş. Onu seçtim; şimdi içine bir ok ekle.",
     running: "Robot yola çıktı...",
     success: "Harika! Robot bayrağa ulaştı!",
     missedGoal: "Robot bayrağa ulaşamadı. Tekrar sayısını ya da okları değiştirmeyi dene.",
     missingCoins: "Bayrağa ulaştın ama bütün altınları toplamadın. Önce altınları topla.",
-    solved: "Blokların doğru! Başlat'a dokun.",
+    solved: "Blokların doğru! Yeşil Başlat tuşuna dokun.",
     fullHint: "Blok sınırın doldu. Bir tekrar sayısını değiştirmeyi ya da bir bloğu silip yerine Tekrarla bloğu koymayı dene.",
   });
 
@@ -156,6 +159,19 @@
       });
     }
 
+    // Bloğun içindeki seçili oku bloğun hemen arkasına taşır; sonraki oklar da dışarıya eklenir.
+    function moveSelectedOut() {
+      const { block, inner } = state.selected;
+      changeProgram(() => {
+        const [direction] = state.program[block].body.splice(inner, 1);
+        state.program.splice(block + 1, 0, engine.move(direction));
+        state.target = NO_TARGET;
+        state.selected = null;
+      });
+      revealPlace({ block: block + 1, inner: TOP_LEVEL });
+      say(MESSAGES.movedOut);
+    }
+
     function leaveTarget() {
       state.target = NO_TARGET;
       say(MESSAGES.outsideRepeat);
@@ -168,11 +184,6 @@
         state.target = NO_TARGET;
         state.selected = null;
       });
-      say(introText);
-    }
-
-    function restart() {
-      changeProgram(() => { state.selected = null; });
       say(introText);
     }
 
@@ -249,16 +260,18 @@
     }
 
     // Balon yalnızca bir şey seçiliyken açılır; bloğun içine ok eklerken haritanın üstünü kapatmaz.
+    // Bloğun içindeki ok seçiliyse "Dışarı çıkar" o oku bloğun dışına taşır.
     function renderEditBar() {
       const visible = !state.running && state.selected !== null;
+      const insideBlock = visible && state.selected.inner !== TOP_LEVEL;
       const buttons = visible ? [
         el("button", {
           type: "button", className: "btn pf-edit-button pf-delete-button", text: "Sil ✕",
           "aria-label": "Seçili bloğu sil", onClick: deleteSelected,
         }),
-        state.target !== NO_TARGET && el("button", {
-          type: "button", className: "btn pf-edit-button rp-leave-button", text: "Dışarıya ekle ⤵",
-          "aria-label": "Sonraki okları turuncu bloğun dışına ekle", onClick: leaveTarget,
+        insideBlock && el("button", {
+          type: "button", className: "btn pf-edit-button rp-leave-button", text: "Dışarı çıkar ⤵",
+          "aria-label": "Seçili oku turuncu bloğun dışına taşı", onClick: moveSelectedOut,
         }),
       ].filter(Boolean) : [];
       editBar.hidden = !visible;
@@ -296,8 +309,16 @@
       placeEditBar();
       Object.values(padButtons).forEach((button) => { button.disabled = state.running || full; });
       // Tekrarla bloğu ve içine en az bir ok sığmıyorsa eklenmez; yoksa boş blokla sınır dolar.
-      actionButtons.repeat.disabled = state.running || blockCount() + REPEAT_WITH_MOVE > definition.maxBlocks;
-      ["run", "hint", "restart", "clear"].forEach((key) => { actionButtons[key].disabled = state.running; });
+      renderRepeatButton();
+      ["run", "hint", "clear"].forEach((key) => { actionButtons[key].disabled = state.running; });
+    }
+
+    function renderRepeatButton() {
+      const open = state.target !== NO_TARGET;
+      const button = actionButtons.repeat;
+      button.classList.toggle("is-leave", open);
+      button.querySelector("span").textContent = open ? REPEAT_BUTTON_TEXT.leave : REPEAT_BUTTON_TEXT.add;
+      button.disabled = state.running || (!open && blockCount() + REPEAT_WITH_MOVE > definition.maxBlocks);
     }
 
     function clearPadHint() {
@@ -398,10 +419,19 @@
       return button;
     }
 
-    function actionButton(key, content, className, onClick) {
-      const props = { type: "button", className: `btn ${className}`, onClick };
-      const button = typeof content === "string" ? el("button", { ...props, text: content }) : el("button", props, content);
+    function actionButton(key, onClick) {
+      const button = MKD.components.actionButton(key, onClick);
       actionButtons[key] = button;
+      return button;
+    }
+
+    function repeatButton() {
+      const onClick = () => (state.target === NO_TARGET ? addRepeat() : leaveTarget());
+      const button = el("button", { type: "button", className: "btn rp-add-repeat", onClick }, [
+        el("img", { src: REPEAT_ICON, alt: "" }),
+        el("span", { text: REPEAT_BUTTON_TEXT.add }),
+      ]);
+      actionButtons.repeat = button;
       return button;
     }
 
@@ -412,14 +442,11 @@
         board.element,
         el("div", { className: "pf-controls card" }, [
           el("div", { className: "pf-pad" }, Object.keys(COMMANDS).map(padButton)),
-          el("div", { className: "rp-main-actions" }, [
-            actionButton("repeat", [el("img", { src: REPEAT_ICON, alt: "" }), el("span", { text: "Tekrarla" })], "rp-add-repeat", addRepeat),
-            actionButton("run", "Başlat ▶", "btn-primary pf-run", run),
-          ]),
-          el("div", { className: "pf-secondary-actions" }, [
-            actionButton("hint", "İpucu", "btn-hint", showHint),
-            actionButton("restart", "Baştan", "btn-secondary", restart),
-            actionButton("clear", "Temizle", "btn-danger", clearAll),
+          el("div", { className: "action-row pf-actions rp-actions" }, [
+            repeatButton(),
+            actionButton("run", run),
+            actionButton("hint", showHint),
+            actionButton("clear", clearAll),
           ]),
         ]),
       ]),

@@ -18,7 +18,7 @@
     full: "Bütün kutular dolu. Bir kartı geri almak için ona dokun.",
     notFull: "Önce bütün kutuları doldur.",
     success: "Harika! Bütün adımlar doğru sırada.",
-    solved: "Sıralama doğru! Kontrol et'e dokun.",
+    solved: "Sıralama doğru! Yeşil Kontrol et tuşuna dokun.",
   });
 
   function wrongMessage(result, card) {
@@ -58,9 +58,10 @@
     const say = bubble.say;
     const slotsBox = el("div", { className: "co-slots" });
     const pool = el("div", { className: "co-pool", "data-drop-zone": POOL_ZONE, "aria-label": "Kartlar" });
-    const checkButton = el("button", { type: "button", className: "btn btn-primary co-check", text: "Kontrol et ✓", onClick: check });
-    const hintButton = el("button", { type: "button", className: "btn btn-hint", text: "İpucu", onClick: showHint });
-    const clearButton = el("button", { type: "button", className: "btn btn-danger", text: "Temizle", onClick: clearAll });
+    const { actionButton } = MKD.components;
+    const checkButton = actionButton("check", check);
+    const hintButton = actionButton("hint", showHint);
+    const clearButton = actionButton("clear", clearAll);
 
     // Sıra her değiştiğinde eski yanlış/ipucu işareti ve ona ait mesaj silinir, ekran yeniden çizilir.
     function change(update) {
@@ -224,7 +225,7 @@
         el("div", { className: "co-board card" }, [
           slotsBox,
           pool,
-          el("div", { className: "co-actions" }, [checkButton, hintButton, clearButton]),
+          el("div", { className: "action-row" }, [checkButton, hintButton, clearButton]),
         ]),
       ]),
     ]));

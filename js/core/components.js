@@ -18,6 +18,22 @@
     ]);
   }
 
+  // Oyunlardaki işlem düğmeleri her ekranda aynı ikonla, yazısız gösterilir.
+  // Adları ekran okuyucu ve fareyle üstüne gelince çıkan ipucu yazısı içindir.
+  const ACTIONS = Object.freeze({
+    run: { label: "Başlat", icon: "assets/ui/button-play.svg" },
+    check: { label: "Kontrol et", icon: "assets/ui/button-check.svg" },
+    hint: { label: "İpucu", icon: "assets/ui/button-hint.svg" },
+    clear: { label: "Temizle", icon: "assets/ui/button-clear.svg" },
+  });
+
+  function actionButton(key, onClick) {
+    const { label, icon } = ACTIONS[key];
+    return el("button", { type: "button", className: "action-button", "aria-label": label, title: label, onClick }, [
+      el("img", { src: icon, alt: "" }),
+    ]);
+  }
+
   function starCounter(total) {
     return el("div", { className: "star-counter", role: "img", "aria-label": `${total} yıldız` }, [
       el("img", { src: ICONS.star, alt: "" }),
@@ -68,5 +84,5 @@
     return { element, say: (next) => { message.textContent = next; } };
   }
 
-  MKD.components = Object.freeze({ ICONS, iconButton, starCounter, starRow, progressBar, topBar, speechBubble });
+  MKD.components = Object.freeze({ ICONS, ACTIONS, iconButton, actionButton, starCounter, starRow, progressBar, topBar, speechBubble });
 })((globalThis.MKD ??= {}));

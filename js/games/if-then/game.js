@@ -1,4 +1,4 @@
-// Eğer Böyleyse: oyun ekranı. Çocuk "Eğer ... varsa → hareket" bloklarını doldurur, Çalıştır ile robotu yürütür.
+// Eğer Böyleyse: oyun ekranı. Çocuk "Eğer ... varsa → hareket" bloklarını doldurur, Başlat ile robotu yürütür.
 // Bloklar dokunarak (seçili ya da ilk uygun boş kutuya gider) veya sürüklenerek yerleştirilir.
 (function (MKD) {
   "use strict";
@@ -21,11 +21,12 @@
   });
 
   const ACTIONS = Object.freeze({
-    [ACTION.FORWARD]: { label: "İleri Git", icon: "➡️", tone: "green" },
-    [ACTION.JUMP]: { label: "Zıpla", icon: "🦘", tone: "orange" },
-    [ACTION.BRIDGE]: { label: "Köprü Kur", icon: "🌉", tone: "blue" },
-    [ACTION.OPEN]: { label: "Kapıyı Aç", icon: "🔑", tone: "purple" },
-    [ACTION.COLLECT]: { label: "Topla", icon: "✋", tone: "yellow" },
+    // İleri Git'in oku gidilen yönü gösterdiği için yazının sağında durur.
+    [ACTION.FORWARD]: { label: "İleri Git", icon: "assets/ui/button-arrow-right.svg", tone: "green", iconEnd: true },
+    [ACTION.JUMP]: { label: "Zıpla", icon: "assets/icons/action-jump.svg", tone: "orange" },
+    [ACTION.BRIDGE]: { label: "Köprü Kur", icon: "assets/icons/action-bridge.svg", tone: "blue" },
+    [ACTION.OPEN]: { label: "Kapıyı Aç", icon: "assets/icons/action-key.svg", tone: "purple" },
+    [ACTION.COLLECT]: { label: "Topla", icon: "assets/icons/action-collect.svg", tone: "yellow" },
   });
 
   // Mesajlarda karede ne olduğu, yanlış hareketin neden olmadığı ve ipucu cümlesi
@@ -41,7 +42,7 @@
     incomplete: "Önce boş kutuları doldur.",
     running: "Robot yola çıktı...",
     success: "Harika! Robot kurallarını izleyip bayrağa ulaştı!",
-    solved: "Kuralların doğru! Çalıştır'a dokun.",
+    solved: "Kuralların doğru! Yeşil Başlat tuşuna dokun.",
     noSlot: "Bu blok için boş kutu yok. Değiştirmek istediğin kutuya dokunup onu boşalt.",
     lockedSlot: "Bu kutu hazır geldi, değiştirilemez. Bloğu boş bir kutuya koy.",
     wrongType: "Bu blok oraya uymaz. Nesneler «Eğer» kutusuna, hareketler ok işaretinin yanına gider.",
@@ -85,10 +86,9 @@
         el("span", { className: "if-block-text", text: OBJECTS[value].label }),
       ];
     }
-    return [
-      el("span", { className: "if-block-icon", text: ACTIONS[value].icon }),
-      el("span", { className: "if-block-text", text: ACTIONS[value].label }),
-    ];
+    const { icon, label, iconEnd } = ACTIONS[value];
+    const parts = [el("img", { className: "if-block-icon", src: icon, alt: "" }), el("span", { className: "if-block-text", text: label })];
+    return iconEnd ? parts.reverse() : parts;
   }
 
   const blockClass = (type, value) =>
@@ -107,9 +107,10 @@
     const say = bubble.say;
     const rulesBox = el("div", { className: "if-rules" });
     const paletteBox = el("div", { className: "if-palette" });
-    const runButton = el("button", { type: "button", className: "btn btn-primary if-run", text: "Çalıştır ▶", onClick: run });
-    const hintButton = el("button", { type: "button", className: "btn btn-hint", text: "İpucu", onClick: showHint });
-    const clearButton = el("button", { type: "button", className: "btn btn-danger", text: "Temizle", onClick: clearAll });
+    const { actionButton } = MKD.components;
+    const runButton = actionButton("run", run);
+    const hintButton = actionButton("hint", showHint);
+    const clearButton = actionButton("clear", clearAll);
 
     const isOpen = (key) => !slots.locked.has(key);
     const program = () => ({
@@ -317,7 +318,7 @@
         el("div", { className: "if-program card" }, [rulesBox]),
         el("div", { className: "if-side card" }, [
           paletteBox,
-          el("div", { className: "if-actions" }, [runButton, hintButton, clearButton]),
+          el("div", { className: "action-row" }, [runButton, hintButton, clearButton]),
         ]),
       ]),
     ]));

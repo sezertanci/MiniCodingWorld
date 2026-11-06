@@ -1,31 +1,36 @@
 /* Tekrar Et. Harita, yön tuşları ve komut kutusu path-finder.css sınıflarını kullanır. */
 
-.rp-main-actions { display: grid; gap: 12px; }
-
-/* "Tekrarla" bloğu ekleme düğmesi: turuncu, döngü simgesiyle */
+/* "Tekrarla" bloğu ekleme düğmesi: turuncu, döngü simgesiyle. İkonlu düğmelerin üstünde tam satır kaplar. */
 .rp-add-repeat {
   --tone: var(--orange);
   --tone-dark: var(--orange-dark);
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 0 16px;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 12px;
+  font-size: 18px;
 }
 
-.rp-add-repeat img { width: 40px; height: 40px; }
+.rp-add-repeat img { width: 32px; height: 32px; }
+
+/* Blok açıkken düğme lacivert "Bloktan çık" olur; yeşil Başlat ve mavi yön tuşlarıyla karışmaz. Döngü simgesi gizlenir. */
+.rp-add-repeat.is-leave { --tone: var(--navy); --tone-dark: var(--navy-dark); }
+.rp-add-repeat.is-leave img { display: none; }
 
 /* Döngü simgesi turuncu zeminde kaybolmasın diye beyaz daire içinde durur */
 .rp-add-repeat img,
 .rp-repeat-label img { padding: 2px; background: var(--white); border-radius: 50%; }
 
 /* Şerit, tekrar bloğunun boyuna göre biraz daha yüksektir; blok olsa da olmasa da yükseklik sabittir. */
-.rp-program-list.pf-strip { height: calc(var(--chip-size) + 56px); }
+.rp-program-list.pf-strip { height: calc(var(--chip-size) + 52px); }
 
 /* Turuncu tekrar bloğu: başlıkta sayı ve −/+ düğmeleri, gövdede içindeki oklar.
    Başlık ve gövde şeritte yan yana tek satırda durur. */
 .rp-repeat {
-  --chip-size: 54px;
+  --chip-size: 50px;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -130,18 +135,19 @@
 
 .rp-leave-button { --tone: var(--orange); --tone-dark: var(--orange-dark); }
 
+/* Dar ekranda Tekrarla üstte, Başlat ile İpucu ortada, Temizle altta durur; düğmeler yön tuşlarından uzun olmaz. */
 @media (max-width: 760px) {
-  .rp-main-actions { justify-items: center; }
-  .rp-add-repeat { width: min(100%, 200px); }
+  .rp-actions { grid-template-columns: repeat(2, auto); }
+  .rp-actions > :last-child { grid-column: 1 / -1; }
 }
 
 @media (max-width: 560px) {
-  .rp-repeat { --chip-size: 46px; padding: 8px; }
+  .rp-repeat { --chip-size: 44px; padding: 6px 8px; }
   .rp-repeat-label { min-height: 40px; padding: 0 8px; font-size: 15px; }
   .rp-repeat-label .rp-label-word { display: none; }
   .rp-times-button { width: 36px; height: 36px; font-size: 22px; }
-  .rp-add-repeat { min-height: 56px; font-size: 18px; }
-  .rp-add-repeat img { width: 30px; height: 30px; }
+  .rp-add-repeat { min-height: 44px; font-size: 16px; }
+  .rp-add-repeat img { width: 28px; height: 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

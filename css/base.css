@@ -14,6 +14,7 @@
   --red: #ff6e6e;
   --red-dark: #d94848;
   --navy: #1f2d4f;
+  --navy-dark: #111a30;
   --white: #ffffff;
   --panel: rgba(255, 255, 255, 0.92);
   --shadow: rgba(31, 45, 79, 0.15);
@@ -138,6 +139,25 @@ button:disabled { cursor: not-allowed; }
 
 .button-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
+/* Oyunlardaki ikonlu işlem düğmeleri (Başlat, Kontrol et, İpucu, Temizle): her ekranda aynı boyut ve görünüm */
+.action-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+
+.action-button {
+  --size: 56px;
+  flex: none;
+  width: var(--size);
+  height: var(--size);
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: none;
+  transition: transform 0.1s;
+}
+
+.action-button img { width: 100%; height: 100%; }
+.action-button:not(:disabled):active { transform: translateY(4px); }
+.action-button:disabled { opacity: 0.45; }
+
 /* Kart ve yıldızlar */
 .card {
   padding: 24px;
@@ -195,6 +215,7 @@ button:disabled { cursor: not-allowed; }
 /* Dar ekranlar (telefon) */
 @media (max-width: 560px) {
   :root { --touch: 56px; }
+  .action-button { --size: 50px; }
   .top-bar { grid-template-columns: auto 1fr auto; gap: 8px; }
   .top-bar-title { padding: 6px 12px; gap: 6px; }
   .top-bar-icon { width: 32px; height: 32px; }

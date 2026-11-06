@@ -130,19 +130,19 @@
   50% { transform: scale(0.88); opacity: 0.6; }
 }
 
-/* Kontrol paneli */
+/* Kontrol paneli: üstte yön tuşları, altında ikonlu düğme satırı (Başlat, İpucu, Temizle) */
 .pf-controls {
+  --pad-size: 60px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 14px;
-  width: 270px;
-  padding: 18px;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
 }
 
 .pf-pad {
   display: grid;
-  grid-template-columns: repeat(3, 72px);
+  grid-template-columns: repeat(3, var(--pad-size));
   grid-template-areas: ". up ." "left . right" ". down .";
   justify-content: center;
   gap: 4px;
@@ -153,9 +153,10 @@
 .pad-right { grid-area: right; }
 .pad-down { grid-area: down; }
 
+/* Yön tuşları: görselin kendisi düğmedir */
 .pf-pad-button {
-  width: 72px;
-  height: 72px;
+  width: var(--pad-size);
+  height: var(--pad-size);
   padding: 0;
   border: 0;
   border-radius: 20px;
@@ -172,18 +173,16 @@
   50% { box-shadow: 0 0 0 8px rgba(255, 210, 77, 0.8); }
 }
 
-.pf-run { min-height: 72px; font-size: 26px; }
-
-.pf-secondary-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.pf-secondary-actions .btn { min-height: 52px; padding: 0 6px; font-size: 16px; }
+/* Düğmeler masaüstünde tek satırda, dar ekranda yön tuşlarının yanında alt alta durur */
+.pf-actions { display: grid; grid-template-columns: repeat(3, auto); justify-items: center; }
 
 /* Komut listesi: iki oyunda da tek satırlık şerit (.pf-strip). Sayaç kutunun sağ üst köşesinde rozet olarak durur. */
 .pf-program {
-  --chip-size: 64px;
+  --chip-size: 56px;
   position: relative;
   display: grid;
   gap: 8px;
-  padding: 18px 18px 12px;
+  padding: 8px 14px 4px;
 }
 
 .pf-program-count {
@@ -252,8 +251,8 @@
 .pf-strip {
   flex-wrap: nowrap;
   align-items: center;
-  height: calc(var(--chip-size) + 36px);
-  padding: 12px 10px 20px;
+  height: calc(var(--chip-size) + 28px);
+  padding: 10px 8px 16px;
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
@@ -314,27 +313,16 @@
 .pf-edit-button.pf-icon-end img { margin-left: 0; margin-right: -6px; }
 .pf-delete-button { --tone: var(--red); --tone-dark: var(--red-dark); }
 
-/* Tablet ve telefon: kontroller haritanın altına iner.
-   Yön tuşları solda, Başlat sağda, diğer butonlar alt satırda. */
+/* Tablet ve telefon: kontroller haritanın altına iner. Yön tuşları solda, ikonlu düğmeler sağda alt alta. */
 @media (max-width: 760px) {
   .pf-main { grid-template-columns: 1fr; }
-  .pf-controls {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    width: 100%;
-  }
-  .pf-run { align-self: center; justify-self: center; width: min(100%, 200px); }
-  .pf-secondary-actions { grid-column: 1 / -1; }
+  .pf-controls { flex-direction: row; justify-content: center; gap: 24px; }
+  .pf-actions { grid-template-columns: auto; }
 }
 
 @media (max-width: 560px) {
-  .pf-pad { grid-template-columns: repeat(3, 52px); }
-  .pf-pad-button { width: 52px; height: 52px; }
-  .pf-controls { padding: 12px; gap: 10px; }
-  .pf-run { min-height: 64px; padding: 0 10px; font-size: 22px; white-space: nowrap; }
-  .pf-secondary-actions .btn { min-height: 48px; }
-  .pf-program { --chip-size: 54px; padding: 18px 12px 12px; }
+  .pf-controls { --pad-size: 50px; padding: 10px; gap: 16px; }
+  .pf-program { --chip-size: 50px; padding: 6px 10px 2px; }
   .pf-program-count { right: 12px; font-size: 15px; }
 }
 

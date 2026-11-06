@@ -34,7 +34,7 @@
     missedGoal: "Robot bayrağa ulaşamadı. Komut eklemeyi ya da değiştirmeyi dene.",
     missingCoins: "Bayrağa ulaştın ama bütün altınları toplamadın. Önce altınları topla.",
     tooMany: "Bu komutlarla sınır içinde bitiremezsin. Gereksiz adımları silmeyi dene.",
-    solved: "Komutların doğru! Başlat'a dokun.",
+    solved: "Komutların doğru! Yeşil Başlat tuşuna dokun.",
     emptyStrip: "Yön tuşlarına bas, komutların burada sıralansın.",
   });
 
@@ -193,11 +193,6 @@
         state.commands = [];
         state.selected = -1;
       });
-      say(introText);
-    }
-
-    function restart() {
-      changeProgram(() => { state.selected = -1; });
       say(introText);
     }
 
@@ -362,8 +357,8 @@
       return button;
     }
 
-    function actionButton(key, text, className, onClick) {
-      const button = el("button", { type: "button", className: `btn ${className}`, text, onClick });
+    function actionButton(key, onClick) {
+      const button = MKD.components.actionButton(key, onClick);
       actionButtons[key] = button;
       return button;
     }
@@ -375,11 +370,10 @@
         board.element,
         el("div", { className: "pf-controls card" }, [
           el("div", { className: "pf-pad" }, Object.keys(COMMANDS).map(padButton)),
-          actionButton("run", "Başlat ▶", "btn-primary pf-run", run),
-          el("div", { className: "pf-secondary-actions" }, [
-            actionButton("hint", "İpucu", "btn-hint", showHint),
-            actionButton("restart", "Baştan", "btn-secondary", restart),
-            actionButton("clear", "Temizle", "btn-danger", clearAll),
+          el("div", { className: "action-row pf-actions" }, [
+            actionButton("run", run),
+            actionButton("hint", showHint),
+            actionButton("clear", clearAll),
           ]),
         ]),
       ]),
