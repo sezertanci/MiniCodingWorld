@@ -22,12 +22,14 @@
       return isNext ? "level-button is-next" : "level-button";
     }
 
+    // Düğmeler seviye sırasıyla içeri girer; sırası CSS'e --i değişkeniyle verilir (css/animations.css).
     function levelButton(game, level, nextLevel) {
       const unlocked = progress.isLevelUnlocked(game.id, level);
       const stars = progress.getStars(game.id, level);
       return el("button", {
         type: "button",
         className: levelClassName(unlocked, level === nextLevel),
+        style: `--i: ${level - 1}`,
         disabled: !unlocked,
         "aria-label": levelLabel(level, unlocked, stars),
         onClick: () => router.go(MKD.paths.play(game.id, level)),

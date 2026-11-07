@@ -99,10 +99,22 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - `/gorev` inceleme döngüsü çalıştırıldı (2 tur): rozet hedefleri `GOALS` sabitine alındı, `.color-red` base.css'teki `.group-expert` ile birleştirildi, `countEarnedRewards(items)` tür verilmezse hepsini sayıyor. İkinci tur temiz, 300 test geçiyor.
   - Tarayıcıda denendi: sessiz eşitleme, rozet kartı, kupa kutlaması, tekrar bildirim olmaması, yenilemede korunma, sıfırlama, ses ayarı, telefon/tablet; tek HTML (465 KB) dış istek yapmıyor.
 
+- [x] Sesler ve animasyonlar (2026-11-08, commit bekliyor):
+  - `sound.js`: yeni efektler CORRECT, WRONG (sinüs dalgalı, yumuşak, iki alçalan nota), STAR (`play(name, step)`; her yıldızda ton 4 yarım ses yükselir), LEVEL_COMPLETE. BADGE/TROPHY korundu. `MKD.createFeedback(sound)` → `correct / wrong / star(index) / levelComplete`; app.js'te bir kez oluşturulur, oyun ekranı `mount` seçeneklerine `feedback` olarak verir.
+  - Ses kapalıyken hiçbir efekt çalmaz: bütün sesler `sound.play` üzerinden; testler sahte AudioContext ile bağlam oluşturulmadığını ve `js/` altında sound.js dışında doğrudan ses kodu olmadığını denetler.
+  - `speechBubble(text, feedback)`: `say` (robot konuşur), `correct` (sevinç zıplaması + doğru sesi), `wrong` (kafa sallama + yanlış sesi). Dört oyun doğru/yanlış anında bunları çağırır. Haritadaki robot bayrağa ulaşamayınca `board.shakeHead()`.
+  - `MKD.timing.replayAnimation(node, class)`: animasyonu baştan oynatır, `animationend` ile sınıfı kaldırır; çarpma (`BUMP_MS` kaldırıldı) ve robot tepkileri bunu kullanır. `RESULT` + `starPopDelay(index)`: sonuç paneli ve yıldız gecikmeleri (ses ve CSS aynı sabitten).
+  - Sonuç paneli yaylanarak girer, yıldızlar sırayla pop + yükselen yıldız sesi, ekran boyu konfeti bir kez yağar (`confetti()` kupa kutlamasından `MKD.components`'e taşındı, CSS'i `css/animations.css`'e). Ekrandan çıkılırsa kalan yıldız sesleri çalmaz.
+  - `css/animations.css` (index.html'de oyun stillerinden sonra): ekran geçişi, sırayla giren oyun kartları/seviye düğmeleri (`--i`), düğmelerde `scale` ile basma + yaylı dönüş, robot bekleme/konuşma/sevinç/kafa sallama, pencere açılışı. Süreler başta CSS değişkenlerinde. Hareket azaltmada hepsi kapanır.
+  - Başsız Chrome ile 375 px'te denendi: dört oyunda doğru/yanlış sesi ve robot tepkisi, sonuç paneli (3 yıldız sesi + konfeti), ses kapalıyken hiç nota çalınmaması, hareket azaltmada animasyonların kapanması; taşma ve konsol hatası yok. 320 test geçiyor; tek HTML ~478 KB.
+
 ## Sıradaki adımlar
 
-1. Kullanıcının yeni isteklerine göre devam edilir.
-2. Push yalnızca kullanıcı isterse yapılır; projeler tek tek gönderilir.
+1. Sonraki `/gorev` turlarında yapılacaklar:
+   - **Günlük görevler** (ikisi birden): günün bulmacası + günün 3 hedefi.
+   - **Bonus bölümler:** bir oyunun 20 seviyesi bitince o oyuna sırayla açılan 5 bonus seviye.
+2. Kullanıcının yeni isteklerine göre devam edilir.
+3. Push yalnızca kullanıcı isterse yapılır; projeler tek tek gönderilir.
 
 ## Notlar
 

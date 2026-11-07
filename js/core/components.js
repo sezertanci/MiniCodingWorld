@@ -90,15 +90,54 @@
     ]);
   }
 
-  // Oyunlarda robotun konuşma balonu. Dönen say(text) mesajı değiştirir; ekran okuyucular yeni mesajı duyurur.
-  function speechBubble(text) {
+  // Konuşma balonundaki robotun tepkileri: her yeni mesajda ağzı oynar, doğruda sevinçle zıplar,
+  // yanlışta yumuşakça kafa sallar. Animasyonlar css/animations.css dosyasındadır. Haritadaki robot da
+  // kafa sallarken aynı sınıfı kullanır.
+  const ROBOT_MOODS = Object.freeze({ TALK: "is-talking", HAPPY: "is-cheering", SAD: "is-shaking" });
+
+  /**
+   * Oyunlarda robotun konuşma balonu. Ekran okuyucular yeni mesajı duyurur.
+   * say(text): mesajı değiştirir, robot konuşur. correct(text) / wrong(text): robot sevinir ya da
+   * kafa sallar ve ortak geri bildirim nesnesi (feedback) doğru ya da yanlış sesini çalar.
+   */
+  function speechBubble(text, feedback) {
     const message = el("p", { className: "speech-message", "aria-live": "polite", text });
-    const element = el("div", { className: "speech-bubble" }, [
-      el("img", { className: "speech-robot", src: IMAGES.robot, alt: "" }),
-      message,
-    ]);
-    return { element, say: (next) => { message.textContent = next; } };
+    const robot = el("img", { className: "speech-robot", src: IMAGES.robot, alt: "" });
+    const element = el("div", { className: "speech-bubble" }, [robot, message]);
+
+    function show(next, mood) {
+      message.textContent = next;
+      Object.values(ROBOT_MOODS).forEach((name) => robot.classList.remove(name));
+      MKD.timing.replayAnimation(robot, mood);
+    }
+
+    return Object.freeze({
+      element,
+      say: (next) => show(next, ROBOT_MOODS.TALK),
+      correct: (next) => {
+        show(next, ROBOT_MOODS.HAPPY);
+        feedback.correct();
+      },
+      wrong: (next) => {
+        show(next, ROBOT_MOODS.SAD);
+        feedback.wrong();
+      },
+    });
   }
 
-  MKD.components = Object.freeze({ IMAGES, ICONS, ACTIONS, iconButton, actionButton, starCounter, starRow, progressBar, topBar, speechBubble });
+  const CONFETTI_COUNT = 28;
+
+  // Konfeti yağmuru (kupa kutlaması ve sonuç paneli). Parçaların yeri ve gecikmesi sıradan hesaplanır;
+  // renkleri ve düşüşü CSS verir. Tıklamaları engellemez. className ile görünümü değiştirilebilir.
+  function confetti(className = "") {
+    return el("div", { className: `confetti ${className}`.trim(), "aria-hidden": "true" },
+      Array.from({ length: CONFETTI_COUNT }, (_, index) => el("span", {
+        style: `--x: ${(index * 37) % 100}%; --delay: ${(index % 7) * 0.18}s; --turn: ${(index % 2 ? 1 : -1) * 540}deg`,
+      })));
+  }
+
+  MKD.components = Object.freeze({
+    IMAGES, ICONS, ACTIONS, iconButton, actionButton, starCounter, starRow, progressBar, topBar, speechBubble, confetti,
+    ROBOT_MOODS,
+  });
 })((globalThis.MKD ??= {}));

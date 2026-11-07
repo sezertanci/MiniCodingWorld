@@ -3,12 +3,13 @@
   "use strict";
 
   const { el } = MKD.dom;
-  const { BUMP_MS } = MKD.timing;
-  const { IMAGES } = MKD.components;
+  const { replayAnimation } = MKD.timing;
+  const { IMAGES, ROBOT_MOODS } = MKD.components;
   const { TILE, cellKey } = MKD.pathFinder;
 
   const COIN_IMAGE = "assets/icons/points.svg";
-  const BUMP_CLASS = "is-bumping";
+  // Robotun kısa tepkileri; süreleri CSS'tedir, animasyon bitince sınıf kendiliğinden kalkar.
+  const ROBOT_REACTIONS = Object.freeze({ BUMP: "is-bumping", SHAKE: ROBOT_MOODS.SAD });
 
   function tileClass(level, x, y) {
     const tile = level.blocked.get(cellKey(x, y));
@@ -78,8 +79,7 @@
     // Robot çarpacağı yöne doğru kısa bir sarsılma yapar ve yerine döner.
     function bump(direction) {
       robot.dataset.direction = direction;
-      robot.classList.add(BUMP_CLASS);
-      setTimeout(() => robot.classList.remove(BUMP_CLASS), BUMP_MS);
+      replayAnimation(robot, ROBOT_REACTIONS.BUMP);
     }
 
     function reset() {
@@ -88,7 +88,7 @@
       trail.forEach((mark) => mark.remove());
       trail.clear();
       coins.forEach((coin) => coin.classList.remove("is-collected"));
-      robot.classList.remove("is-happy");
+      robot.classList.remove("is-happy", ...Object.values(ROBOT_REACTIONS));
     }
 
     function showHint(position) {
@@ -102,6 +102,8 @@
       collectCoin: (index) => coins[index].classList.add("is-collected"),
       celebrate: () => robot.classList.add("is-happy"),
       bump,
+      // Robot bayrağa ulaşamadığında yumuşakça kafa sallar ("olmadı, yeniden deneyelim").
+      shakeHead: () => replayAnimation(robot, ROBOT_REACTIONS.SHAKE),
       reset,
       showHint,
       hideHint: () => { hintMarker.hidden = true; },

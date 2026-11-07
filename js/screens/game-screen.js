@@ -1,18 +1,40 @@
 // Oyun ekranı: üst çubuğu çizer, seçilen oyunun modülünü yükler ve seviye bitince sonucu gösterir.
+// Sonuç paneli yaylanarak girer, kazanılan yıldızlar tek tek (her biri sesli) belirir ve konfeti yağar.
 (function (MKD) {
   "use strict";
 
   const { el } = MKD.dom;
-  const { ICONS, iconButton, starRow, topBar } = MKD.components;
+  const { ICONS, iconButton, starRow, topBar, confetti } = MKD.components;
+  const { RESULT, wait, starPopDelay } = MKD.timing;
 
-  // onLevelCompleted: seviye kaydedildikten sonra çağrılır (yeni ödüller burada denetlenir).
-  function createGameScreen({ progress, router, onLevelCompleted }) {
+  // feedback: oyunlarla paylaşılan ses geri bildirimi (doğru, yanlış, yıldız, seviye sonu).
+  // onLevelCompleted: seviye kaydedildikten sonra, yıldız gösterisi bitince çağrılır (yeni ödüller burada
+  // denetlenir ve kutlanır). Böylece rozet/kupa sesi seviye sonu ve yıldız sesleriyle üst üste binmez.
+  // Çocuk bu sırada başka ekrana geçse de çağrılır; kazanılan ödül kaybolmaz.
+  function createGameScreen({ progress, router, feedback, onLevelCompleted }) {
+    // Kazanılan yıldızlar sırayla "pop" ile belirir; gecikme CSS'e değişkenle verilir ve her yıldızda
+    // sırası yükselen yıldız sesi çalar. Çocuk bu sırada başka ekrana geçerse ses çalınmaz.
+    function animatedStars(panel, stars) {
+      const row = starRow(stars);
+      [...row.children].slice(0, stars).forEach((star, index) => {
+        star.classList.add("result-star");
+        star.style.setProperty("--pop-delay", `${starPopDelay(index)}ms`);
+        wait(starPopDelay(index)).then(() => panel.isConnected && feedback.star(index));
+      });
+      return row;
+    }
+
     function resultPanel(game, level, stars) {
       const next = level + 1;
       const hasNext = next <= MKD.config.LEVELS_PER_GAME && progress.isLevelUnlocked(game.id, next);
-      return el("section", { className: "result-panel card", role: "status" }, [
+      const panel = el("section", {
+        className: "result-panel card",
+        role: "status",
+        style: `--enter-duration: ${RESULT.PANEL_ENTER_MS}ms`,
+      });
+      panel.append(
         el("h2", { text: "Harika! Seviye tamamlandı." }),
-        starRow(stars),
+        animatedStars(panel, stars),
         el("div", { className: "button-row" }, [
           el("button", {
             type: "button",
@@ -27,7 +49,9 @@
             onClick: () => router.go(MKD.paths.play(game.id, next)),
           }),
         ]),
-      ]);
+      );
+      feedback.levelComplete();
+      return panel;
     }
 
     // Oklarla geçiş geçmişe kayıt eklemez; tarayıcının geri tuşu seviye listesine döner.
@@ -67,11 +91,12 @@
       gameModule.mount(stage, {
         game,
         level,
+        feedback,
         onComplete: (stars) => {
           progress.completeLevel(game.id, level, stars);
           nav.refresh();
-          stage.replaceChildren(resultPanel(game, level, stars));
-          onLevelCompleted();
+          stage.replaceChildren(resultPanel(game, level, stars), confetti("result-confetti"));
+          wait(starPopDelay(stars)).then(onLevelCompleted);
         },
       });
 

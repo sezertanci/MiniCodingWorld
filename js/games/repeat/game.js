@@ -68,7 +68,7 @@
     return `${definition.hint} Parlayan kareye bak; robot oraya ${COMMANDS[hint.direction].label.toLowerCase()} gitmeli.`;
   }
 
-  function mount(container, { level: levelNumber, onComplete }) {
+  function mount(container, { level: levelNumber, feedback, onComplete }) {
     const engine = MKD.repeatGame;
     const definition = engine.levels[levelNumber - 1];
     const level = MKD.pathFinder.parseLevel(definition);
@@ -79,7 +79,7 @@
     // target: içine ok eklenen tekrar bloğu; selected: silmek için seçilen yer ({ block, inner }).
     const state = { program: [], target: NO_TARGET, selected: null, highlight: null, hintUsed: false, running: false };
 
-    const bubble = MKD.components.speechBubble(introText);
+    const bubble = MKD.components.speechBubble(introText, feedback);
     const programList = el("ol", { className: "pf-program-list pf-strip rp-program-list", "aria-label": "Bloklarım" });
     const programCount = el("span", { className: "pf-program-count" });
     const editBar = el("div", { className: "pf-edit-popover", role: "toolbar", "aria-label": "Seçili blok" });
@@ -360,7 +360,7 @@
 
     function finish(result) {
       if (result.outcome === OUTCOME.SUCCESS) {
-        say(MESSAGES.success);
+        bubble.correct(MESSAGES.success);
         board.celebrate();
         const stars = MKD.calculateStars({ hintUsed: state.hintUsed, targetMet: blockCount() <= targetBlocks });
         completeAfterCelebration(container, onComplete, stars);
@@ -370,10 +370,11 @@
         const { direction, ...place } = result.trace[result.failedIndex];
         board.bump(direction);
         state.highlight = { ...place, className: "is-wrong" };
-        say(blockedMessage(level, result));
+        bubble.wrong(blockedMessage(level, result));
       } else {
         state.highlight = null;
-        say(result.outcome === OUTCOME.MISSING_COINS ? MESSAGES.missingCoins : MESSAGES.missedGoal);
+        board.shakeHead();
+        bubble.wrong(result.outcome === OUTCOME.MISSING_COINS ? MESSAGES.missingCoins : MESSAGES.missedGoal);
       }
       state.running = false;
       render();

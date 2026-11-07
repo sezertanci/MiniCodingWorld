@@ -58,6 +58,30 @@ Nasıl çalışır:
 - Kutlama sesleri ses dosyası kullanmadan tarayıcıda çalınır. Ses, ayarlar penceresindeki **Ses: Açık / Kapalı** düğmesiyle kapatılır; bu tercih de kaydedilir.
 - **İlerlemeyi sıfırla** yıldızlarla birlikte rozet ve kupaları da siler.
 
+## Ses ve animasyonlar
+
+Oyun ses dosyası kullanmaz; kısa melodiler tarayıcının Web Audio özelliğiyle çalınır. Böylece tek dosyalık sürüm büyümez ve internet gerekmez.
+
+| Ses | Ne zaman çalar? |
+|---|---|
+| Doğru | Robot bayrağa ulaşınca ya da Kontrol et doğru çıkınca (kısa, neşeli iki nota) |
+| Yanlış | Robot yoldan çıkınca ya da sıralama yanlış çıkınca (yumuşak, korkutmayan iki alçalan nota) |
+| Seviye bitti | Sonuç paneli açılınca kısa başarı melodisi |
+| Yıldız | Sonuç panelinde her yıldız belirdiğinde; her yıldızda ton biraz yükselir |
+| Rozet / Kupa | Yeni ödül kutlamasında |
+
+- **Ses: Açık / Kapalı** ayarı (ayarlar penceresi) bütün seslere uygulanır. Bütün sesler tek yoldan, `sound.play` üzerinden çalar; ses kapalıyken ses altyapısı hiç kurulmaz. Testler bunu sahte bir AudioContext ile ve kaynak kodu tarayarak denetler.
+- Oyunlar sesi kendileri oluşturmaz. Oyun ekranı, `mount` seçeneklerinde ortak bir **geri bildirim nesnesi** verir (`feedback.correct()`, `feedback.wrong()`); dört oyun da aynı nesneyi kullanır.
+
+Animasyonlar (hepsi CSS ile; görsel dosyası değişmez):
+
+- **Robot:** Beklerken hafifçe sallanır ve nefes alır. Konuşma balonundaki yazı değişince ağzı oynar. Doğruda sevinçle zıplar, yanlışta yumuşakça kafa sallar. Haritadaki robot da bayrağa ulaşamayınca kafa sallar.
+- **Sonuç paneli:** Panel yaylanarak girer, kazanılan yıldızlar tek tek "pop" ile belirir ve ekrana bir kez konfeti yağar.
+- **Ekran geçişleri:** Yeni ekran hafifçe kayarak ve belirerek gelir.
+- **Düğmeler ve kartlar:** Basınca küçülür, bırakınca yaylanır. Ana ekrandaki oyun kartları ve seviye düğmeleri sırayla içeri girer.
+- Cihazda **hareketi azalt** tercihi açıksa bu animasyonlar kapanır ve her şey anında görünür. Animasyonlar tıklamayı engellemez ve oyunu yavaşlatmaz.
+- Süreler `css/animations.css` başındaki CSS değişkenlerinde, sonuç panelinin yıldız gecikmeleri `MKD.timing.RESULT` sabitinde toplanır (yıldız sesleri ve görüntü aynı sabitten beslenir).
+
 ## Gereksinimler
 
 - Güncel bir tarayıcı (Chrome, Firefox, Edge veya Safari)
@@ -85,7 +109,7 @@ Oyunu başka bir cihaza göndermek için bütün kod ve görseller tek bir HTML 
 node tools/build-single-html.js
 ```
 
-Çıktı `dist/mini-kodlama-dunyasi.html` dosyasıdır (yaklaşık 470 KB). Bu dosya e-posta, mesaj veya USB bellekle gönderilir ve çift tıklanarak açılır; internet gerekmez. `dist/` klasörü sürüm kontrolüne eklenmez, kod değiştikçe komut yeniden çalıştırılır. Tek dosyanın ilerleme kaydı, proje klasöründeki `index.html` kaydından ayrıdır.
+Çıktı `dist/mini-kodlama-dunyasi.html` dosyasıdır (yaklaşık 480 KB). Bu dosya e-posta, mesaj veya USB bellekle gönderilir ve çift tıklanarak açılır; internet gerekmez. `dist/` klasörü sürüm kontrolüne eklenmez, kod değiştikçe komut yeniden çalıştırılır. Tek dosyanın ilerleme kaydı, proje klasöründeki `index.html` kaydından ayrıdır.
 
 ### Android sürümü (tablet için)
 
@@ -119,7 +143,7 @@ Proje klasöründe şu komut çalıştırılır:
 node --test
 ```
 
-Testler seviye kilidi, grup kilidi, yıldız kaydı, yıldız hesabı ve her rozet ile kupanın koşulunu (tekrar verilmemesi ve yenilemede korunması dahil) denetler. Ayrıca dört oyunun kurallarını ve 80 seviyenin her birinin çözülebildiğini (çözümün sınırlara sığdığını) dener.
+Testler seviye kilidi, grup kilidi, yıldız kaydı, yıldız hesabı ve her rozet ile kupanın koşulunu (tekrar verilmemesi ve yenilemede korunması dahil) denetler. Ayrıca dört oyunun kurallarını ve 80 seviyenin her birinin çözülebildiğini (çözümün sınırlara sığdığını) dener. Ses testleri, ses kapalıyken hiçbir efektin çalmadığını, yanlış sesinin yumuşak ve alçalan olduğunu, yıldız sesinin her yıldızda yükseldiğini ve robotun doğru/yanlış tepkilerini denetler.
 
 Android uygulamasının testleri `mobile/` klasöründe `flutter test` ile çalışır.
 
@@ -129,6 +153,7 @@ Android uygulamasının testleri `mobile/` klasöründe `flutter test` ile çal�
 index.html                 Uygulama çerçevesi ve script sırası
 css/
   base.css                 Renk paleti, butonlar, kartlar, üst çubuk, sürükleme
+  animations.css           Ortak animasyonlar: ekran geçişi, düğmeler, robot, sonuç paneli, konfeti
   screens/                 Ana ekran, seviye seçimi, oyun ekranı ve başarılar stilleri
   games/                   Her oyunun kendi stili
 js/
@@ -138,7 +163,8 @@ js/
     stars.js               Yıldız hesabı (1–3)
     progress.js            İlerleme, seviye ve grup kilitleri
     achievements.js        Rozet ve kupa koşulları, kazanılan ödüllerin kaydı
-    sound.js               Kutlama sesleri ve ses açık/kapalı ayarı
+    sound.js               Ses efektleri, ses açık/kapalı ayarı ve oyunlara verilen geri bildirim nesnesi
+    timing.js              Bekleme, adım süresi, kutlama ve animasyon zamanlaması
     dom.js, components.js  DOM yardımcısı ve ortak arayüz parçaları (robot konuşma balonu dahil)
     drag-drop.js           Fare ve dokunmatikte aynı çalışan sürükle-bırak
     router.js              Ekran geçişleri (#/, #/achievements, #/game/<oyun>, #/game/<oyun>/level/<n>)
@@ -180,11 +206,11 @@ gallery/         Görsel galerisi (index.html, gallery.css, gallery.js)
   - `game.js`: ekran ve etkileşim (gerekirse ayrı bir görünüm dosyası: `board-view.js`, `scene-view.js`).
 - **Yeni oyun eklemek için:**
   1. `js/games/<oyun-adı>/` klasörü açılır.
-  2. Oyun kendini `MKD.gameModules["<oyun-id>"] = { mount(container, { game, level, onComplete }) }` şeklinde kaydeder.
+  2. Oyun kendini `MKD.gameModules["<oyun-id>"] = { mount(container, { game, level, feedback, onComplete }) }` şeklinde kaydeder.
   3. `games-registry.js` dosyasına oyun bilgisi eklenir.
   4. Dosyalar `index.html` içine eklenir (kurallar, seviyeler, ekran sırasıyla).
 
-  Oyun bitince `onComplete(yıldız)` çağrılır. Yıldız `MKD.calculateStars({ hintUsed, targetMet })` ile hesaplanır.
+  Oyun bitince `onComplete(yıldız)` çağrılır. Doğru ve yanlış anında robotun balonu `bubble.correct(mesaj)` / `bubble.wrong(mesaj)` ile kullanılır (`MKD.components.speechBubble(metin, feedback)`); ses ve robot tepkisi böylece birlikte gelir. Yıldız `MKD.calculateStars({ hintUsed, targetMet })` ile hesaplanır.
 
 ## Görsel türleri
 

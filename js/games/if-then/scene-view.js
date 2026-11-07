@@ -4,7 +4,7 @@
   "use strict";
 
   const { el } = MKD.dom;
-  const { BUMP_MS, wait } = MKD.timing;
+  const { wait, replayAnimation } = MKD.timing;
   const { IMAGES } = MKD.components;
   const { KIND, ACTION } = MKD.ifThen;
 
@@ -82,8 +82,7 @@
     function fail(index) {
       jumpPending = false;
       cells[index].classList.add("is-wrong");
-      robot.classList.add(ROBOT_CLASSES.bump);
-      setTimeout(() => robot.classList.remove(ROBOT_CLASSES.bump), BUMP_MS);
+      replayAnimation(robot, ROBOT_CLASSES.bump);
     }
 
     function reset() {

@@ -7,10 +7,10 @@
   const { el } = MKD.dom;
   const { emblem } = MKD.rewardView;
   const { wait } = MKD.timing;
+  const { confetti } = MKD.components;
 
   const BADGE_VISIBLE_MS = 3200;
   const BADGE_LEAVE_MS = 300; // Kartın çıkış animasyonu (CSS ile aynı süre)
-  const CONFETTI_COUNT = 28;
 
   function createCelebration({ sound }) {
     let queue = Promise.resolve();
@@ -42,14 +42,6 @@
         sound.play(MKD.SOUNDS.BADGE);
         wait(BADGE_VISIBLE_MS).then(close);
       });
-    }
-
-    // Konfeti parçalarının yeri ve gecikmesi sıradan hesaplanır; renkleri CSS verir.
-    function confetti() {
-      return el("div", { className: "confetti", "aria-hidden": "true" },
-        Array.from({ length: CONFETTI_COUNT }, (_, index) => el("span", {
-          style: `--x: ${(index * 37) % 100}%; --delay: ${(index % 7) * 0.18}s; --turn: ${(index % 2 ? 1 : -1) * 540}deg`,
-        })));
     }
 
     function trophyDialog(item) {

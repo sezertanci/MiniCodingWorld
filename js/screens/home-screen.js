@@ -39,10 +39,12 @@
       ]);
     }
 
-    function gameCard(game) {
+    // Kartlar sırayla içeri girer; sırası CSS'e --i değişkeniyle verilir (css/animations.css).
+    function gameCard(game, index) {
       return el("button", {
         type: "button",
         className: `game-card color-${game.color}`,
+        style: `--i: ${index}`,
         onClick: () => router.go(MKD.paths.levels(game.id)),
       }, [
         el("span", { className: "game-card-icon" }, [el("img", { src: game.icon, alt: "" })]),

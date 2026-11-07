@@ -106,7 +106,7 @@
     return `Parlayan kareye bak. Sıradaki komut: ${COMMANDS[hint.direction].label}.`;
   }
 
-  function mount(container, { level: levelNumber, onComplete }) {
+  function mount(container, { level: levelNumber, feedback, onComplete }) {
     const definition = MKD.pathFinder.levels[levelNumber - 1];
     const level = MKD.pathFinder.parseLevel(definition);
     const maxCommands = definition.maxCommands ?? DEFAULT_MAX_COMMANDS;
@@ -116,7 +116,7 @@
 
     const state = { commands: [], selected: -1, hintUsed: false, running: false, highlight: null };
 
-    const bubble = MKD.components.speechBubble(introText);
+    const bubble = MKD.components.speechBubble(introText, feedback);
     const programList = el("ol", {
       className: "pf-program-list pf-strip", "aria-label": "Komutlarım", "data-drop-zone": LIST_ZONE,
     });
@@ -304,7 +304,7 @@
 
     function finish(result) {
       if (result.outcome === OUTCOME.SUCCESS) {
-        say(MESSAGES.success);
+        bubble.correct(MESSAGES.success);
         board.celebrate();
         const stars = MKD.calculateStars({ hintUsed: state.hintUsed, targetMet: state.commands.length <= targetLength });
         completeAfterCelebration(container, onComplete, stars);
@@ -314,10 +314,11 @@
         const direction = state.commands[result.failedIndex];
         board.bump(direction);
         state.highlight = { index: result.failedIndex, className: "is-wrong" };
-        say(blockedMessage(level, result.position, direction, result.failedIndex));
+        bubble.wrong(blockedMessage(level, result.position, direction, result.failedIndex));
       } else {
         state.highlight = null;
-        say(result.outcome === OUTCOME.MISSING_COINS ? MESSAGES.missingCoins : MESSAGES.missedGoal);
+        board.shakeHead();
+        bubble.wrong(result.outcome === OUTCOME.MISSING_COINS ? MESSAGES.missingCoins : MESSAGES.missedGoal);
       }
       state.running = false;
       renderProgram();

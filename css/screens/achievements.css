@@ -395,27 +395,7 @@
 .trophy-celebration .celebration-description { margin: 0; font-size: 22px; font-weight: 800; }
 .trophy-celebration .btn { min-width: 200px; margin-top: 8px; font-size: 24px; }
 
-.confetti { position: absolute; inset: 0; pointer-events: none; }
-
-.confetti span {
-  position: absolute;
-  top: -24px;
-  left: var(--x);
-  width: 12px;
-  height: 18px;
-  border-radius: 3px;
-  background: var(--yellow);
-  animation: confetti-fall 3.2s linear var(--delay) infinite;
-}
-
-.confetti span:nth-child(5n + 1) { background: var(--blue); }
-.confetti span:nth-child(5n + 2) { background: var(--green); }
-.confetti span:nth-child(5n + 3) { background: var(--red); }
-.confetti span:nth-child(5n + 4) { background: var(--purple); width: 10px; height: 10px; border-radius: 50%; }
-
-@keyframes confetti-fall {
-  to { transform: translateY(110vh) rotate(var(--turn)); }
-}
+/* Konfeti ortak stildir: css/animations.css */
 
 @keyframes rays-turn {
   to { transform: rotate(360deg); }
@@ -447,8 +427,6 @@
   .badge-toast,
   .badge-toast .reward-badge,
   .trophy-stage .reward-trophy,
-  .trophy-rays,
-  .confetti span { animation: none; }
+  .trophy-rays { animation: none; }
   .badge-toast.is-leaving { animation: none; opacity: 0; }
-  .confetti { display: none; }
 }

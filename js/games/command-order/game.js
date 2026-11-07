@@ -44,7 +44,7 @@
     });
   }
 
-  function mount(container, { level: levelNumber, onComplete }) {
+  function mount(container, { level: levelNumber, feedback, onComplete }) {
     const level = MKD.commandOrder.levels[levelNumber - 1];
     const cards = MKD.commandOrder.shuffleCards(MKD.commandOrder.buildCards(level), levelNumber * SHUFFLE_SEED_STEP);
     const cardById = new Map(cards.map((card, index) => [card.id, { ...card, tone: index % TONE_COUNT }]));
@@ -59,7 +59,7 @@
       done: false,
     };
 
-    const bubble = MKD.components.speechBubble(introText);
+    const bubble = MKD.components.speechBubble(introText, feedback);
     const say = bubble.say;
     const slotsBox = el("div", { className: "co-slots" });
     const pool = el("div", { className: "co-pool", "data-drop-zone": POOL_ZONE, "aria-label": "Kartlar" });
@@ -184,13 +184,13 @@
       const cardId = state.slots[result.index];
       state.mark = { slot: result.index, className: "is-wrong" };
       render();
-      say(wrongMessage(result, cardById.get(cardId)));
+      bubble.wrong(wrongMessage(result, cardById.get(cardId)));
     }
 
     function finish() {
       state.done = true;
       render();
-      say(MESSAGES.success);
+      bubble.correct(MESSAGES.success);
       slotsBox.classList.add("is-solved");
       const stars = MKD.calculateStars({ hintUsed: state.hintUsed, targetMet: state.failedChecks === 0 });
       completeAfterCelebration(container, onComplete, stars);

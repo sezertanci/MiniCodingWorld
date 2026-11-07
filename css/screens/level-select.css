@@ -88,9 +88,10 @@
 .level-button.is-locked .level-number { filter: grayscale(0.6); }
 
 /* Sıradaki seviye: nabız gibi atan bir halka ile vurgulanır */
+/* Nabız animasyonu, giriş animasyonuyla birlikte css/animations.css dosyasında bağlanır
+   (hareket azaltma kuralı da orada). */
 .level-button.is-next {
   box-shadow: 0 4px 0 var(--shadow), 0 0 0 4px var(--yellow);
-  animation: next-level-pulse 1.6s ease-in-out infinite;
 }
 
 @keyframes next-level-pulse {
@@ -98,9 +99,6 @@
   50% { box-shadow: 0 4px 0 var(--shadow), 0 0 0 9px rgba(255, 210, 77, 0.45); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .level-button.is-next { animation: none; }
-}
 
 .level-number {
   display: grid;

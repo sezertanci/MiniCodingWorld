@@ -10,6 +10,8 @@
     const achievements = MKD.createAchievements({ progress, storage: MKD.createLocalStorage(config.ACHIEVEMENTS_KEY) });
     const sound = MKD.createSound(MKD.createLocalStorage(config.SETTINGS_KEY));
     const celebration = MKD.createCelebration({ sound });
+    // Oyunlar ve sonuç paneli sesi bu tek nesneden çalar; ses ayarı hepsine birden uygulanır.
+    const feedback = MKD.createFeedback(sound);
     let currentRoute = null;
 
     // Bu özellikten önce bitirilmiş seviyelerin ödülleri açılışta sessizce eklenir;
@@ -37,6 +39,7 @@
       [ROUTES.PLAY]: MKD.createGameScreen({
         progress,
         router,
+        feedback,
         onLevelCompleted: () => celebration.show(achievements.sync()),
       }),
     };
