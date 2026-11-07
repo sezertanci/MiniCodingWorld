@@ -37,6 +37,7 @@
     SOLVED: "solved",
   });
 
+  // Haritadaki bir karenin anahtarı ("x,y"); harita görünümü ve oyun ekranı da kullanır.
   const cellKey = (x, y) => `${x},${y}`;
 
   function parseLevel(definition) {
@@ -180,6 +181,7 @@
     DIRECTIONS,
     OUTCOME,
     HINT,
+    cellKey,
     parseLevel,
     runProgram,
     shortestPath,

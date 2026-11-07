@@ -4,8 +4,17 @@
 
   const { el } = MKD.dom;
 
-  const ICONS = Object.freeze({
+  // Birden çok ekranda ve oyunda geçen karakter ve nesne görselleri tek yerde tutulur.
+  const IMAGES = Object.freeze({
+    robot: "assets/characters/robot.svg",
+    goal: "assets/puzzles/goal-flag.svg",
+    rock: "assets/puzzles/rock.svg",
+    door: "assets/puzzles/door.svg",
     star: "assets/icons/star.svg",
+  });
+
+  const ICONS = Object.freeze({
+    star: IMAGES.star,
     starEmpty: "assets/icons/star-empty.svg",
     lock: "assets/icons/lock.svg",
     back: "assets/ui/button-back.svg",
@@ -14,10 +23,15 @@
     next: "assets/ui/button-arrow-right.svg",
   });
 
-  function iconButton({ icon, label, onClick, disabled = false }) {
-    return el("button", { type: "button", className: "icon-button", "aria-label": label, title: label, disabled, onClick }, [
+  // Yazısız, yalnızca ikonlu düğme; adı ekran okuyucu ve ipucu yazısı içindir.
+  function imageButton(className, { icon, label, onClick, disabled = false }) {
+    return el("button", { type: "button", className, "aria-label": label, title: label, disabled, onClick }, [
       el("img", { src: icon, alt: "" }),
     ]);
+  }
+
+  function iconButton(options) {
+    return imageButton("icon-button", options);
   }
 
   // Oyunlardaki işlem düğmeleri her ekranda aynı ikonla, yazısız gösterilir.
@@ -30,10 +44,7 @@
   });
 
   function actionButton(key, onClick) {
-    const { label, icon } = ACTIONS[key];
-    return el("button", { type: "button", className: "action-button", "aria-label": label, title: label, onClick }, [
-      el("img", { src: icon, alt: "" }),
-    ]);
+    return imageButton("action-button", { ...ACTIONS[key], onClick });
   }
 
   function starCounter(total) {
@@ -80,11 +91,11 @@
   function speechBubble(text) {
     const message = el("p", { className: "speech-message", "aria-live": "polite", text });
     const element = el("div", { className: "speech-bubble" }, [
-      el("img", { className: "speech-robot", src: "assets/characters/robot.svg", alt: "" }),
+      el("img", { className: "speech-robot", src: IMAGES.robot, alt: "" }),
       message,
     ]);
     return { element, say: (next) => { message.textContent = next; } };
   }
 
-  MKD.components = Object.freeze({ ICONS, ACTIONS, iconButton, actionButton, starCounter, starRow, progressBar, topBar, speechBubble });
+  MKD.components = Object.freeze({ IMAGES, ICONS, ACTIONS, iconButton, actionButton, starCounter, starRow, progressBar, topBar, speechBubble });
 })((globalThis.MKD ??= {}));

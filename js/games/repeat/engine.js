@@ -57,9 +57,14 @@
     return { ...MKD.pathFinder.runProgram(level, trace.map((step) => step.direction)), trace };
   }
 
+  /** İçi boş ilk tekrar bloğunun sırası; yoksa -1. Boş blok varken program çalıştırılmaz. */
+  function findEmptyRepeat(program) {
+    return program.findIndex((block) => block.type === BLOCK.REPEAT && block.body.length === 0);
+  }
+
   /** İpucu: önce boş tekrar bloğu, sonra robotu yoldan çıkaran hareket, yoksa sıradaki doğru hareket. */
   function findHint(level, program) {
-    const empty = program.findIndex((block) => block.type === BLOCK.REPEAT && block.body.length === 0);
+    const empty = findEmptyRepeat(program);
     if (empty >= 0) {
       return { type: HINT.EMPTY_REPEAT, block: empty };
     }
@@ -77,6 +82,6 @@
   }
 
   MKD.repeatGame = Object.assign(MKD.repeatGame ?? {}, {
-    BLOCK, TIMES, TOP_LEVEL, HINT, move, repeat, parseSolution, countBlocks, expand, runProgram, findHint,
+    BLOCK, TIMES, TOP_LEVEL, HINT, move, repeat, parseSolution, countBlocks, expand, runProgram, findEmptyRepeat, findHint,
   });
 })((globalThis.MKD ??= {}));

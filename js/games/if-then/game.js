@@ -4,20 +4,20 @@
   "use strict";
 
   const { el } = MKD.dom;
+  const { IMAGES } = MKD.components;
+  const { wait, stepDuration, completeAfterCelebration } = MKD.timing;
   const { KIND, ACTION, OUTCOME, ELSE_RULE } = MKD.ifThen;
 
   const GAME_ID = "if-then";
   const STEP_MS = 650;
-  const REDUCED_STEP_MS = 150;
-  const CELEBRATE_MS = 900;
   const ELSE_KEY = "else";
   const SLOT_TYPE = Object.freeze({ CONDITION: "condition", ACTION: "action" });
 
   const OBJECTS = Object.freeze({
-    [KIND.ROCK]: { label: "Taş", image: "assets/puzzles/rock.svg" },
+    [KIND.ROCK]: { label: "Taş", image: IMAGES.rock },
     [KIND.WATER]: { label: "Su", image: "assets/puzzles/tile-water.svg" },
-    [KIND.DOOR]: { label: "Kapı", image: "assets/puzzles/door.svg" },
-    [KIND.STAR]: { label: "Yıldız", image: "assets/icons/star.svg" },
+    [KIND.DOOR]: { label: "Kapı", image: IMAGES.door },
+    [KIND.STAR]: { label: "Yıldız", image: IMAGES.star },
   });
 
   const ACTIONS = Object.freeze({
@@ -48,13 +48,11 @@
     wrongType: "Bu blok oraya uymaz. Nesneler «Eğer» kutusuna, hareketler ok işaretinin yanına gider.",
   });
 
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const stepDuration = () =>
-    globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? REDUCED_STEP_MS : STEP_MS;
-
   const conditionKey = (index) => `c${index}`;
   const actionKey = (index) => `a${index}`;
   const slotType = (key) => (key.startsWith("c") ? SLOT_TYPE.CONDITION : SLOT_TYPE.ACTION);
+  // Kutudaki ya da paletteki bloğun adı; blok bir nesne ya da bir hareket olabilir.
+  const blockLabel = (value) => (OBJECTS[value] ?? ACTIONS[value]).label;
   const ruleName = (rule) => (rule === ELSE_RULE ? "«Değilse» satırı" : `${rule + 1}. kural`);
 
   function wrongMessage(step) {
@@ -180,7 +178,7 @@
       const classes = ["if-slot", `if-slot-${type}`];
       if (key === state.target) classes.push("is-target");
       if (locked) classes.push("is-locked");
-      const label = value === null ? "boş" : (OBJECTS[value] ?? ACTIONS[value]).label;
+      const label = value === null ? "boş" : blockLabel(value);
       const button = el("button", {
         type: "button",
         className: value === null ? "if-slot-empty" : blockClass(type, value),
@@ -216,7 +214,7 @@
       const button = el("button", {
         type: "button",
         className: `${blockClass(type, value)}${hinted ? " is-hint" : ""}`,
-        "aria-label": `${type === SLOT_TYPE.CONDITION ? "Nesne" : "Hareket"}: ${(OBJECTS[value] ?? ACTIONS[value]).label}`,
+        "aria-label": `${type === SLOT_TYPE.CONDITION ? "Nesne" : "Hareket"}: ${blockLabel(value)}`,
         disabled: state.running,
         onClick: () => tapBlock(type, value),
       }, blockContent(type, value));
@@ -244,7 +242,7 @@
     }
 
     async function play(result) {
-      const duration = stepDuration();
+      const duration = stepDuration(STEP_MS);
       for (const step of result.steps) {
         state.activeRule = step.rule;
         render();
@@ -264,6 +262,7 @@
       state.running = true;
       state.runs += 1;
       state.mark = null;
+      state.hintAction = null;
       scene.reset();
       say(MESSAGES.running);
       const result = MKD.ifThen.runProgram(lane, program());
@@ -284,8 +283,7 @@
       say(MESSAGES.success);
       scene.celebrate();
       const stars = MKD.calculateStars({ hintUsed: state.hintUsed, targetMet: state.runs === 1 });
-      // Çocuk kutlama sürerken başka ekrana geçtiyse sonuç kaydedilmez.
-      wait(CELEBRATE_MS).then(() => container.isConnected && onComplete(stars));
+      completeAfterCelebration(container, onComplete, stars);
     }
 
     function showHint() {

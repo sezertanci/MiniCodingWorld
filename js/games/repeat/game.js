@@ -4,17 +4,17 @@
   "use strict";
 
   const { el } = MKD.dom;
+  const { wait, stepDuration, completeAfterCelebration } = MKD.timing;
   const { OUTCOME, COMMANDS, obstacleName } = MKD.pathFinder;
   const { BLOCK, TIMES, TOP_LEVEL, HINT } = MKD.repeatGame;
 
   const GAME_ID = "repeat";
   const NO_TARGET = -1;
   const STEP_MS = 450;
-  const REDUCED_STEP_MS = 150;
   // Tekrarla bloğu ile içindeki bir ok: en az iki blok yer kaplar
   const REPEAT_WITH_MOVE = 2;
-  const CELEBRATE_MS = 900;
-  const REPEAT_ICON = "assets/icons/game-repeat.svg";
+  // Tekrarla bloğunun ikonu, oyunun ana ekrandaki ikonuyla aynıdır; yol oyun kaydından okunur.
+  const REPEAT_ICON = MKD.findGame(GAME_ID).icon;
   // Tekrarla düğmesi, bir blok açıkken (oklar içine eklenirken) bloktan çıkma düğmesine dönüşür.
   const REPEAT_BUTTON_TEXT = Object.freeze({ add: "Tekrarla", leave: "Bloktan çık ✓" });
 
@@ -36,9 +36,6 @@
     fullHint: "Blok sınırın doldu. Bir tekrar sayısını değiştirmeyi ya da bir bloğu silip yerine Tekrarla bloğu koymayı dene.",
   });
 
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const stepDuration = () =>
-    globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? REDUCED_STEP_MS : STEP_MS;
   const samePlace = (a, b) => a !== null && b !== null && a.block === b.block && a.inner === b.inner;
   // Şeritteki öğeyi bulmak için yer bilgisi data-place özelliğine yazılır (ör. "2:-1").
   const placeKey = ({ block, inner }) => `${block}:${inner}`;
@@ -308,7 +305,6 @@
       revealPlace(state.highlight ?? state.selected ?? target);
       placeEditBar();
       Object.values(padButtons).forEach((button) => { button.disabled = state.running || full; });
-      // Tekrarla bloğu ve içine en az bir ok sığmıyorsa eklenmez; yoksa boş blokla sınır dolar.
       renderRepeatButton();
       ["run", "hint", "clear"].forEach((key) => { actionButtons[key].disabled = state.running; });
     }
@@ -318,6 +314,7 @@
       const button = actionButtons.repeat;
       button.classList.toggle("is-leave", open);
       button.querySelector("span").textContent = open ? REPEAT_BUTTON_TEXT.leave : REPEAT_BUTTON_TEXT.add;
+      // Tekrarla bloğu ve içine en az bir ok sığmıyorsa eklenmez; yoksa boş blokla sınır dolar.
       button.disabled = state.running || (!open && blockCount() + REPEAT_WITH_MOVE > definition.maxBlocks);
     }
 
@@ -348,7 +345,7 @@
     }
 
     async function playSteps(result) {
-      const duration = stepDuration();
+      const duration = stepDuration(STEP_MS);
       for (let index = 0; index < result.steps.length; index++) {
         const { direction, ...place } = result.trace[index];
         state.highlight = { ...place, className: "is-active" };
@@ -366,8 +363,7 @@
         say(MESSAGES.success);
         board.celebrate();
         const stars = MKD.calculateStars({ hintUsed: state.hintUsed, targetMet: blockCount() <= targetBlocks });
-        // Çocuk animasyon sürerken başka ekrana geçtiyse sonuç kaydedilmez.
-        wait(CELEBRATE_MS).then(() => container.isConnected && onComplete(stars));
+        completeAfterCelebration(container, onComplete, stars);
         return;
       }
       if (result.outcome === OUTCOME.BLOCKED) {
@@ -388,7 +384,7 @@
         say(MESSAGES.empty);
         return;
       }
-      const empty = state.program.findIndex((block) => block.type === BLOCK.REPEAT && block.body.length === 0);
+      const empty = engine.findEmptyRepeat(state.program);
       if (empty >= 0) {
         state.target = empty;
         render();

@@ -3,7 +3,7 @@
 //   icon:   Görevin büyük resmi
 //   steps:  Adımlar, doğru sırayla. Her adım { text, icon }. Ekranda karışık gösterilir.
 //           Okumayı yeni öğrenen çocuk için görsel, eylemin kendisini anlatır (ör. fırçaya sıkılan macun).
-//           Görseli henüz çizilmemiş görevlerde icon bir emojidir.
+//           icon her zaman bir SVG görselinin yoludur.
 //   extras: Göreve ait olmayan kartlar (isteğe bağlı, Uzman). Sıraya konmamalıdır.
 //   stages: Adımları ara hedeflere bölen başlıklar (isteğe bağlı, Zor ve Uzman). size toplamı adım sayısına eşittir.
 //   hint:   İpucu düğmesine basılınca robotun söylediği cümle

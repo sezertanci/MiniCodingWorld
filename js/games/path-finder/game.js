@@ -3,13 +3,12 @@
   "use strict";
 
   const { el } = MKD.dom;
-  const { OUTCOME, HINT, TILE, DIRECTIONS } = MKD.pathFinder;
+  const { wait, stepDuration, completeAfterCelebration } = MKD.timing;
+  const { OUTCOME, HINT, TILE, DIRECTIONS, cellKey } = MKD.pathFinder;
 
   const GAME_ID = "path-finder";
   const DEFAULT_MAX_COMMANDS = 16;
   const STEP_MS = 450;
-  const REDUCED_STEP_MS = 150;
-  const CELEBRATE_MS = 900;
   const CHIP_ZONE = "chip";
   const LIST_ZONE = "list";
   const STRIP_EDGE_PX = 12;
@@ -40,14 +39,10 @@
 
   const OBSTACLE_NAMES = Object.freeze({ [TILE.ROCK]: "taşa", [TILE.WATER]: "suya" });
 
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const stepDuration = () =>
-    globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? REDUCED_STEP_MS : STEP_MS;
-
   /** Robotun çarptığı şeyin adı ("taşa", "suya", "harita kenarına"). Tekrar Et oyunu da kullanır. */
   function obstacleName(level, position, direction) {
     const { dx, dy } = DIRECTIONS[direction];
-    const tile = level.blocked.get(`${position.x + dx},${position.y + dy}`);
+    const tile = level.blocked.get(cellKey(position.x + dx, position.y + dy));
     return OBSTACLE_NAMES[tile] ?? "harita kenarına";
   }
 
@@ -295,7 +290,7 @@
     }
 
     async function playSteps(result) {
-      const duration = stepDuration();
+      const duration = stepDuration(STEP_MS);
       for (let index = 0; index < result.steps.length; index++) {
         state.highlight = { index, className: "is-active" };
         renderProgram();
@@ -312,8 +307,7 @@
         say(MESSAGES.success);
         board.celebrate();
         const stars = MKD.calculateStars({ hintUsed: state.hintUsed, targetMet: state.commands.length <= targetLength });
-        // Çocuk animasyon sürerken başka ekrana geçtiyse sonuç kaydedilmez.
-        wait(CELEBRATE_MS).then(() => container.isConnected && onComplete(stars));
+        completeAfterCelebration(container, onComplete, stars);
         return;
       }
       if (result.outcome === OUTCOME.BLOCKED) {

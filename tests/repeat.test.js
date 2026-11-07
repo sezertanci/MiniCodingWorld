@@ -9,7 +9,7 @@ require("../js/games/repeat/levels.js");
 
 const { config, pathFinder, repeatGame } = globalThis.MKD;
 const { parseLevel, optimalLength, OUTCOME } = pathFinder;
-const { move, repeat, parseSolution, countBlocks, expand, runProgram, findHint, HINT, BLOCK, TIMES, TOP_LEVEL, levels } = repeatGame;
+const { move, repeat, parseSolution, countBlocks, expand, runProgram, findEmptyRepeat, findHint, HINT, BLOCK, TIMES, TOP_LEVEL, levels } = repeatGame;
 
 // Robot (0,1), bayrak (3,1); (1,0) karesinde taş var.
 const LINE_MAP = parseLevel({ map: [".#..", "S..G"] });
@@ -87,6 +87,18 @@ describe("runProgram", () => {
 
     assert.equal(result.outcome, OUTCOME.BLOCKED);
     assert.equal(result.trace[result.failedIndex].round, 3);
+  });
+});
+
+describe("findEmptyRepeat", () => {
+  test("findEmptyRepeat_SecondRepeatEmpty_ReturnsItsIndex", () => {
+    const program = [move("right"), repeat(2, ["right"]), repeat(3, []), repeat(2, [])];
+
+    assert.equal(findEmptyRepeat(program), 2);
+  });
+
+  test("findEmptyRepeat_NoEmptyRepeat_ReturnsMinusOne", () => {
+    assert.equal(findEmptyRepeat([move("up"), repeat(2, ["right"])]), -1);
   });
 });
 

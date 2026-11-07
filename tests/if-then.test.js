@@ -50,6 +50,13 @@ describe("levels", () => {
     });
   });
 
+  // Hazır koşul boş yol olamaz; boş yol "Değilse" satırının işidir.
+  test("levels_FixedConditions_AreNeverEmptyKind", () => {
+    levels.forEach((level) => {
+      level.rules.forEach((rule) => assert.notEqual(rule.if, KIND.EMPTY));
+    });
+  });
+
   levels.forEach((level, index) => {
     test(`levels_Level${index + 1}_HasSolutionWithPalette`, () => {
       assert.ok(level.intro);

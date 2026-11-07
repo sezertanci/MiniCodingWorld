@@ -4,12 +4,12 @@
   "use strict";
 
   const { el } = MKD.dom;
+  const { completeAfterCelebration } = MKD.timing;
   const { REASON } = MKD.commandOrder;
 
   const GAME_ID = "command-order";
   const SHUFFLE_SEED_STEP = 7919;
   const TONE_COUNT = 5;
-  const CELEBRATE_MS = 900;
   const POOL_ZONE = "pool";
 
   const MESSAGES = Object.freeze({
@@ -21,11 +21,9 @@
     solved: "Sıralama doğru! Yeşil Kontrol et tuşuna dokun.",
   });
 
-  // Görsel yolu <img> olarak, henüz çizilmemiş görevlerin emojisi yazı olarak gösterilir.
+  // Görev ve kart görselleri süs amaçlıdır; anlamı yanındaki yazı taşır.
   function picture(icon, className) {
-    return icon.endsWith(".svg")
-      ? el("img", { className, src: icon, alt: "" })
-      : el("span", { className, text: icon });
+    return el("img", { className, src: icon, alt: "" });
   }
 
   function wrongMessage(result, card) {
@@ -195,8 +193,7 @@
       say(MESSAGES.success);
       slotsBox.classList.add("is-solved");
       const stars = MKD.calculateStars({ hintUsed: state.hintUsed, targetMet: state.failedChecks === 0 });
-      // Çocuk kutlama sürerken başka ekrana geçtiyse sonuç kaydedilmez.
-      setTimeout(() => container.isConnected && onComplete(stars), CELEBRATE_MS);
+      completeAfterCelebration(container, onComplete, stars);
     }
 
     function showHint() {

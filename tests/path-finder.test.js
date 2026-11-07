@@ -7,7 +7,7 @@ require("../js/games/path-finder/engine.js");
 require("../js/games/path-finder/levels.js");
 
 const { config, pathFinder } = globalThis.MKD;
-const { parseLevel, runProgram, optimalLength, findHint, parseSolution, OUTCOME, HINT, levels } = pathFinder;
+const { cellKey, parseLevel, runProgram, optimalLength, findHint, parseSolution, OUTCOME, HINT, TILE, levels } = pathFinder;
 
 // Robot (0,1), bayrak (2,1), aradaki (1,1) karesinde taş var. Üstte bir altın.
 const ROCK_MAP = { map: ["*..", "S#G", "..."] };
@@ -37,6 +37,20 @@ describe("levels", () => {
       assert.equal(definition.solution.length, shortest);
       assert.ok((definition.maxCommands ?? NO_LIMIT) >= shortest);
     });
+  });
+});
+
+describe("cellKey", () => {
+  test("cellKey_RockCell_MatchesKeyInParsedLevel", () => {
+    const level = parseLevel(ROCK_MAP);
+
+    const key = cellKey(1, 1);
+
+    assert.equal(level.blocked.get(key), TILE.ROCK);
+  });
+
+  test("cellKey_DifferentCells_ReturnDifferentKeys", () => {
+    assert.notEqual(cellKey(1, 12), cellKey(11, 2));
   });
 });
 

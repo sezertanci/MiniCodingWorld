@@ -37,20 +37,12 @@
       ]);
     }
 
-    function groupCompletedCount(game, group) {
-      let count = 0;
-      for (let level = group.firstLevel; level <= group.lastLevel; level++) {
-        count += progress.isCompleted(game.id, level) ? 1 : 0;
-      }
-      return count;
-    }
-
     function groupHeader(game, group, unlocked) {
       const total = group.lastLevel - group.firstLevel + 1;
       return el("h2", { className: "level-group-title" }, [
         el("span", { text: group.title }),
         unlocked
-          ? el("span", { className: "level-group-count", text: `${groupCompletedCount(game, group)}/${total}` })
+          ? el("span", { className: "level-group-count", text: `${progress.getGroupCompletedCount(game.id, group)}/${total}` })
           : el("img", { className: "group-lock", src: ICONS.lock, alt: "kilitli" }),
       ]);
     }

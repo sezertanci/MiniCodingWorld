@@ -117,6 +117,34 @@ describe("isGroupUnlocked", () => {
   });
 });
 
+describe("getGroupCompletedCount", () => {
+  const [easy, medium] = config.GROUPS;
+
+  test("getGroupCompletedCount_NoProgress_ReturnsZero", () => {
+    const progress = createProgress(createMemoryStorage());
+
+    assert.equal(progress.getGroupCompletedCount(GAME_ID, easy), 0);
+  });
+
+  test("getGroupCompletedCount_LevelsWithGap_CountsOnlyCompletedInGroup", () => {
+    const storage = createMemoryStorage({ games: { [GAME_ID]: { 1: 3, 2: 1, 4: 2, 6: 3 } } });
+    const progress = createProgress(storage);
+
+    const result = progress.getGroupCompletedCount(GAME_ID, easy);
+
+    assert.equal(result, 3);
+  });
+
+  test("getGroupCompletedCount_OtherGameProgress_ReturnsZero", () => {
+    const progress = createProgress(createMemoryStorage());
+    progress.completeLevel(OTHER_GAME_ID, medium.firstLevel, 3);
+
+    const result = progress.getGroupCompletedCount(GAME_ID, medium);
+
+    assert.equal(result, 0);
+  });
+});
+
 describe("completeLevel", () => {
   test("completeLevel_LowerStarsThanBest_KeepsBest", () => {
     const progress = createProgress(createMemoryStorage());

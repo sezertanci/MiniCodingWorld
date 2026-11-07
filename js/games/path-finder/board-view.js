@@ -3,20 +3,15 @@
   "use strict";
 
   const { el } = MKD.dom;
-  const { TILE } = MKD.pathFinder;
+  const { BUMP_MS } = MKD.timing;
+  const { IMAGES } = MKD.components;
+  const { TILE, cellKey } = MKD.pathFinder;
 
-  const IMAGES = Object.freeze({
-    robot: "assets/characters/robot.svg",
-    goal: "assets/puzzles/goal-flag.svg",
-    coin: "assets/icons/points.svg",
-    rock: "assets/puzzles/rock.svg",
-  });
-
+  const COIN_IMAGE = "assets/icons/points.svg";
   const BUMP_CLASS = "is-bumping";
-  const BUMP_MS = 400;
 
   function tileClass(level, x, y) {
-    const tile = level.blocked.get(`${x},${y}`);
+    const tile = level.blocked.get(cellKey(x, y));
     const shade = (x + y) % 2 === 0 ? "tile-light" : "tile-dark";
     if (tile === TILE.WATER) {
       return "pf-tile tile-water";
@@ -25,17 +20,21 @@
   }
 
   function createCell(level, x, y) {
-    const isRock = level.blocked.get(`${x},${y}`) === TILE.ROCK;
+    const isRock = level.blocked.get(cellKey(x, y)) === TILE.ROCK;
     return el("div", { className: tileClass(level, x, y) }, [
       isRock && el("img", { className: "pf-object", src: IMAGES.rock, alt: "" }),
     ]);
   }
 
   // Bayrak, altın ve robot hücrelerin üstündeki katmanda durur; konumları CSS değişkenleriyle verilir.
-  function placed(className, position, children = []) {
-    const node = el("div", { className: `pf-piece ${className}` }, children);
+  function moveTo(node, position) {
     node.style.setProperty("--x", position.x);
     node.style.setProperty("--y", position.y);
+  }
+
+  function placed(className, position, children = []) {
+    const node = el("div", { className: `pf-piece ${className}` }, children);
+    moveTo(node, position);
     return node;
   }
 
@@ -47,7 +46,7 @@
       }
     }
 
-    const coins = level.coins.map((coin) => placed("pf-coin", coin, [el("img", { src: IMAGES.coin, alt: "Altın" })]));
+    const coins = level.coins.map((coin) => placed("pf-coin", coin, [el("img", { src: COIN_IMAGE, alt: "Altın" })]));
     const goal = placed("pf-goal", level.goal, [el("img", { src: IMAGES.goal, alt: "Bayrak" })]);
     const startMarker = placed("pf-start", level.start);
     const hintMarker = placed("pf-hint-marker", level.start);
@@ -60,18 +59,13 @@
     element.style.setProperty("--cols", level.width);
     element.style.setProperty("--rows", level.height);
 
-    function moveTo(node, position) {
-      node.style.setProperty("--x", position.x);
-      node.style.setProperty("--y", position.y);
-    }
-
     // Robotun izi: ayrıldığı her kareye gittiği yönü gösteren bir ok bırakılır.
     // Robot aynı kareden yeniden geçerse oklar üst üste binmesin diye son yön gösterilir.
     let current = level.start;
     const trail = new Map();
 
     function moveRobot(position, direction) {
-      const key = `${current.x},${current.y}`;
+      const key = cellKey(current.x, current.y);
       trail.get(key)?.remove();
       const mark = placed("pf-trail", current);
       mark.dataset.direction = direction;

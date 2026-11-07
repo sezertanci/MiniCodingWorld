@@ -41,13 +41,22 @@
       return config.GROUPS.find((group) => level <= group.lastLevel);
     }
 
-    function isGroupCompleted(gameId, group) {
-      for (let level = group.firstLevel; level <= group.lastLevel; level++) {
-        if (!isCompleted(gameId, level)) {
-          return false;
-        }
+    // Verilen seviye aralığında (sınırlar dahil) tamamlanan seviye sayısı.
+    function countCompleted(gameId, firstLevel, lastLevel) {
+      let count = 0;
+      for (let level = firstLevel; level <= lastLevel; level++) {
+        count += isCompleted(gameId, level) ? 1 : 0;
       }
-      return true;
+      return count;
+    }
+
+    // Grupta tamamlanan seviye sayısı. Seviye seçim ekranı grup başlığında gösterir.
+    function getGroupCompletedCount(gameId, group) {
+      return countCompleted(gameId, group.firstLevel, group.lastLevel);
+    }
+
+    function isGroupCompleted(gameId, group) {
+      return getGroupCompletedCount(gameId, group) === group.lastLevel - group.firstLevel + 1;
     }
 
     // Bir grup, önceki grubun bütün seviyeleri tamamlanınca açılır.
@@ -81,11 +90,7 @@
     }
 
     function getCompletedCount(gameId) {
-      let count = 0;
-      for (let level = 1; level <= config.LEVELS_PER_GAME; level++) {
-        count += isCompleted(gameId, level) ? 1 : 0;
-      }
-      return count;
+      return countCompleted(gameId, 1, config.LEVELS_PER_GAME);
     }
 
     // Sıradaki oynanacak seviye: açık ama henüz bitmemiş ilk seviye. Hepsi bittiyse null.
@@ -111,6 +116,7 @@
       getStars,
       isCompleted,
       findGroup,
+      getGroupCompletedCount,
       isGroupUnlocked,
       isLevelUnlocked,
       completeLevel,

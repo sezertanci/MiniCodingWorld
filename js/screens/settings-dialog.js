@@ -12,10 +12,8 @@
   function createSettingsDialog({ onReset }) {
     function open() {
       const dialog = el("dialog", { className: "dialog", "aria-labelledby": "dialog-title" });
-      const close = () => {
-        dialog.close();
-        dialog.remove();
-      };
+      // Pencereyi sayfadan kaldırmayı aşağıdaki "close" olay dinleyicisi yapar.
+      const close = () => dialog.close();
 
       function showStep(title, content, safeButton) {
         dialog.replaceChildren(el("h2", { id: "dialog-title", text: title }), ...content);
@@ -39,7 +37,7 @@
         ], cancelButton);
       }
 
-      // Esc tuşuyla kapatıldığında da pencere sayfadan kaldırılır.
+      // Pencere düğmeyle de Esc tuşuyla da kapatılsa sayfadan burada kaldırılır.
       dialog.addEventListener("close", () => dialog.remove());
       document.body.append(dialog);
       dialog.showModal();

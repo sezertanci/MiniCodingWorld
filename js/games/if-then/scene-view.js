@@ -4,14 +4,15 @@
   "use strict";
 
   const { el } = MKD.dom;
+  const { BUMP_MS, wait } = MKD.timing;
+  const { IMAGES } = MKD.components;
   const { KIND, ACTION } = MKD.ifThen;
 
-  const IMAGES = Object.freeze({
-    robot: "assets/characters/robot.svg",
-    goal: "assets/puzzles/goal-flag.svg",
-    [KIND.ROCK]: "assets/puzzles/rock.svg",
-    [KIND.DOOR]: "assets/puzzles/door.svg",
-    [KIND.STAR]: "assets/icons/star.svg",
+  // Yol karesinde görünen nesneler; su ve boş yolun görseli yoktur.
+  const KIND_IMAGES = Object.freeze({
+    [KIND.ROCK]: IMAGES.rock,
+    [KIND.DOOR]: IMAGES.door,
+    [KIND.STAR]: IMAGES.star,
   });
 
   // Hareketten önce karede oynayan küçük animasyon: köprü kurulur, kapı açılır, yıldız alınır.
@@ -24,13 +25,10 @@
   const ROBOT_CLASSES = Object.freeze({ jump: "is-jumping", bump: "is-bumping", happy: "is-happy" });
   const MARK_CLASSES = ["is-wrong", "is-hint", ...Object.values(CELL_EFFECT)];
   const START_OFFSET = 1;
-  const BUMP_MS = 400;
-
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   function laneCell(kind) {
     const classes = `if-cell ${kind === KIND.WATER ? "if-water" : "if-path"} kind-${kind}`;
-    return el("div", { className: classes }, [IMAGES[kind] && el("img", { className: "if-object", src: IMAGES[kind], alt: "" })]);
+    return el("div", { className: classes }, [KIND_IMAGES[kind] && el("img", { className: "if-object", src: KIND_IMAGES[kind], alt: "" })]);
   }
 
   function createSceneView(lane) {

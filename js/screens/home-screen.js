@@ -3,9 +3,7 @@
   "use strict";
 
   const { el } = MKD.dom;
-  const { ICONS, iconButton, starCounter, progressBar } = MKD.components;
-
-  const ROBOT_IMAGE = "assets/characters/robot.svg";
+  const { IMAGES, ICONS, iconButton, starCounter, progressBar } = MKD.components;
 
   function createHomeScreen({ progress, games, router, settingsDialog }) {
     const totalLevels = MKD.config.LEVELS_PER_GAME;
@@ -46,7 +44,7 @@
 
     function hero() {
       return el("div", { className: "home-hero" }, [
-        el("img", { className: "home-robot", src: ROBOT_IMAGE, alt: "Robot Robi el sallıyor" }),
+        el("img", { className: "home-robot", src: IMAGES.robot, alt: "Robot Robi el sallıyor" }),
         el("div", { className: "home-title" }, [
           el("h1", { className: "logo", "aria-label": "Mini Kodlama Dünyası" }, [
             el("span", { className: "logo-top", text: "Mini Kodlama" }),
