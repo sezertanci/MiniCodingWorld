@@ -9,6 +9,12 @@
   text-shadow: 0 2px 0 var(--tone-dark);
 }
 
+/* Seviye rozeti ve iki yanındaki önceki/sonraki seviye okları */
+.level-nav { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.game-screen .top-bar .level-nav .icon-button { width: 44px; height: 44px; }
+.level-nav .icon-button:disabled { opacity: 0.4; }
+.level-nav .icon-button:disabled:active { transform: none; }
+
 /* Oyun ekranında haritaya yer kalsın diye üst çubuk ve aralıklar daha sıkıdır */
 .game-screen { gap: 12px; }
 .game-screen .top-bar .icon-button { width: 52px; height: 52px; }
@@ -50,6 +56,8 @@
 
 @media (max-width: 560px) {
   .level-badge { padding: 6px 10px; font-size: 13px; white-space: normal; text-align: center; }
+  .level-nav { gap: 2px; }
+  .game-screen .top-bar .level-nav .icon-button { width: 34px; height: 34px; }
   .game-screen .top-bar-title { font-size: 18px; }
   .speech-message { font-size: 16px; padding: 6px 12px; }
   .speech-robot { width: 38px; }

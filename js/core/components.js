@@ -10,10 +10,12 @@
     lock: "assets/icons/lock.svg",
     back: "assets/ui/button-back.svg",
     settings: "assets/ui/button-settings.svg",
+    previous: "assets/ui/button-arrow-left.svg",
+    next: "assets/ui/button-arrow-right.svg",
   });
 
-  function iconButton({ icon, label, onClick }) {
-    return el("button", { type: "button", className: "icon-button", "aria-label": label, title: label, onClick }, [
+  function iconButton({ icon, label, onClick, disabled = false }) {
+    return el("button", { type: "button", className: "icon-button", "aria-label": label, title: label, disabled, onClick }, [
       el("img", { src: icon, alt: "" }),
     ]);
   }
