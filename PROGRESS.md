@@ -64,12 +64,48 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - Düzeltilen: Tekrar Et'te blok sınırı doluyken ipucu basılamayan yön tuşunu gösteriyordu; artık tekrar sayısını değiştirmeyi veya blok silmeyi öneriyor.
   - Rapor kullanıcıya sohbet içinde verildi.
 
+- [x] Tablet geri bildirimiyle düzeltmeler (2026-11-06):
+  - Eğer Böyleyse: robot taşın üstüne değil arkasındaki kareye zıplar; taştan sonra su varsa önce köprü kurulur (`2f2cee1`).
+  - JavaScript çalıştırmayan görüntüleyicide (tabletin dosya önizlemesi) "Chrome ile aç" uyarısı görünür (`2dabc66`).
+  - İnceleme bulguları: Tekrar Et'te içine ok sığmayacaksa Tekrarla kapanır, ekrandan çıkınca animasyon durur, bozuk ilerleme kaydı yok sayılır (`c1b293f`).
+  - Sürüklenen kopya sayfanın altına düşüp kaydırma çubuğu açıyordu (`d8cf48a`).
+
+- [x] Arayüz yenilemeleri (2026-11-06/07):
+  - Komut listesi tek satırlık, sabit yükseklikte bir şerit. Komutlar sürükle-bırakla sıralanır, düzenleme düğmeleri seçilen öğenin altındaki balonda açılır (`179bd41`).
+  - Başlat, Kontrol et, İpucu ve Temizle dört oyunda aynı ikonlu düğme. Eğer Böyleyse eylem blokları görselli. Tekrar Et'e "Bloktan çık" eklendi, Baştan düğmesi kaldırıldı (`d22bd3d`).
+  - Komutları Sırala kartlarındaki emojiler, eylemi oklarla anlatan SVG görsellerle değiştirildi; okumakta zorlanan çocuklar için (`4c69f33`).
+  - Oyun ekranında seviye rozetinin iki yanında önceki/sonraki seviye okları; kilitli seviyenin oku soluk (`70858fa`).
+
+- [x] Android sürümü (2026-11-07, `4e36ecc`):
+  - `mobile/` altında Flutter uygulaması; tek dosyalık oyunu WebView içinde internetsiz açar. Paket adı `com.sezertanci.minikodlamadunyasi`.
+  - `node tools/build-mobile-asset.js` tek HTML'i Flutter asset'ine yazar (üretilen dosya git'e girmez). Kurulum adımları README'nin "Android sürümü" bölümünde.
+  - Tek HTML betiği artık JS içinde geçen görsel yollarını da veri adresine çevirir; dosya ~423 KB.
+  - Redmi Pad 2 tablette dört oyun, seviye bitirme, ilerlemenin korunması ve ayarlar penceresi denendi.
+
+- [x] Tekrar eden kodun temizlenmesi (2026-11-07, `8ff83f1`):
+  - Bekleme ve kutlama süreleri `js/core/timing.js` modülünde (`MKD.timing`).
+  - Görsel yolları `MKD.components.IMAGES` sabitinde; `cellKey`, `findEmptyRepeat`, `getGroupCompletedCount` ortak yardımcı oldu.
+  - Eğer Böyleyse'de yeni çalıştırmada ipucu parlaması temizlenir. Ayarlar penceresi `close` olayıyla bir kez kaldırılır.
+  - 269 test geçiyor.
+
+- [x] Rozet, kupa ve Başarılarım ekranı (2026-11-08):
+  - `js/core/achievements.js`: 10 rozet + 6 kupa tek listede; her ödülün `goal` ve `measure(stats)` değeri var. Koşullar ilerleme kaydındaki yıldızlardan hesaplanır (2+ yıldız = ipucusuz). Kazanılanlar `mini-kodlama-dunyasi.achievements.v1` anahtarında, Set ile tekrarsız.
+  - Açılışta `achievements.sync()` sessiz çalışır (eski ilerlemenin ödülleri pencere açmadan eklenir). Seviye bitince `onLevelCompleted` → `celebration.show(achievements.sync())`.
+  - Görsel ayrım (kullanıcı önerisi): rozet = kurdeleli yuvarlak madalya (CSS), kupa = `trophy.svg` + oyun renginde kaide + oyun ikonu arması, rafta. Şampiyon kupası ışıldar.
+  - Ana ekranda Başarılarım, yıldız sayacının yanında küçük kupa düğmesi (`.star-counter.achievements-button`, kazanılan/toplam ödül). Alttaki büyük şerit kaldırıldı; oyun eklendikçe sayfa uzasa da düğme hep üstte görünür.
+  - Kutlama: rozet üstten kayan kısa kart (3,2 sn, dokununca kapanır); kupa tam ekran konfetili `<dialog>`, "Harika!" ile kapanır. Sırayla gösterilir.
+  - Projede ses yoktu: `js/core/sound.js` Web Audio ile nota çalar (dosya yok). Ayarlar'a "Ses: Açık/Kapalı" eklendi (`mini-kodlama-dunyasi.settings.v1`). İlerlemeyi sıfırla ödülleri de siler.
+  - Kullanıcının tanımında birbirinin aynısı olan koşullar: Dört Dörtlük ≈ İlk Macera Kupası (1. seviye bitmeden diğerleri açılmaz), Büyük Başarı = Kodlama Şampiyonu. İkisi de istendiği gibi ayrı tutuldu, birlikte kazanılırlar.
+  - `/gorev` inceleme döngüsü çalıştırıldı (2 tur): rozet hedefleri `GOALS` sabitine alındı, `.color-red` base.css'teki `.group-expert` ile birleştirildi, `countEarnedRewards(items)` tür verilmezse hepsini sayıyor. İkinci tur temiz, 300 test geçiyor.
+  - Tarayıcıda denendi: sessiz eşitleme, rozet kartı, kupa kutlaması, tekrar bildirim olmaması, yenilemede korunma, sıfırlama, ses ayarı, telefon/tablet; tek HTML (465 KB) dış istek yapmıyor.
+
 ## Sıradaki adımlar
 
-1. Kullanıcı dönünce oyunları kendi cihazında (tercihen `dist/mini-kodlama-dunyasi.html` ile tablette) deneyecek; geri bildirime göre düzeltme.
-2. Push yalnızca kullanıcı isterse yapılır.
+1. Kullanıcının yeni isteklerine göre devam edilir.
+2. Push yalnızca kullanıcı isterse yapılır; projeler tek tek gönderilir.
 
 ## Notlar
 
-- Tarayıcı paneli `dialog` öğesinde `close` olayını tetiklemedi. Bu yüzden ayarlar penceresi kapatılınca doğrudan sayfadan kaldırılıyor.
+- Büyük işler `/gorev` döngüsüyle yapılır: uygulayıcı ve inceleyici ajanlar `.claude/agents/` altında. `.claude/` klasörü git dışında, yalnızca bu bilgisayarda durur.
+- Yeni sabit veya yardımcı yazmadan önce projede aynısı aranır; ikinci kez geçen değer ortak sabite taşınır.
 - Önizleme sunucusu ayarı proje dışında: `Projeler/.claude/launch.json` (ad: `mini-kodlama-gallery`, port 5178).

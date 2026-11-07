@@ -1,0 +1,454 @@
+/* Başarılar: rozet ve kupa çizimleri, ana ekrandaki Başarılarım bölümü,
+   Başarılarım ekranı ve kutlama pencereleri. */
+
+/* Ödüllerde kullanılan ek renkler (oyun renkleri base.css'te) */
+.color-pink { --tone: #ff8fb7; --tone-dark: #e0608e; }
+.color-navy { --tone: #3a4d7a; --tone-dark: var(--navy); }
+.color-gold { --tone: var(--yellow); --tone-dark: var(--yellow-dark); }
+
+/* ---------- Rozet: kurdeleli, yuvarlak, küçük madalya ---------- */
+.reward-badge {
+  --size: 96px;
+  position: relative;
+  display: block;
+  width: var(--size);
+  height: calc(var(--size) * 1.22);
+  flex-shrink: 0;
+}
+
+/* İki kurdele ucu madalyanın arkasından yukarı çıkar */
+.badge-ribbon::before,
+.badge-ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 26%;
+  height: 50%;
+  background: var(--tone);
+  border: 3px solid var(--tone-dark);
+  border-radius: 4px;
+}
+
+.badge-ribbon::before { left: 24%; transform: skewX(14deg); }
+.badge-ribbon::after { right: 24%; transform: skewX(-14deg); background: var(--white); }
+
+.badge-medal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  border: 5px solid var(--tone-dark);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.5), transparent 42%) var(--tone);
+  box-shadow: 0 5px 0 var(--tone-dark);
+  outline: 3px dashed rgba(255, 255, 255, 0.7);
+  outline-offset: calc(var(--size) * -0.17);
+}
+
+/* Rozetin veya kupanın ortasındaki işaret */
+.reward-symbol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.reward-symbol-icon { position: relative; display: block; }
+.reward-symbol-icon img { width: calc(var(--size) * 0.5); height: calc(var(--size) * 0.5); }
+
+.reward-symbol-text {
+  font-size: calc(var(--size) * 0.38);
+  font-weight: 900;
+  color: var(--white);
+  text-shadow: 0 3px 0 var(--tone-dark);
+}
+
+/* Hem ikon hem sayı varsa ikisi de küçülür */
+.reward-symbol.has-caption .reward-symbol-icon img { width: calc(var(--size) * 0.38); height: calc(var(--size) * 0.38); }
+.reward-symbol.has-caption .reward-symbol-text { margin-top: -4px; font-size: calc(var(--size) * 0.24); }
+
+.reward-symbol-stars { display: flex; align-items: flex-end; }
+.reward-symbol-stars img { width: calc(var(--size) * 0.26); height: calc(var(--size) * 0.26); }
+.reward-symbol-stars img:nth-child(2) { width: calc(var(--size) * 0.32); height: calc(var(--size) * 0.32); margin-bottom: 6px; }
+
+/* Üstü çizili ikon (İpucusuz Kahraman: ipucu ampulü üzerinde kırmızı çizgi) */
+.reward-symbol.is-crossed .reward-symbol-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -6%;
+  width: 112%;
+  height: 6px;
+  background: var(--red);
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  transform: rotate(-45deg);
+}
+
+/* ---------- Kupa: büyük altın kupa ve oyun renginde kaide ---------- */
+.reward-trophy {
+  --size: 150px;
+  position: relative;
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  flex-shrink: 0;
+}
+
+.trophy-cup { width: 100%; height: 100%; }
+
+/* Kupanın gövdesindeki beyaz yuvarlak arma (oyun ikonu, robot veya yıldız) */
+.trophy-emblem {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 36%;
+  aspect-ratio: 1;
+  background: var(--white);
+  border: 4px solid var(--tone);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.trophy-emblem .reward-symbol-icon img { width: calc(var(--size) * 0.26); height: calc(var(--size) * 0.26); }
+
+/* Kupa görselindeki kaidenin üstüne oyun renginde plaka */
+.trophy-base {
+  position: absolute;
+  top: 73.4%;
+  left: 29.7%;
+  width: 40.6%;
+  height: 14%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), transparent 60%) var(--tone);
+  border: 3px solid var(--tone-dark);
+  border-radius: 7px;
+}
+
+/* Şampiyon kupası ışıldar */
+.reward-trophy.color-gold { filter: drop-shadow(0 0 14px rgba(255, 210, 77, 0.95)); }
+
+/* ---------- Ana ekran: Başarılarım düğmesi ---------- */
+/* Yıldız sayacının hap görünümünü kullanır; dokunulabildiği için gölge ve basılma efekti eklenir. */
+.achievements-button {
+  border: 0;
+  color: var(--navy);
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--shadow);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.achievements-button:hover { transform: translateY(-2px); }
+.achievements-button:active { transform: translateY(4px); box-shadow: none; }
+
+/* ---------- Başarılarım ekranı ---------- */
+.reward-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 24px;
+  margin: 0;
+  padding: 14px 20px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.reward-summary strong { font-size: 24px; }
+.reward-summary-item { display: flex; align-items: center; gap: 6px; }
+.reward-summary-item img { width: 40px; height: 40px; }
+
+.reward-section {
+  padding: 0 0 20px;
+  overflow: hidden;
+  background: var(--panel);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 var(--lip) 0 var(--shadow);
+}
+
+.reward-section.is-badge { --tone: var(--blue); --tone-dark: var(--blue-dark); }
+.reward-section.is-trophy { --tone: var(--yellow); --tone-dark: var(--yellow-dark); }
+
+.reward-section-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin: 0 0 8px;
+  padding: 10px 20px;
+  font-size: 28px;
+  color: var(--white);
+  background: var(--tone);
+  text-shadow: 0 2px 0 var(--tone-dark);
+}
+
+.reward-section.is-trophy .reward-section-title { color: var(--navy); text-shadow: none; }
+.reward-section-title img { width: 48px; height: 48px; }
+.reward-section-subtitle { font-size: 18px; opacity: 0.9; }
+
+.reward-section-count {
+  margin-left: auto;
+  padding: 2px 14px;
+  font-size: 20px;
+  color: var(--navy);
+  text-shadow: none;
+  background: var(--white);
+  border-radius: 999px;
+}
+
+.reward-group { padding: 0 20px; }
+.reward-group-title { margin: 14px 0 10px; font-size: 20px; }
+.reward-empty { margin: 0; font-weight: 700; opacity: 0.75; }
+
+.reward-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+}
+
+.reward-section.is-trophy .reward-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+
+.reward-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 14px;
+  text-align: center;
+  background: color-mix(in srgb, var(--tone) 12%, var(--white));
+  border: 4px solid color-mix(in srgb, var(--tone) 55%, var(--white));
+  border-radius: var(--radius-md);
+}
+
+.reward-card-art { position: relative; display: block; }
+
+/* Kupalar bir rafın üstünde durur */
+.reward-card.is-trophy .reward-card-art::after {
+  content: "";
+  display: block;
+  width: 190px;
+  height: 14px;
+  margin: -6px auto 4px;
+  background: var(--orange-dark);
+  border-radius: 6px;
+  box-shadow: 0 5px 0 #b85a12;
+}
+
+.reward-title { margin: 4px 0 0; font-size: 21px; line-height: 1.15; }
+.reward-card.is-trophy .reward-title { font-size: 24px; }
+.reward-description { margin: 0; font-size: 16px; font-weight: 700; }
+.reward-condition { margin: 0; font-size: 15px; opacity: 0.85; }
+
+.reward-earned {
+  margin-top: auto;
+  padding: 4px 16px;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--white);
+  background: var(--green);
+  border-radius: 999px;
+  box-shadow: 0 3px 0 var(--green-dark);
+}
+
+.reward-progress { display: flex; align-items: center; gap: 8px; width: 100%; margin-top: auto; }
+.reward-progress .progress-bar { flex: 1; }
+.reward-progress-text { font-size: 15px; font-weight: 800; }
+
+/* Kilitli ödüller soluk ve gri görünür */
+.reward-card.is-locked { background: rgba(255, 255, 255, 0.6); border-color: #d9dee8; }
+.reward-card.is-locked .reward-badge,
+.reward-card.is-locked .reward-trophy { filter: grayscale(1); opacity: 0.4; }
+.reward-card.is-locked .reward-title,
+.reward-card.is-locked .reward-description { opacity: 0.65; }
+
+.reward-lock {
+  position: absolute;
+  right: -8px;
+  bottom: 18px;
+  width: 40px;
+  height: 40px;
+}
+
+/* ---------- Rozet kutlaması: üstten kayan kısa kart ---------- */
+.badge-toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: min(460px, calc(100vw - 32px));
+  padding: 14px 20px;
+  color: var(--navy);
+  background: var(--white);
+  border: 5px solid var(--yellow);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 0 var(--yellow-dark), 0 16px 40px rgba(31, 45, 79, 0.3);
+  transform: translateX(-50%);
+  cursor: pointer;
+  animation: toast-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.badge-toast.is-leaving { animation: toast-out 0.3s ease-in forwards; }
+.badge-toast .reward-badge { --size: 76px; animation: badge-spin 0.8s ease-out; }
+.badge-toast-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+
+.celebration-label {
+  align-self: flex-start;
+  padding: 2px 12px;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--navy);
+  background: var(--yellow);
+  border-radius: 999px;
+}
+
+.badge-toast .celebration-title { font-size: 24px; line-height: 1.1; }
+.badge-toast .celebration-description { font-size: 16px; font-weight: 700; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, -140%); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes toast-out {
+  to { opacity: 0; transform: translate(-50%, -140%); }
+}
+
+@keyframes badge-spin {
+  from { transform: scale(0.3) rotate(-200deg); }
+  to { transform: scale(1) rotate(0deg); }
+}
+
+/* ---------- Kupa kutlaması: tam ekran, konfetili özel pencere ---------- */
+.trophy-celebration {
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 16px;
+  overflow: hidden;
+  border: 0;
+  color: var(--white);
+  background: radial-gradient(circle at 50% 40%, #3a4d7a, var(--navy) 70%);
+}
+
+.trophy-celebration[open] { display: grid; place-items: center; }
+.trophy-celebration::backdrop { background: var(--navy); }
+
+.trophy-celebration-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 520px;
+  text-align: center;
+}
+
+.trophy-celebration .celebration-label { align-self: center; font-size: 20px; padding: 4px 18px; }
+
+.trophy-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(300px, 70vw);
+  aspect-ratio: 1;
+}
+
+/* Kupanın arkasında dönen ışık hüzmeleri */
+.trophy-rays {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgba(255, 210, 77, 0.45) 0 12deg, transparent 12deg 30deg);
+  -webkit-mask: radial-gradient(circle, #000 35%, transparent 70%);
+  mask: radial-gradient(circle, #000 35%, transparent 70%);
+  animation: rays-turn 14s linear infinite;
+}
+
+.trophy-stage .reward-trophy {
+  --size: min(210px, 50vw);
+  animation: trophy-pop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.trophy-celebration .celebration-title {
+  margin: 0;
+  font-size: clamp(32px, 7vw, 46px);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--yellow);
+  paint-order: stroke fill;
+  -webkit-text-stroke: 8px var(--navy-dark);
+}
+
+.trophy-celebration .celebration-description { margin: 0; font-size: 22px; font-weight: 800; }
+.trophy-celebration .btn { min-width: 200px; margin-top: 8px; font-size: 24px; }
+
+.confetti { position: absolute; inset: 0; pointer-events: none; }
+
+.confetti span {
+  position: absolute;
+  top: -24px;
+  left: var(--x);
+  width: 12px;
+  height: 18px;
+  border-radius: 3px;
+  background: var(--yellow);
+  animation: confetti-fall 3.2s linear var(--delay) infinite;
+}
+
+.confetti span:nth-child(5n + 1) { background: var(--blue); }
+.confetti span:nth-child(5n + 2) { background: var(--green); }
+.confetti span:nth-child(5n + 3) { background: var(--red); }
+.confetti span:nth-child(5n + 4) { background: var(--purple); width: 10px; height: 10px; border-radius: 50%; }
+
+@keyframes confetti-fall {
+  to { transform: translateY(110vh) rotate(var(--turn)); }
+}
+
+@keyframes rays-turn {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes trophy-pop {
+  0% { transform: scale(0.2) translateY(60px) rotate(-12deg); opacity: 0; }
+  100% { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
+}
+
+/* ---------- Telefon ---------- */
+@media (max-width: 560px) {
+  .reward-section-title { font-size: 24px; padding: 8px 14px; }
+  .reward-section-title img { width: 38px; height: 38px; }
+  .reward-group { padding: 0 12px; }
+  .reward-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .reward-section.is-trophy .reward-grid { grid-template-columns: 1fr; }
+  .reward-card { padding: 12px 8px; }
+  .reward-card .reward-badge { --size: 80px; }
+  .reward-title { font-size: 18px; }
+  .reward-description { font-size: 15px; }
+  .reward-condition { font-size: 14px; }
+  .badge-toast { gap: 12px; padding: 10px 14px; }
+  .badge-toast .reward-badge { --size: 60px; }
+  .badge-toast .celebration-title { font-size: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-toast,
+  .badge-toast .reward-badge,
+  .trophy-stage .reward-trophy,
+  .trophy-rays,
+  .confetti span { animation: none; }
+  .badge-toast.is-leaving { animation: none; opacity: 0; }
+  .confetti { display: none; }
+}

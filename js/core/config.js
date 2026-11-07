@@ -30,5 +30,7 @@
     MAX_STARS: 3,
     GROUPS,
     STORAGE_KEY: "mini-kodlama-dunyasi.progress.v1",
+    ACHIEVEMENTS_KEY: "mini-kodlama-dunyasi.achievements.v1",
+    SETTINGS_KEY: "mini-kodlama-dunyasi.settings.v1",
   });
 })((globalThis.MKD ??= {}));

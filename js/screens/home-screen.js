@@ -1,12 +1,29 @@
-// Ana ekran: logo, robot, toplam yıldız, ayarlar ve dört oyun kartı.
+// Ana ekran: logo, robot, toplam yıldız, ayarlar, Başarılarım düğmesi ve oyun kartları.
 (function (MKD) {
   "use strict";
 
   const { el } = MKD.dom;
   const { IMAGES, ICONS, iconButton, starCounter, progressBar } = MKD.components;
 
-  function createHomeScreen({ progress, games, router, settingsDialog }) {
+  function createHomeScreen({ progress, achievements, games, router, settingsDialog }) {
     const totalLevels = MKD.config.LEVELS_PER_GAME;
+
+    // Başarılarım düğmesi: yıldız sayacının yanında kupa ve kazanılan ödül sayısı.
+    // Üst çubukta durur; oyun sayısı arttıkça sayfanın altında kaybolmaz.
+    function achievementsButton() {
+      const { earned, total } = MKD.countEarnedRewards(achievements.getStatus());
+      const label = `Başarılarım: ${earned} / ${total} ödül`;
+      return el("button", {
+        type: "button",
+        className: "star-counter achievements-button",
+        title: label,
+        "aria-label": label,
+        onClick: () => router.go(MKD.paths.achievements()),
+      }, [
+        el("img", { src: ICONS.trophy, alt: "" }),
+        el("span", { text: `${earned}/${total}` }),
+      ]);
+    }
 
     function cardProgress(game) {
       const completed = progress.getCompletedCount(game.id);
@@ -37,6 +54,7 @@
 
     function header() {
       return el("header", { className: "home-header" }, [
+        achievementsButton(),
         starCounter(progress.getTotalStars()),
         iconButton({ icon: ICONS.settings, label: "Ayarlar", onClick: settingsDialog.open }),
       ]);

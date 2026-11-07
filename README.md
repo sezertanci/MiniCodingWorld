@@ -20,6 +20,44 @@ Ortak kurallar:
 - **Dokunmatik ekran:** Sürükle-bırak olan yerlerde dokunarak seçme de çalışır.
 - **İpucu** cevabı vermez; sıradaki doğru adımı ya da yanlış yeri gösterir.
 
+## Başarılar: rozetler ve kupalar
+
+Ana ekranın üstünde, yıldız sayacının yanındaki kupa düğmesi **Başarılarım** ekranını açar. Bu ekran kazanılan ve henüz kazanılmamış ödülleri gösterir. Kazanılanlar renkli, kilitliler soluk görünür; kilitli ödülün altında hedefe ne kadar kaldığı yazar (ör. `3/5`).
+
+- **Rozetler** küçük başarılar içindir: kurdeleli, renkli, yuvarlak madalyalar.
+- **Kupalar** büyük hedefler içindir: rafta duran büyük altın kupalar, kaidesi oyunun renginde.
+
+| Rozet | Nasıl kazanılır? |
+|---|---|
+| İlk Oyunum | İlk oyun seviyesini tamamla. |
+| Hızlı Başlangıç | Bir oyunda 5 seviye tamamla. |
+| Azimli Oyuncu | Bir oyunda 10 seviye tamamla. |
+| Usta Kodlayıcı | Bir oyunun 20 seviyesini tamamla. |
+| Dört Dörtlük | Dört oyunun tamamında en az bir seviye bitir. |
+| Yıldız Avcısı | Toplam 20 yıldız kazan. |
+| Yıldız Ustası | Toplam 50 yıldız kazan. |
+| Mükemmel Oyuncu | Bir seviyeyi 3 yıldızla tamamla. |
+| İpucusuz Kahraman | 5 seviyeyi ipucu kullanmadan tamamla (2 veya 3 yıldızlı seviyeler). |
+| Büyük Başarı | Dört oyunun tüm seviyelerini tamamla. |
+
+| Kupa | Nasıl kazanılır? |
+|---|---|
+| İlk Macera Kupası | Dört oyunun her birinde ilk seviyeyi tamamla. |
+| Robot Ustası | Robotun Yolunu Bul oyununu bitir. |
+| Algoritma Ustası | Komutları Sırala oyununu bitir. |
+| Karar Ustası | Eğer Böyleyse oyununu bitir. |
+| Döngü Ustası | Tekrar Et oyununu bitir. |
+| Kodlama Şampiyonu | Dört oyunun 80 seviyesinin tamamını bitir. |
+
+Nasıl çalışır:
+
+- Koşulların hepsi `js/core/achievements.js` içinde, tek yerden hesaplanır. Ayrı bir sayaç tutulmaz; koşullar ilerleme kaydındaki yıldızlardan okunur. İpucu kullanılan seviye 1 yıldız aldığı için 2 ve 3 yıldızlı seviyeler ipucusuz sayılır.
+- Kazanılan ödüller `localStorage` içinde ayrı bir anahtarda (`mini-kodlama-dunyasi.achievements.v1`) saklanır. Her ödül bir kez kazanılır ve bir kez kutlanır; sayfa yenilense de kaybolmaz.
+- Bu özellik eklenmeden önce bitirilmiş seviyeler de sayılır. Bunların ödülleri oyun açılırken sessizce eklenir; çocuğun önüne art arda pencere açılmaz.
+- Yeni rozet kazanılınca ekranın üstünde kısa bir kart çıkar ve kendiliğinden kapanır. Yeni kupa kazanılınca konfetili, tam ekran bir kutlama açılır ve **Harika!** ile kapanır. Aynı anda birden çok ödül gelirse sırayla gösterilir.
+- Kutlama sesleri ses dosyası kullanmadan tarayıcıda çalınır. Ses, ayarlar penceresindeki **Ses: Açık / Kapalı** düğmesiyle kapatılır; bu tercih de kaydedilir.
+- **İlerlemeyi sıfırla** yıldızlarla birlikte rozet ve kupaları da siler.
+
 ## Gereksinimler
 
 - Güncel bir tarayıcı (Chrome, Firefox, Edge veya Safari)
@@ -35,7 +73,7 @@ Ortak kurallar:
 
 İki yolun ilerleme kayıtları birbirinden ayrıdır. Test ederken hep aynı yolu kullan.
 
-İlerlemeyi sıfırlamak için ana ekrandaki ayarlar (dişli) butonuna basıp **İlerlemeyi sıfırla** seçilir.
+İlerlemeyi sıfırlamak için ana ekrandaki ayarlar (dişli) butonuna basıp **İlerlemeyi sıfırla** seçilir. Sesi açıp kapatma düğmesi de bu penceredir.
 
 Görsel galerisi için `gallery/index.html` açılır.
 
@@ -47,7 +85,7 @@ Oyunu başka bir cihaza göndermek için bütün kod ve görseller tek bir HTML 
 node tools/build-single-html.js
 ```
 
-Çıktı `dist/mini-kodlama-dunyasi.html` dosyasıdır (yaklaşık 210 KB). Bu dosya e-posta, mesaj veya USB bellekle gönderilir ve çift tıklanarak açılır; internet gerekmez. `dist/` klasörü sürüm kontrolüne eklenmez, kod değiştikçe komut yeniden çalıştırılır. Tek dosyanın ilerleme kaydı, proje klasöründeki `index.html` kaydından ayrıdır.
+Çıktı `dist/mini-kodlama-dunyasi.html` dosyasıdır (yaklaşık 470 KB). Bu dosya e-posta, mesaj veya USB bellekle gönderilir ve çift tıklanarak açılır; internet gerekmez. `dist/` klasörü sürüm kontrolüne eklenmez, kod değiştikçe komut yeniden çalıştırılır. Tek dosyanın ilerleme kaydı, proje klasöründeki `index.html` kaydından ayrıdır.
 
 ### Android sürümü (tablet için)
 
@@ -81,7 +119,7 @@ Proje klasöründe şu komut çalıştırılır:
 node --test
 ```
 
-Testler seviye kilidi, grup kilidi, yıldız kaydı ve yıldız hesabı kurallarını denetler. Ayrıca dört oyunun kurallarını ve 80 seviyenin her birinin çözülebildiğini (çözümün sınırlara sığdığını) dener.
+Testler seviye kilidi, grup kilidi, yıldız kaydı, yıldız hesabı ve her rozet ile kupanın koşulunu (tekrar verilmemesi ve yenilemede korunması dahil) denetler. Ayrıca dört oyunun kurallarını ve 80 seviyenin her birinin çözülebildiğini (çözümün sınırlara sığdığını) dener.
 
 Android uygulamasının testleri `mobile/` klasöründe `flutter test` ile çalışır.
 
@@ -91,24 +129,27 @@ Android uygulamasının testleri `mobile/` klasöründe `flutter test` ile çal�
 index.html                 Uygulama çerçevesi ve script sırası
 css/
   base.css                 Renk paleti, butonlar, kartlar, üst çubuk, sürükleme
-  screens/                 Ana ekran, seviye seçimi ve oyun ekranı stilleri
+  screens/                 Ana ekran, seviye seçimi, oyun ekranı ve başarılar stilleri
   games/                   Her oyunun kendi stili
 js/
   core/                    Ortak çekirdek
-    config.js              Sabitler: seviye sayısı, zorluk grupları, kayıt anahtarı
+    config.js              Sabitler: seviye sayısı, zorluk grupları, kayıt anahtarları
     storage.js             localStorage okuma/yazma
     stars.js               Yıldız hesabı (1–3)
     progress.js            İlerleme, seviye ve grup kilitleri
+    achievements.js        Rozet ve kupa koşulları, kazanılan ödüllerin kaydı
+    sound.js               Kutlama sesleri ve ses açık/kapalı ayarı
     dom.js, components.js  DOM yardımcısı ve ortak arayüz parçaları (robot konuşma balonu dahil)
     drag-drop.js           Fare ve dokunmatikte aynı çalışan sürükle-bırak
-    router.js              Ekran geçişleri (#/, #/game/<oyun>, #/game/<oyun>/level/<n>)
+    router.js              Ekran geçişleri (#/, #/achievements, #/game/<oyun>, #/game/<oyun>/level/<n>)
     games-registry.js      Oyun listesi
   games/                   Her oyun ayrı klasörde:
     path-finder/           Robotun Yolunu Bul
     command-order/         Komutları Sırala
     if-then/               Eğer Böyleyse
     repeat/                Tekrar Et (harita ve yön tuşlarını path-finder'dan kullanır)
-  screens/                 Ana ekran, seviye seçimi, oyun ekranı, ayarlar penceresi
+  screens/                 Ana ekran, seviye seçimi, oyun ekranı, ayarlar penceresi,
+                           Başarılarım ekranı, rozet/kupa çizimi ve kutlamalar
   app.js                   Başlangıç: servisleri oluşturur, ekranlara verir
 tests/                     node --test ile çalışan testler
 tools/

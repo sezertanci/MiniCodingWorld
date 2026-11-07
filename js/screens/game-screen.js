@@ -5,7 +5,8 @@
   const { el } = MKD.dom;
   const { ICONS, iconButton, starRow, topBar } = MKD.components;
 
-  function createGameScreen({ progress, router }) {
+  // onLevelCompleted: seviye kaydedildikten sonra çağrılır (yeni ödüller burada denetlenir).
+  function createGameScreen({ progress, router, onLevelCompleted }) {
     function resultPanel(game, level, stars) {
       const next = level + 1;
       const hasNext = next <= MKD.config.LEVELS_PER_GAME && progress.isLevelUnlocked(game.id, next);
@@ -70,6 +71,7 @@
           progress.completeLevel(game.id, level, stars);
           nav.refresh();
           stage.replaceChildren(resultPanel(game, level, stars));
+          onLevelCompleted();
         },
       });
 

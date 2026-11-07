@@ -1,4 +1,4 @@
-// Ayarlar penceresi. İlerlemeyi sıfırlama, yanlışlıkla basılmasın diye ikinci bir onay ister.
+// Ayarlar penceresi: sesi açıp kapatma ve ilerlemeyi sıfırlama. İlerlemeyi sıfırlama, yanlışlıkla basılmasın diye ikinci bir onay ister.
 // Her adımda odak güvenli butona ("Kapat" / "Vazgeç") verilir; Enter'a basmak bir şey silmez.
 (function (MKD) {
   "use strict";
@@ -9,7 +9,9 @@
     return el("button", { type: "button", className: `btn ${className}`, text, onClick });
   }
 
-  function createSettingsDialog({ onReset }) {
+  const soundLabel = (enabled) => (enabled ? "Ses: Açık" : "Ses: Kapalı");
+
+  function createSettingsDialog({ sound, onReset }) {
     function open() {
       const dialog = el("dialog", { className: "dialog", "aria-labelledby": "dialog-title" });
       // Pencereyi sayfadan kaldırmayı aşağıdaki "close" olay dinleyicisi yapar.
@@ -22,7 +24,11 @@
 
       function showMain() {
         const closeButton = button("Kapat", "btn-secondary", close);
-        showStep("Ayarlar", [button("İlerlemeyi sıfırla", "btn-danger", showConfirm), closeButton], closeButton);
+        const soundButton = button(soundLabel(sound.isEnabled()), "btn-primary", () => {
+          sound.setEnabled(!sound.isEnabled());
+          soundButton.textContent = soundLabel(sound.isEnabled());
+        });
+        showStep("Ayarlar", [soundButton, button("İlerlemeyi sıfırla", "btn-danger", showConfirm), closeButton], closeButton);
       }
 
       function showConfirm() {
@@ -32,7 +38,7 @@
           close();
         });
         showStep("Emin misin?", [
-          el("p", { text: "Bütün yıldızlar silinecek ve seviyeler yeniden kilitlenecek." }),
+          el("p", { text: "Bütün yıldızlar, rozetler ve kupalar silinecek; seviyeler yeniden kilitlenecek." }),
           el("div", { className: "button-row" }, [cancelButton, confirmButton]),
         ], cancelButton);
       }

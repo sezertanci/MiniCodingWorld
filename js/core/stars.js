@@ -20,5 +20,7 @@
     return targetMet ? STARS.PERFECT : STARS.NO_HINT;
   }
 
+  // Başarı sistemi ipucusuz biten seviyeleri (en az NO_HINT yıldız) saymak için kullanır.
+  MKD.STARS = STARS;
   MKD.calculateStars = calculateStars;
 })((globalThis.MKD ??= {}));

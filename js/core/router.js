@@ -3,16 +3,18 @@
 (function (MKD) {
   "use strict";
 
-  const ROUTES = Object.freeze({ HOME: "home", LEVELS: "levels", PLAY: "play" });
+  const ROUTES = Object.freeze({ HOME: "home", ACHIEVEMENTS: "achievements", LEVELS: "levels", PLAY: "play" });
 
   const ROUTE_TABLE = Object.freeze([
     { name: ROUTES.HOME, pattern: /^$/, keys: [] },
+    { name: ROUTES.ACHIEVEMENTS, pattern: /^achievements$/, keys: [] },
     { name: ROUTES.LEVELS, pattern: /^game\/([a-z-]+)$/, keys: ["gameId"] },
     { name: ROUTES.PLAY, pattern: /^game\/([a-z-]+)\/level\/(\d+)$/, keys: ["gameId", "level"] },
   ]);
 
   const paths = Object.freeze({
     home: () => "",
+    achievements: () => "achievements",
     levels: (gameId) => `game/${gameId}`,
     play: (gameId, level) => `game/${gameId}/level/${level}`,
   });

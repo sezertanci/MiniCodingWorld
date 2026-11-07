@@ -7,7 +7,14 @@
   function start() {
     const container = document.getElementById("app");
     const progress = MKD.createProgress(MKD.createLocalStorage(config.STORAGE_KEY));
+    const achievements = MKD.createAchievements({ progress, storage: MKD.createLocalStorage(config.ACHIEVEMENTS_KEY) });
+    const sound = MKD.createSound(MKD.createLocalStorage(config.SETTINGS_KEY));
+    const celebration = MKD.createCelebration({ sound });
     let currentRoute = null;
+
+    // Bu özellikten önce bitirilmiş seviyelerin ödülleri açılışta sessizce eklenir;
+    // eski ilerlemesi olan çocuğun önüne art arda pencere açılmaz.
+    achievements.sync();
 
     const router = MKD.createRouter((route) => {
       currentRoute = route;
@@ -15,21 +22,28 @@
     });
 
     const settingsDialog = MKD.createSettingsDialog({
+      sound,
       onReset: () => {
         progress.reset();
+        achievements.reset();
         show(currentRoute);
       },
     });
 
     const screens = {
-      [ROUTES.HOME]: MKD.createHomeScreen({ progress, games: MKD.games, router, settingsDialog }),
+      [ROUTES.HOME]: MKD.createHomeScreen({ progress, achievements, games: MKD.games, router, settingsDialog }),
+      [ROUTES.ACHIEVEMENTS]: MKD.createAchievementsScreen({ achievements, router }),
       [ROUTES.LEVELS]: MKD.createLevelSelectScreen({ progress, router }),
-      [ROUTES.PLAY]: MKD.createGameScreen({ progress, router }),
+      [ROUTES.PLAY]: MKD.createGameScreen({
+        progress,
+        router,
+        onLevelCompleted: () => celebration.show(achievements.sync()),
+      }),
     };
 
     // Adresteki oyun ve seviyeyi doğrular. Geçersiz veya kilitliyse uygun ekrana yönlendirir.
     function resolveParams({ name, params }) {
-      if (name === ROUTES.HOME) {
+      if (name === ROUTES.HOME || name === ROUTES.ACHIEVEMENTS) {
         return {};
       }
       const game = MKD.findGame(params.gameId);

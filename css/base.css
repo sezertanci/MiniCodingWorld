@@ -68,12 +68,12 @@ button:disabled { cursor: not-allowed; }
 .load-warning-steps { padding: 10px; background: var(--yellow); border-radius: 14px; }
 .load-warning-note { font-size: 16px; opacity: 0.75; }
 
-/* Renk sınıfları: oyun kartları ve zorluk grupları bunları kullanır */
+/* Renk sınıfları: oyun kartları, zorluk grupları ve ödüller bunları kullanır */
 .color-blue, .group-medium { --tone: var(--blue); --tone-dark: var(--blue-dark); }
 .color-green, .group-easy { --tone: var(--green); --tone-dark: var(--green-dark); }
 .color-purple, .group-hard { --tone: var(--purple); --tone-dark: var(--purple-dark); }
 .color-orange { --tone: var(--orange); --tone-dark: var(--orange-dark); }
-.group-expert { --tone: var(--red); --tone-dark: var(--red-dark); }
+.color-red, .group-expert { --tone: var(--red); --tone-dark: var(--red-dark); }
 
 /* Üst çubuk */
 .top-bar {
