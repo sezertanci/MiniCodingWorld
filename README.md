@@ -49,6 +49,30 @@ node tools/build-single-html.js
 
 Çıktı `dist/mini-kodlama-dunyasi.html` dosyasıdır (yaklaşık 210 KB). Bu dosya e-posta, mesaj veya USB bellekle gönderilir ve çift tıklanarak açılır; internet gerekmez. `dist/` klasörü sürüm kontrolüne eklenmez, kod değiştikçe komut yeniden çalıştırılır. Tek dosyanın ilerleme kaydı, proje klasöründeki `index.html` kaydından ayrıdır.
 
+### Android sürümü (tablet için)
+
+`mobile/` klasöründe, oyunu Android tablette (Redmi Pad 2 üzerinde denenmek üzere) uygulama olarak açan bir Flutter projesi vardır. Uygulama tek dosyalık sürümü WebView içinde gösterir; internet gerekmez. İlerleme tablette kalır, uygulama kapatılıp açılınca kaybolmaz. Oyun tam ekran açılır ve tablet çevrildikçe döner. Android geri tuşu oyunda bir önceki ekrana döner, ana ekranda uygulamadan çıkar.
+
+Gereksinimler: Flutter (güncel kararlı sürüm) ve Android SDK. Tablette **Geliştirici seçenekleri** ve **USB hata ayıklama** açık olmalıdır.
+
+1. Oyun dosyası üretilir (oyun kodu her değiştiğinde yeniden çalıştırılır):
+
+   ```bash
+   node tools/build-mobile-asset.js
+   ```
+
+   Çıktı `mobile/assets/game.html` dosyasıdır ve sürüm kontrolüne eklenmez.
+
+2. `mobile/` klasöründe uygulama çalıştırılır veya APK üretilir:
+
+   ```bash
+   cd mobile
+   flutter run                 # USB ile bağlı tablette açar
+   flutter build apk --debug   # build/app/outputs/flutter-apk/app-debug.apk
+   ```
+
+Uygulamanın ilerleme kaydı tarayıcıdaki kayıtlardan ayrıdır.
+
 ### Testler
 
 Proje klasöründe şu komut çalıştırılır:
@@ -58,6 +82,8 @@ node --test
 ```
 
 Testler seviye kilidi, grup kilidi, yıldız kaydı ve yıldız hesabı kurallarını denetler. Ayrıca dört oyunun kurallarını ve 80 seviyenin her birinin çözülebildiğini (çözümün sınırlara sığdığını) dener.
+
+Android uygulamasının testleri `mobile/` klasöründe `flutter test` ile çalışır.
 
 ## Klasör yapısı
 
@@ -87,6 +113,10 @@ js/
 tests/                     node --test ile çalışan testler
 tools/
   build-single-html.js     Tek dosyalık sürümü üretir (dist/ klasörüne)
+  build-mobile-asset.js    Tek dosyalık sürümü Android uygulamasına yazar (mobile/assets/)
+mobile/                    Android uygulaması (Flutter, oyunu WebView ile açar)
+  lib/                     Uygulama kodu: tam ekran WebView ve geri tuşu
+  test/                    flutter test ile çalışan testler
 assets/
   characters/    Robot ve diğer karakterler
   backgrounds/   Ekran arka planları

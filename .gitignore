@@ -13,3 +13,9 @@ assets/**/_draft/
 
 # Tek dosyalık sürüm (node tools/build-single-html.js ile üretilir)
 dist/
+
+# Android sürümü (Flutter) derleme klasörleri ve üretilen oyun dosyası
+# (node tools/build-mobile-asset.js ile üretilir)
+mobile/build/
+mobile/.dart_tool/
+mobile/assets/game.html

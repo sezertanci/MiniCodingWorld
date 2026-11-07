@@ -71,18 +71,17 @@ function buildSingleHtml() {
     .replace(SCRIPT_TAG, (_, src) => inlineScript(src, toDataUri));
 }
 
-function main() {
+/** Tek dosyalık sürümü verilen yola yazar ve boyutunu ekrana basar. Android çıktısı da bunu kullanır. */
+function writeSingleHtml(outputPath) {
   const html = buildSingleHtml();
-  const outputDir = path.join(ROOT, OUTPUT_DIR);
-  fs.mkdirSync(outputDir, { recursive: true });
-  const outputPath = path.join(outputDir, OUTPUT_FILE);
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, html, "utf8");
   const sizeKb = Math.round(Buffer.byteLength(html) / 1024);
   console.log(`Oluşturuldu: ${path.relative(ROOT, outputPath)} (${sizeKb} KB)`);
 }
 
 if (require.main === module) {
-  main();
+  writeSingleHtml(path.join(ROOT, OUTPUT_DIR, OUTPUT_FILE));
 }
 
-module.exports = { buildSingleHtml };
+module.exports = { buildSingleHtml, writeSingleHtml };
