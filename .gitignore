@@ -8,5 +8,8 @@ Thumbs.db
 *.tmp
 assets/**/_draft/
 
+# Deneysel Claude otomasyonu (/gorev döngüsü), şimdilik repoya girmez
+.claude/
+
 # Tek dosyalık sürüm (node tools/build-single-html.js ile üretilir)
 dist/
