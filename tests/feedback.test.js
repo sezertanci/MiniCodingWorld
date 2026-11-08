@@ -42,6 +42,7 @@ before(() => {
   globalThis.document = { createElement: createFakeNode };
   require("../js/core/config.js");
   require("../js/core/dom.js");
+  require("../js/core/characters.js");
   require("../js/core/components.js");
   require("../js/core/timing.js");
 });

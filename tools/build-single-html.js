@@ -13,16 +13,16 @@ const ROOT = path.resolve(__dirname, "..");
 const OUTPUT_DIR = "dist";
 const OUTPUT_FILE = "mini-kodlama-dunyasi.html";
 
-const MIME_TYPES = Object.freeze({ ".svg": "image/svg+xml", ".png": "image/png" });
+const MIME_TYPES = Object.freeze({ ".svg": "image/svg+xml", ".png": "image/png", ".webp": "image/webp" });
 
 // index.html içindeki bağlantılar
 const STYLESHEET_TAG = /<link rel="stylesheet" href="([^"]+)">/g;
 const SCRIPT_TAG = /<script src="([^"]+)"><\/script>/g;
 const ICON_TAG = /<link rel="icon" href="([^"]+)">/g;
 // CSS içindeki görseller: url("../../assets/...")
-const CSS_URL = /url\("([^"]+\.(?:svg|png))"\)/g;
+const CSS_URL = /url\("([^"]+\.(?:svg|png|webp))"\)/g;
 // JS içindeki görsel yolları: "assets/icons/star.svg"
-const JS_ASSET = /"(assets\/[^"]+\.(?:svg|png))"/g;
+const JS_ASSET = /"(assets\/[^"]+\.(?:svg|png|webp))"/g;
 
 function readText(file) {
   return fs.readFileSync(path.join(ROOT, file), "utf8");

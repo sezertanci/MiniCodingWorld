@@ -92,16 +92,16 @@
   const blockClass = (type, value) =>
     `if-block ${type === SLOT_TYPE.CONDITION ? "if-block-condition" : `if-block-action if-tone-${ACTIONS[value].tone}`}`;
 
-  function mount(container, { level: levelNumber, feedback, onComplete }) {
+  function mount(container, { level: levelNumber, feedback, character, onComplete }) {
     const level = MKD.ifThen.levels[levelNumber - 1];
     const lane = MKD.ifThen.parseLane(level.lane);
     const palette = MKD.ifThen.paletteFor(level);
-    const scene = MKD.ifThen.createSceneView(lane);
+    const scene = MKD.ifThen.createSceneView(lane, character);
     const slots = createSlots(level);
 
     const state = { target: null, hintUsed: false, runs: 0, running: false, activeRule: null, mark: null, hintAction: null };
 
-    const bubble = MKD.components.speechBubble(level.intro, feedback);
+    const bubble = MKD.components.speechBubble(level.intro, feedback, character);
     const say = bubble.say;
     const rulesBox = el("div", { className: "if-rules" });
     const paletteBox = el("div", { className: "if-palette" });

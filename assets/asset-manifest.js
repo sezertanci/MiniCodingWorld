@@ -6,6 +6,11 @@
 // Klasik <script> ile yüklenir; böylece sunucu olmadan file:// üzerinden de çalışır.
 (globalThis.MKD ??= {}).assetManifest = Object.freeze([
   // Karakterler
+  { file: "characters/robot.webp", category: "characters", source: "ai", description: "Ana karakter Robi. Yerel ComfyUI araçlarıyla zemini silinmiş, başparmak yukarı." },
+  { file: "characters/robot-bow.webp", category: "characters", source: "ai", description: "Seçilebilir karakter Fiyo: kulaklarında pembe fiyonk olan robot. Robi'den yerel ComfyUI ile üretildi, zemini silindi." },
+  { file: "characters/robot-lamp.webp", category: "characters", source: "ai", description: "Seçilebilir karakter Işıl: alnında parlayan lamba, kirpikli gözler. Robi'den yerel ComfyUI ile üretildi, zemini silindi." },
+  { file: "characters/robot-ribbon.webp", category: "characters", source: "ai", description: "Seçilebilir karakter Pembe: fiyonklu, pembe zırhlı ve kurdeleli robot. Robi'den yerel ComfyUI ile üretildi, zemini silindi." },
+  { file: "characters/robot-cape.webp", category: "characters", source: "ai", description: "Seçilebilir karakter Pırıl: boynuzlu, pelerinli ve pembe zırhlı robot. Robi'den yerel ComfyUI ile üretildi, kalkık eli yeniden çizdirildi, zemini silindi." },
   { file: "characters/robot.svg", category: "characters", source: "svg", description: "Ana karakter Robi. El sallayan robot." },
   { file: "characters/robot-wave.png", category: "characters", source: "mockup", description: "Ana ekrandaki büyük robot (başparmak yukarı)." },
   { file: "characters/robot-small.png", category: "characters", source: "mockup", description: "Izgara haritadaki küçük robot." },

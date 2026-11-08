@@ -1,11 +1,11 @@
-// Ana ekran: logo, robot, toplam yıldız, ayarlar, Başarılarım düğmesi ve oyun kartları.
+// Ana ekran: logo, seçili karakter, toplam yıldız, ayarlar, Başarılarım düğmesi ve oyun kartları.
 (function (MKD) {
   "use strict";
 
   const { el } = MKD.dom;
-  const { IMAGES, ICONS, iconButton, starCounter, progressBar } = MKD.components;
+  const { ICONS, iconButton, starCounter, progressBar } = MKD.components;
 
-  function createHomeScreen({ progress, achievements, games, router, settingsDialog }) {
+  function createHomeScreen({ progress, achievements, games, router, settingsDialog, characters, characterDialog }) {
     const totalLevels = MKD.config.LEVELS_PER_GAME;
 
     // Başarılarım düğmesi: yıldız sayacının yanında kupa ve kazanılan ödül sayısı.
@@ -62,9 +62,27 @@
       ]);
     }
 
+    // Seçili karakter; dokununca karakter seçme penceresi açılır ve seçilen karakter hemen görünür.
+    function characterButton() {
+      const image = el("img", { className: "home-robot", alt: "" });
+      const button = el("button", { type: "button", className: "home-character" }, [
+        image,
+        el("span", { className: "home-character-change", text: "Değiştir" }),
+      ]);
+      const show = (character) => {
+        image.src = character.image;
+        const label = `Karakterin: ${character.name}. Değiştirmek için dokun.`;
+        button.title = label;
+        button.setAttribute("aria-label", label);
+      };
+      button.addEventListener("click", () => characterDialog.open(show));
+      show(characters.current());
+      return button;
+    }
+
     function hero() {
       return el("div", { className: "home-hero" }, [
-        el("img", { className: "home-robot", src: IMAGES.robot, alt: "Robot Robi el sallıyor" }),
+        characterButton(),
         el("div", { className: "home-title" }, [
           el("h1", { className: "logo", "aria-label": "Mini Kodlama Dünyası" }, [
             el("span", { className: "logo-top", text: "Mini Kodlama" }),

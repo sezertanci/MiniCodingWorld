@@ -31,14 +31,15 @@
     return el("div", { className: classes }, [KIND_IMAGES[kind] && el("img", { className: "if-object", src: KIND_IMAGES[kind], alt: "" })]);
   }
 
-  function createSceneView(lane) {
+  // character: yolda yürüyen karakter (çocuğun seçtiği karakter)
+  function createSceneView(lane, character) {
     const cells = lane.map(laneCell);
     const allCells = [
       el("div", { className: "if-cell if-path if-start" }),
       ...cells,
       el("div", { className: "if-cell if-path if-goal" }, [el("img", { className: "if-object", src: IMAGES.goal, alt: "Bayrak" })]),
     ];
-    const robot = el("div", { className: "if-robot" }, [el("img", { src: IMAGES.robot, alt: "Robot" })]);
+    const robot = el("div", { className: "if-robot" }, [el("img", { src: character.image, alt: character.name })]);
     const row = el("div", { className: "if-lane" }, [...allCells, robot]);
     row.style.setProperty("--count", allCells.length);
     const scroller = el("div", { className: "if-lane-scroll" }, [row]);

@@ -106,17 +106,17 @@
     return `Parlayan kareye bak. Sıradaki komut: ${COMMANDS[hint.direction].label}.`;
   }
 
-  function mount(container, { level: levelNumber, feedback, onComplete }) {
+  function mount(container, { level: levelNumber, feedback, character, onComplete }) {
     const definition = MKD.pathFinder.levels[levelNumber - 1];
     const level = MKD.pathFinder.parseLevel(definition);
     const maxCommands = definition.maxCommands ?? DEFAULT_MAX_COMMANDS;
     const targetLength = MKD.pathFinder.optimalLength(level);
-    const board = MKD.pathFinder.createBoardView(level);
+    const board = MKD.pathFinder.createBoardView(level, character);
     const introText = definition.intro ?? (level.coins.length > 0 ? MESSAGES.coinIntro : MESSAGES.intro);
 
     const state = { commands: [], selected: -1, hintUsed: false, running: false, highlight: null };
 
-    const bubble = MKD.components.speechBubble(introText, feedback);
+    const bubble = MKD.components.speechBubble(introText, feedback, character);
     const programList = el("ol", {
       className: "pf-program-list pf-strip", "aria-label": "Komutlarım", "data-drop-zone": LIST_ZONE,
     });

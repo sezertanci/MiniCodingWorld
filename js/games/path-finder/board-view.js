@@ -39,7 +39,8 @@
     return node;
   }
 
-  function createBoardView(level) {
+  // character: haritada yürüyen karakter (çocuğun seçtiği karakter)
+  function createBoardView(level, character) {
     const cells = [];
     for (let y = 0; y < level.height; y++) {
       for (let x = 0; x < level.width; x++) {
@@ -51,7 +52,7 @@
     const goal = placed("pf-goal", level.goal, [el("img", { src: IMAGES.goal, alt: "Bayrak" })]);
     const startMarker = placed("pf-start", level.start);
     const hintMarker = placed("pf-hint-marker", level.start);
-    const robot = placed("pf-robot", level.start, [el("img", { src: IMAGES.robot, alt: "Robot" })]);
+    const robot = placed("pf-robot", level.start, [el("img", { src: character.image, alt: character.name })]);
     hintMarker.hidden = true;
 
     const element = el("div", { className: "pf-board", role: "img", "aria-label": "Oyun haritası" }, [

@@ -51,7 +51,8 @@
 .pf-goal, .pf-coin { z-index: 2; }
 .pf-hint-marker { z-index: 3; }
 .pf-robot { z-index: 4; transition: transform 0.4s ease-in-out; }
-.pf-robot img { width: 88%; height: 88%; }
+/* Robot, başlangıç karesinin kesik çizgili çerçevesinin (%88) içinde kalır */
+.pf-robot img { width: 72%; height: 72%; object-fit: contain; }
 
 /* Başlangıç karesi: kesik çizgili lacivert çerçeve */
 .pf-start::after {

@@ -7,6 +7,7 @@ require("../js/core/config.js");
 require("../js/core/stars.js");
 require("../js/core/progress.js");
 require("../js/core/dom.js");
+require("../js/core/characters.js");
 require("../js/core/components.js");
 require("../js/core/games-registry.js");
 require("../js/core/achievements.js");

@@ -6,7 +6,8 @@
 
   // Birden çok ekranda ve oyunda geçen karakter ve nesne görselleri tek yerde tutulur.
   const IMAGES = Object.freeze({
-    robot: "assets/characters/robot.svg",
+    // Varsayılan karakter Robi; oyunlarda çocuğun seçtiği karakter gösterilir (js/core/characters.js).
+    robot: MKD.DEFAULT_CHARACTER.image,
     goal: "assets/puzzles/goal-flag.svg",
     rock: "assets/puzzles/rock.svg",
     door: "assets/puzzles/door.svg",
@@ -99,10 +100,11 @@
    * Oyunlarda robotun konuşma balonu. Ekran okuyucular yeni mesajı duyurur.
    * say(text): mesajı değiştirir, robot konuşur. correct(text) / wrong(text): robot sevinir ya da
    * kafa sallar ve ortak geri bildirim nesnesi (feedback) doğru ya da yanlış sesini çalar.
+   * character: balonda konuşan karakter (çocuğun seçtiği karakter).
    */
-  function speechBubble(text, feedback) {
+  function speechBubble(text, feedback, character = MKD.DEFAULT_CHARACTER) {
     const message = el("p", { className: "speech-message", "aria-live": "polite", text });
-    const robot = el("img", { className: "speech-robot", src: IMAGES.robot, alt: "" });
+    const robot = el("img", { className: "speech-robot", src: character.image, alt: "" });
     const element = el("div", { className: "speech-bubble" }, [robot, message]);
 
     function show(next, mood) {

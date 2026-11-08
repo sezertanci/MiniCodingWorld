@@ -11,7 +11,8 @@
   // onLevelCompleted: seviye kaydedildikten sonra, yıldız gösterisi bitince çağrılır (yeni ödüller burada
   // denetlenir ve kutlanır). Böylece rozet/kupa sesi seviye sonu ve yıldız sesleriyle üst üste binmez.
   // Çocuk bu sırada başka ekrana geçse de çağrılır; kazanılan ödül kaybolmaz.
-  function createGameScreen({ progress, router, feedback, onLevelCompleted }) {
+  // characters: oyunda çocuğun seçtiği karakter gösterilir.
+  function createGameScreen({ progress, router, feedback, characters, onLevelCompleted }) {
     // Kazanılan yıldızlar sırayla "pop" ile belirir; gecikme CSS'e değişkenle verilir ve her yıldızda
     // sırası yükselen yıldız sesi çalar. Çocuk bu sırada başka ekrana geçerse ses çalınmaz.
     function animatedStars(panel, stars) {
@@ -92,6 +93,7 @@
         game,
         level,
         feedback,
+        character: characters.current(),
         onComplete: (stars) => {
           progress.completeLevel(game.id, level, stars);
           nav.refresh();

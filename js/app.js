@@ -9,6 +9,8 @@
     const progress = MKD.createProgress(MKD.createLocalStorage(config.STORAGE_KEY));
     const achievements = MKD.createAchievements({ progress, storage: MKD.createLocalStorage(config.ACHIEVEMENTS_KEY) });
     const sound = MKD.createSound(MKD.createLocalStorage(config.SETTINGS_KEY));
+    const characters = MKD.createCharacters(MKD.createLocalStorage(config.CHARACTER_KEY));
+    const characterDialog = MKD.createCharacterDialog({ characters });
     const celebration = MKD.createCelebration({ sound });
     // Oyunlar ve sonuç paneli sesi bu tek nesneden çalar; ses ayarı hepsine birden uygulanır.
     const feedback = MKD.createFeedback(sound);
@@ -33,13 +35,16 @@
     });
 
     const screens = {
-      [ROUTES.HOME]: MKD.createHomeScreen({ progress, achievements, games: MKD.games, router, settingsDialog }),
+      [ROUTES.HOME]: MKD.createHomeScreen({
+        progress, achievements, games: MKD.games, router, settingsDialog, characters, characterDialog,
+      }),
       [ROUTES.ACHIEVEMENTS]: MKD.createAchievementsScreen({ achievements, router }),
       [ROUTES.LEVELS]: MKD.createLevelSelectScreen({ progress, router }),
       [ROUTES.PLAY]: MKD.createGameScreen({
         progress,
         router,
         feedback,
+        characters,
         onLevelCompleted: () => celebration.show(achievements.sync()),
       }),
     };

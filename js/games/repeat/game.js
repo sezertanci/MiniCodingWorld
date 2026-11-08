@@ -68,18 +68,18 @@
     return `${definition.hint} Parlayan kareye bak; robot oraya ${COMMANDS[hint.direction].label.toLowerCase()} gitmeli.`;
   }
 
-  function mount(container, { level: levelNumber, feedback, onComplete }) {
+  function mount(container, { level: levelNumber, feedback, character, onComplete }) {
     const engine = MKD.repeatGame;
     const definition = engine.levels[levelNumber - 1];
     const level = MKD.pathFinder.parseLevel(definition);
     const targetBlocks = engine.countBlocks(engine.parseSolution(definition.solution));
-    const board = MKD.pathFinder.createBoardView(level);
+    const board = MKD.pathFinder.createBoardView(level, character);
     const introText = definition.intro ?? (level.coins.length > 0 ? MESSAGES.coinIntro : MESSAGES.intro);
 
     // target: içine ok eklenen tekrar bloğu; selected: silmek için seçilen yer ({ block, inner }).
     const state = { program: [], target: NO_TARGET, selected: null, highlight: null, hintUsed: false, running: false };
 
-    const bubble = MKD.components.speechBubble(introText, feedback);
+    const bubble = MKD.components.speechBubble(introText, feedback, character);
     const programList = el("ol", { className: "pf-program-list pf-strip rp-program-list", "aria-label": "Bloklarım" });
     const programCount = el("span", { className: "pf-program-count" });
     const editBar = el("div", { className: "pf-edit-popover", role: "toolbar", "aria-label": "Seçili blok" });

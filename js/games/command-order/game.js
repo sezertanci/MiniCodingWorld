@@ -44,7 +44,7 @@
     });
   }
 
-  function mount(container, { level: levelNumber, feedback, onComplete }) {
+  function mount(container, { level: levelNumber, feedback, character, onComplete }) {
     const level = MKD.commandOrder.levels[levelNumber - 1];
     const cards = MKD.commandOrder.shuffleCards(MKD.commandOrder.buildCards(level), levelNumber * SHUFFLE_SEED_STEP);
     const cardById = new Map(cards.map((card, index) => [card.id, { ...card, tone: index % TONE_COUNT }]));
@@ -59,7 +59,7 @@
       done: false,
     };
 
-    const bubble = MKD.components.speechBubble(introText, feedback);
+    const bubble = MKD.components.speechBubble(introText, feedback, character);
     const say = bubble.say;
     const slotsBox = el("div", { className: "co-slots" });
     const pool = el("div", { className: "co-pool", "data-drop-zone": POOL_ZONE, "aria-label": "Kartlar" });
