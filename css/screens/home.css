@@ -83,9 +83,13 @@
   box-shadow: 0 3px 0 var(--shadow);
 }
 
+/* Karakter görsellerinin genişliği farklıdır; sabit oranlı kutu, karakter değişince ekranın kaymasını önler. */
 .home-robot {
   width: 170px;
   height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  object-position: bottom;
   animation: robot-wave 3s ease-in-out infinite;
   transform-origin: bottom center;
 }
