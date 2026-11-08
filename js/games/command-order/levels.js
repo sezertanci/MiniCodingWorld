@@ -70,10 +70,10 @@
       hint: "Oyuncakları koyacağın kutu yanında değilse ne yaparsın?",
     },
     {
-      title: "Tohum ek", icon: "assets/command-order/seed-sprout.svg",
+      title: "Tohum ek", icon: "assets/command-order/seed-sprout.webp",
       steps: [
-        step("Toprakta çukur kaz", "assets/command-order/seed-dig.svg"), step("Tohumu çukura koy", "assets/command-order/seed-drop.svg"), step("Üstünü toprakla ört", "assets/command-order/seed-cover.svg"),
-        step("Tohumu sula", "assets/command-order/seed-water.svg"), step("Filizin çıkmasını bekle", "assets/command-order/seed-sprout.svg"),
+        step("Toprakta çukur kaz", "assets/command-order/seed-dig.webp"), step("Tohumu çukura koy", "assets/command-order/seed-drop.webp"), step("Üstünü toprakla ört", "assets/command-order/seed-cover.webp"),
+        step("Tohumu sula", "assets/command-order/seed-water.webp"), step("Filizin çıkmasını bekle", "assets/command-order/seed-sprout.webp"),
       ],
       hint: "Tohumun gireceği bir çukur olmadan onu toprağa koyamazsın.",
     },
