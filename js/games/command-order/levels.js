@@ -15,8 +15,8 @@
   const levels = [
     // Kolay 1–5: 2–3 adımlı günlük işler
     {
-      title: "Çiçeği sula", icon: "assets/command-order/flower-water.svg",
-      steps: [step("Sulama kabını doldur", "assets/command-order/flower-fill-can.svg"), step("Çiçeği sula", "assets/command-order/flower-water.svg")],
+      title: "Çiçeği sula", icon: "assets/command-order/flower-water.webp",
+      steps: [step("Sulama kabını doldur", "assets/command-order/flower-fill-can.webp"), step("Çiçeği sula", "assets/command-order/flower-water.webp")],
       hint: "Çiçeği sulamak için önce kabın içinde su olmalı.",
     },
     {
