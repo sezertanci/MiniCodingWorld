@@ -84,9 +84,9 @@
       return el("div", { className: "home-hero" }, [
         characterButton(),
         el("div", { className: "home-title" }, [
-          el("h1", { className: "logo", "aria-label": "Mini Coding World" }, [
-            el("span", { className: "logo-top", text: "Mini Coding" }),
-            el("span", { className: "logo-bottom", text: "World" }),
+          el("h1", { className: "logo", "aria-label": "Mini Kodlama Dünyası" }, [
+            el("span", { className: "logo-top", text: "Mini Kodlama" }),
+            el("span", { className: "logo-bottom", text: "Dünyası" }),
           ]),
           el("p", { className: "home-tagline", text: "Oyna • Öğren • Keşfet" }),
         ]),
