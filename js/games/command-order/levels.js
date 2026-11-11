@@ -28,10 +28,10 @@
       hint: "Fırçalamaya başlamadan önce fırçanın üstünde macun olmalı.",
     },
     {
-      title: "Ellerini yıka", icon: "assets/command-order/hands-soap.svg",
+      title: "Ellerini yıka", icon: "assets/command-order/hands-soap.webp",
       steps: [
-        step("Ellerini sabunla", "assets/command-order/hands-soap.svg"), step("Ellerini durula", "assets/command-order/hands-rinse.svg"),
-        step("Ellerini kurula", "assets/command-order/hands-dry.svg"),
+        step("Ellerini sabunla", "assets/command-order/hands-soap.webp"), step("Ellerini durula", "assets/command-order/hands-rinse.webp"),
+        step("Ellerini kurula", "assets/command-order/hands-dry.webp"),
       ],
       hint: "Köpükler gitmeden elini kurulamak olmaz.",
     },
@@ -187,7 +187,7 @@
       title: "Kurabiye yap ve paylaş", icon: "assets/command-order/cookie-share.svg",
       stages: [{ title: "Hazırla", size: 3 }, { title: "Pişir", size: 2 }, { title: "Paylaş", size: 2 }],
       steps: [
-        step("Ellerini yıka", "assets/command-order/hands-rinse.svg"), step("Malzemeleri karıştır", "assets/command-order/cake-mix.svg"), step("Hamura şekil ver", "assets/command-order/cookie-shape.svg"),
+        step("Ellerini yıka", "assets/command-order/hands-rinse.webp"), step("Malzemeleri karıştır", "assets/command-order/cake-mix.svg"), step("Hamura şekil ver", "assets/command-order/cookie-shape.svg"),
         step("Fırında pişir", "assets/command-order/cookie-bake.svg"), step("Soğumasını bekle", "assets/command-order/cookie-cool.svg"), step("Kutuya koy", "assets/command-order/cookie-box.svg"),
         step("Arkadaşlarına ikram et", "assets/command-order/cookie-share.svg"),
       ],
