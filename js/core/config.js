@@ -29,9 +29,9 @@
     MIN_STARS: 1,
     MAX_STARS: 3,
     GROUPS,
-    STORAGE_KEY: "mini-kodlama-dunyasi.progress.v1",
-    ACHIEVEMENTS_KEY: "mini-kodlama-dunyasi.achievements.v1",
-    SETTINGS_KEY: "mini-kodlama-dunyasi.settings.v1",
-    CHARACTER_KEY: "mini-kodlama-dunyasi.character.v1",
+    STORAGE_KEY: "mini-coding-world.progress.v1",
+    ACHIEVEMENTS_KEY: "mini-coding-world.achievements.v1",
+    SETTINGS_KEY: "mini-coding-world.settings.v1",
+    CHARACTER_KEY: "mini-coding-world.character.v1",
   });
 })((globalThis.MKD ??= {}));

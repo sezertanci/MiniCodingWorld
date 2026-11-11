@@ -50,7 +50,7 @@
   { file: "ui/button-arrow-down.svg", category: "ui", source: "svg", description: "Aşağı Git komut butonu." },
   { file: "ui/button-arrow-left.svg", category: "ui", source: "svg", description: "Sola Git komut butonu." },
   { file: "ui/button-arrow-right.svg", category: "ui", source: "svg", description: "Sağa Git komut butonu." },
-  { file: "ui/logo.png", category: "ui", source: "mockup", description: "Mini Kodlama Dünyası logosu." },
+  { file: "ui/logo.png", category: "ui", source: "mockup", description: "Mini Coding World logosu." },
   { file: "ui/title-banner.png", category: "ui", source: "mockup", description: "Oyun adı başlık şeridi." },
   { file: "ui/star-counter.png", category: "ui", source: "mockup", description: "Toplam yıldız sayacı." },
   { file: "ui/stars-rating.png", category: "ui", source: "mockup", description: "Seviye yıldız göstergesi (2/3)." },

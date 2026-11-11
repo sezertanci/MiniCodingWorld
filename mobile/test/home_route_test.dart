@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:minikodlamadunyasi/home_route.dart';
+import 'package:minicodingworld/home_route.dart';
 
 const String pageUrl = 'file:///android_asset/flutter_assets/assets/game.html';
 

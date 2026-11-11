@@ -1,4 +1,4 @@
-# Mini Kodlama Dünyası
+# Mini Coding World
 
 7 yaşındaki çocuklar için tarayıcıda çalışan, Türkçe ve eğitici bir kodlama oyunu. Oyun HTML, CSS ve düz JavaScript ile yazılır. Sunucu, üyelik veya veritabanı gerekmez.
 
@@ -52,7 +52,7 @@ Ana ekranın üstünde, yıldız sayacının yanındaki kupa düğmesi **Başar�
 Nasıl çalışır:
 
 - Koşulların hepsi `js/core/achievements.js` içinde, tek yerden hesaplanır. Ayrı bir sayaç tutulmaz; koşullar ilerleme kaydındaki yıldızlardan okunur. İpucu kullanılan seviye 1 yıldız aldığı için 2 ve 3 yıldızlı seviyeler ipucusuz sayılır.
-- Kazanılan ödüller `localStorage` içinde ayrı bir anahtarda (`mini-kodlama-dunyasi.achievements.v1`) saklanır. Her ödül bir kez kazanılır ve bir kez kutlanır; sayfa yenilense de kaybolmaz.
+- Kazanılan ödüller `localStorage` içinde ayrı bir anahtarda (`mini-coding-world.achievements.v1`) saklanır. Her ödül bir kez kazanılır ve bir kez kutlanır; sayfa yenilense de kaybolmaz.
 - Bu özellik eklenmeden önce bitirilmiş seviyeler de sayılır. Bunların ödülleri oyun açılırken sessizce eklenir; çocuğun önüne art arda pencere açılmaz.
 - Yeni rozet kazanılınca ekranın üstünde kısa bir kart çıkar ve kendiliğinden kapanır. Yeni kupa kazanılınca konfetili, tam ekran bir kutlama açılır ve **Harika!** ile kapanır. Aynı anda birden çok ödül gelirse sırayla gösterilir.
 - Kutlama sesleri ses dosyası kullanmadan tarayıcıda çalınır. Ses, ayarlar penceresindeki **Ses: Açık / Kapalı** düğmesiyle kapatılır; bu tercih de kaydedilir.
@@ -109,7 +109,7 @@ Oyunu başka bir cihaza göndermek için bütün kod ve görseller tek bir HTML 
 node tools/build-single-html.js
 ```
 
-Çıktı `dist/mini-kodlama-dunyasi.html` dosyasıdır (yaklaşık 480 KB). Bu dosya e-posta, mesaj veya USB bellekle gönderilir ve çift tıklanarak açılır; internet gerekmez. `dist/` klasörü sürüm kontrolüne eklenmez, kod değiştikçe komut yeniden çalıştırılır. Tek dosyanın ilerleme kaydı, proje klasöründeki `index.html` kaydından ayrıdır.
+Çıktı `dist/mini-coding-world.html` dosyasıdır (yaklaşık 480 KB). Bu dosya e-posta, mesaj veya USB bellekle gönderilir ve çift tıklanarak açılır; internet gerekmez. `dist/` klasörü sürüm kontrolüne eklenmez, kod değiştikçe komut yeniden çalıştırılır. Tek dosyanın ilerleme kaydı, proje klasöründeki `index.html` kaydından ayrıdır.
 
 ### Android sürümü (tablet için)
 

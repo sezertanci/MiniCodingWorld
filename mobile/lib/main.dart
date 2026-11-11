@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'game_page.dart';
 
-const String appTitle = 'Mini Kodlama Dünyası';
+const String appTitle = 'Mini Coding World';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

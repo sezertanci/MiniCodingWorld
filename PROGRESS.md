@@ -11,7 +11,7 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
 - Kullanıcı bilgi verirken hiçbir şey yapılmaz. İşe yalnızca açıkça "başla" veya "uygula" denince geçilir.
 - Promptlar sırayla uygulanır. Kullanıcı bir promptu "tamam" diye onaylamadan sonrakine geçilmez.
 - Her prompt ayrı bir commit olur. Commit kullanıcı onayladıktan sonra atılır. Push yalnızca kullanıcı isterse yapılır.
-- Proje klasörü PascalCase (`MiniKodlamaDunyasi`). Web klasör ve dosyaları küçük harf ve tireyle yazılır (`button-play.svg`). C# yazılırsa PascalCase kullanılır.
+- Proje klasörü PascalCase (`MiniCodingWorld`). Web klasör ve dosyaları küçük harf ve tireyle yazılır (`button-play.svg`). C# yazılırsa PascalCase kullanılır.
 - Teknoloji: düz HTML, CSS ve JS, klasik `<script>` etiketleri (ES modülü yok). Tüm kod tek ortak nesne `MKD` altında. Testler `node --test` ile çalışır.
 - Geliştirme bölünmüş dosyalarla yapılır. Bütün promptlar bitince Node.js betiğiyle tek bir paylaşılabilir HTML dosyası üretilecek ve kullanıcı bunu kendi cihazında test edecek.
 - Görseller: SVG'leri Claude çizer. Karakter ve hayvan görselleri kullanıcı tarafından ChatGPT ile üretilir (stil promptu README'de). Tasarımdan kesilen PNG'ler geçicidir, gerekirse kullanılırken değiştirilir.
@@ -58,7 +58,7 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - Telefonda Komutları Sırala kart yazısı 13 → 14 px yapıldı (kartlar 100×94 px; uzun kelime taşmaz).
   - README oyunları, yıldız kuralını ve klasör düzenini anlatacak şekilde güncellendi.
 
-- [x] Tek HTML betiği: `node tools/build-single-html.js` → `dist/mini-kodlama-dunyasi.html` (~210 KB, `dist/` git'e girmez). CSS/JS gömülür, görseller base64 veri adresine çevrilir. Testi: `tests/build-single-html.test.js`. Sunucudan açılınca hiçbir ek dosya isteği yapmadığı denendi.
+- [x] Tek HTML betiği: `node tools/build-single-html.js` → `dist/mini-coding-world.html` (~210 KB, `dist/` git'e girmez). CSS/JS gömülür, görseller base64 veri adresine çevrilir. Testi: `tests/build-single-html.test.js`. Sunucudan açılınca hiçbir ek dosya isteği yapmadığı denendi.
 
 - [x] Uçtan uca son kontrol (2026-11-06): sıfır ilerlemeyle ana ekran → seviye → 3 yıldız → sonraki seviye → yenileme → ayarlardan sıfırlama zinciri denendi. 80 seviye telefonda (375 px), tablette (768 px) ve masaüstünde (1280 px) taşmasız açılıyor; konsolda hata yok; 258 test geçiyor.
   - Düzeltilen: Tekrar Et'te blok sınırı doluyken ipucu basılamayan yön tuşunu gösteriyordu; artık tekrar sayısını değiştirmeyi veya blok silmeyi öneriyor.
@@ -77,7 +77,7 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - Oyun ekranında seviye rozetinin iki yanında önceki/sonraki seviye okları; kilitli seviyenin oku soluk (`70858fa`).
 
 - [x] Android sürümü (2026-11-07, `4e36ecc`):
-  - `mobile/` altında Flutter uygulaması; tek dosyalık oyunu WebView içinde internetsiz açar. Paket adı `com.sezertanci.minikodlamadunyasi`.
+  - `mobile/` altında Flutter uygulaması; tek dosyalık oyunu WebView içinde internetsiz açar. Paket adı `com.sezertanci.minicodingworld`.
   - `node tools/build-mobile-asset.js` tek HTML'i Flutter asset'ine yazar (üretilen dosya git'e girmez). Kurulum adımları README'nin "Android sürümü" bölümünde.
   - Tek HTML betiği artık JS içinde geçen görsel yollarını da veri adresine çevirir; dosya ~423 KB.
   - Redmi Pad 2 tablette dört oyun, seviye bitirme, ilerlemenin korunması ve ayarlar penceresi denendi.
@@ -89,12 +89,12 @@ Bu dosya, sohbet sıkıştırıldığında veya yeni bir oturuma geçildiğinde 
   - 269 test geçiyor.
 
 - [x] Rozet, kupa ve Başarılarım ekranı (2026-11-08):
-  - `js/core/achievements.js`: 10 rozet + 6 kupa tek listede; her ödülün `goal` ve `measure(stats)` değeri var. Koşullar ilerleme kaydındaki yıldızlardan hesaplanır (2+ yıldız = ipucusuz). Kazanılanlar `mini-kodlama-dunyasi.achievements.v1` anahtarında, Set ile tekrarsız.
+  - `js/core/achievements.js`: 10 rozet + 6 kupa tek listede; her ödülün `goal` ve `measure(stats)` değeri var. Koşullar ilerleme kaydındaki yıldızlardan hesaplanır (2+ yıldız = ipucusuz). Kazanılanlar `mini-coding-world.achievements.v1` anahtarında, Set ile tekrarsız.
   - Açılışta `achievements.sync()` sessiz çalışır (eski ilerlemenin ödülleri pencere açmadan eklenir). Seviye bitince `onLevelCompleted` → `celebration.show(achievements.sync())`.
   - Görsel ayrım (kullanıcı önerisi): rozet = kurdeleli yuvarlak madalya (CSS), kupa = `trophy.svg` + oyun renginde kaide + oyun ikonu arması, rafta. Şampiyon kupası ışıldar.
   - Ana ekranda Başarılarım, yıldız sayacının yanında küçük kupa düğmesi (`.star-counter.achievements-button`, kazanılan/toplam ödül). Alttaki büyük şerit kaldırıldı; oyun eklendikçe sayfa uzasa da düğme hep üstte görünür.
   - Kutlama: rozet üstten kayan kısa kart (3,2 sn, dokununca kapanır); kupa tam ekran konfetili `<dialog>`, "Harika!" ile kapanır. Sırayla gösterilir.
-  - Projede ses yoktu: `js/core/sound.js` Web Audio ile nota çalar (dosya yok). Ayarlar'a "Ses: Açık/Kapalı" eklendi (`mini-kodlama-dunyasi.settings.v1`). İlerlemeyi sıfırla ödülleri de siler.
+  - Projede ses yoktu: `js/core/sound.js` Web Audio ile nota çalar (dosya yok). Ayarlar'a "Ses: Açık/Kapalı" eklendi (`mini-coding-world.settings.v1`). İlerlemeyi sıfırla ödülleri de siler.
   - Kullanıcının tanımında birbirinin aynısı olan koşullar: Dört Dörtlük ≈ İlk Macera Kupası (1. seviye bitmeden diğerleri açılmaz), Büyük Başarı = Kodlama Şampiyonu. İkisi de istendiği gibi ayrı tutuldu, birlikte kazanılırlar.
   - `/gorev` inceleme döngüsü çalıştırıldı (2 tur): rozet hedefleri `GOALS` sabitine alındı, `.color-red` base.css'teki `.group-expert` ile birleştirildi, `countEarnedRewards(items)` tür verilmezse hepsini sayıyor. İkinci tur temiz, 300 test geçiyor.
   - Tarayıcıda denendi: sessiz eşitleme, rozet kartı, kupa kutlaması, tekrar bildirim olmaması, yenilemede korunma, sıfırlama, ses ayarı, telefon/tablet; tek HTML (465 KB) dış istek yapmıyor.

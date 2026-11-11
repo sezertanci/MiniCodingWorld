@@ -3,7 +3,7 @@
 // açmak için internet veya sunucu gerekmez.
 //
 // Kullanım (proje klasöründe):  node tools/build-single-html.js
-// Çıktı:                         dist/mini-kodlama-dunyasi.html
+// Çıktı:                         dist/mini-coding-world.html
 "use strict";
 
 const fs = require("node:fs");
@@ -11,7 +11,7 @@ const path = require("node:path");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUTPUT_DIR = "dist";
-const OUTPUT_FILE = "mini-kodlama-dunyasi.html";
+const OUTPUT_FILE = "mini-coding-world.html";
 
 const MIME_TYPES = Object.freeze({ ".svg": "image/svg+xml", ".png": "image/png", ".webp": "image/webp" });
 
