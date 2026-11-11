@@ -20,10 +20,10 @@
       hint: "Çiçeği sulamak için önce kabın içinde su olmalı.",
     },
     {
-      title: "Dişlerini fırçala", icon: "assets/command-order/teeth-brush.svg",
+      title: "Dişlerini fırçala", icon: "assets/command-order/teeth-brush.webp",
       steps: [
-        step("Fırçaya macun sık", "assets/command-order/teeth-paste.svg"), step("Dişlerini fırçala", "assets/command-order/teeth-brush.svg"),
-        step("Ağzını çalkala", "assets/command-order/teeth-rinse.svg"),
+        step("Fırçaya macun sık", "assets/command-order/teeth-paste.webp"), step("Dişlerini fırçala", "assets/command-order/teeth-brush.webp"),
+        step("Ağzını çalkala", "assets/command-order/teeth-rinse.webp"),
       ],
       hint: "Fırçalamaya başlamadan önce fırçanın üstünde macun olmalı.",
     },
