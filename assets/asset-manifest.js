@@ -100,9 +100,9 @@
   { file: "puzzles/block-repeat.png", category: "puzzles", source: "mockup", description: "3 kez tekrarla blok örneği." },
 
   // Komutları Sırala adım kartları: her görsel eylemin kendisini anlatır
-  { file: "command-order/draw-color.svg", category: "command-order", source: "svg", description: "Komutları Sırala kartı: Resmini boya." },
-  { file: "command-order/draw-paper.svg", category: "command-order", source: "svg", description: "Komutları Sırala kartı: Kâğıdı al." },
-  { file: "command-order/draw-sketch.svg", category: "command-order", source: "svg", description: "Komutları Sırala kartı: Resmini çiz." },
+  { file: "command-order/draw-color.webp", category: "command-order", source: "ai", description: "Komutları Sırala kartı: Resmini boya. Yerel ComfyUI ile üretilip elle düzeltildi." },
+  { file: "command-order/draw-paper.webp", category: "command-order", source: "ai", description: "Komutları Sırala kartı: Kâğıdı al. Yerel ComfyUI ile üretilip elle düzeltildi." },
+  { file: "command-order/draw-sketch.webp", category: "command-order", source: "ai", description: "Komutları Sırala kartı: Resmini çiz. Yerel ComfyUI ile üretilip elle düzeltildi." },
   { file: "command-order/flower-fill-can.webp", category: "command-order", source: "ai", description: "Komutları Sırala kartı: Sulama kabını doldur. Yerel ComfyUI ile üretilip elle düzeltildi." },
   { file: "command-order/flower-water.webp", category: "command-order", source: "ai", description: "Komutları Sırala kartı: Çiçeği sula. Yerel ComfyUI ile üretilip elle düzeltildi." },
   { file: "command-order/hands-dry.webp", category: "command-order", source: "ai", description: "Komutları Sırala kartı: Ellerini kurula. Yerel ComfyUI ile üretildi." },

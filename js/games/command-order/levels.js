@@ -44,10 +44,10 @@
       hint: "Ayakkabının içine girmeden önce ayağında ne olmalı?",
     },
     {
-      title: "Resim yap", icon: "assets/command-order/draw-color.svg",
+      title: "Resim yap", icon: "assets/command-order/draw-color.webp",
       steps: [
-        step("Kâğıdı al", "assets/command-order/draw-paper.svg"), step("Resmini çiz", "assets/command-order/draw-sketch.svg"),
-        step("Resmini boya", "assets/command-order/draw-color.svg"),
+        step("Kâğıdı al", "assets/command-order/draw-paper.webp"), step("Resmini çiz", "assets/command-order/draw-sketch.webp"),
+        step("Resmini boya", "assets/command-order/draw-color.webp"),
       ],
       hint: "Boyamak için önce çizilmiş bir resim gerekir.",
     },
