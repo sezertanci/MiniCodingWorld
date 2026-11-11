@@ -36,10 +36,10 @@
       hint: "Köpükler gitmeden elini kurulamak olmaz.",
     },
     {
-      title: "Ayakkabını giy", icon: "assets/command-order/shoe-tie.svg",
+      title: "Ayakkabını giy", icon: "assets/command-order/shoe-tie.webp",
       steps: [
-        step("Çorabını giy", "assets/command-order/shoe-sock.svg"), step("Ayakkabını giy", "assets/command-order/shoe-on.svg"),
-        step("Bağcığını bağla", "assets/command-order/shoe-tie.svg"),
+        step("Çorabını giy", "assets/command-order/shoe-sock.webp"), step("Ayakkabını giy", "assets/command-order/shoe-on.webp"),
+        step("Bağcığını bağla", "assets/command-order/shoe-tie.webp"),
       ],
       hint: "Ayakkabının içine girmeden önce ayağında ne olmalı?",
     },
