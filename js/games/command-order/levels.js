@@ -54,10 +54,10 @@
 
     // Orta 6–10: 4–5 adım
     {
-      title: "Sandviç hazırla", icon: "assets/command-order/sandwich-close.svg",
+      title: "Sandviç hazırla", icon: "assets/command-order/sandwich-close.webp",
       steps: [
-        step("Tabağı masaya koy", "assets/command-order/sandwich-plate.svg"), step("Ekmeği tabağa koy", "assets/command-order/sandwich-bread.svg"), step("Üstüne peynir koy", "assets/command-order/sandwich-cheese.svg"),
-        step("Üstünü ekmekle kapat", "assets/command-order/sandwich-close.svg"), step("Afiyetle ye", "assets/command-order/sandwich-eat.svg"),
+        step("Tabağı masaya koy", "assets/command-order/sandwich-plate.webp"), step("Ekmeği tabağa koy", "assets/command-order/sandwich-bread.webp"), step("Üstüne peynir koy", "assets/command-order/sandwich-cheese.webp"),
+        step("Üstünü ekmekle kapat", "assets/command-order/sandwich-close.webp"), step("Afiyetle ye", "assets/command-order/sandwich-eat.webp"),
       ],
       hint: "Ekmeği koyacak bir yer lazım. Masada ilk ne olmalı?",
     },
