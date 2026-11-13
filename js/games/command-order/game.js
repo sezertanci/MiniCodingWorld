@@ -8,7 +8,6 @@
   const { REASON } = MKD.commandOrder;
 
   const GAME_ID = "command-order";
-  const SHUFFLE_SEED_STEP = 7919;
   const TONE_COUNT = 5;
   const POOL_ZONE = "pool";
 
@@ -44,9 +43,19 @@
     });
   }
 
+  // Seviye numarası → son açılıştaki kart sırası; aynı seviye art arda aynı sırayla açılmasın diye
+  const lastOrders = new Map();
+
+  function shuffledCards(level, levelNumber) {
+    const { shuffleCards, buildCards, createSeed } = MKD.commandOrder;
+    const cards = shuffleCards(buildCards(level), createSeed(), lastOrders.get(levelNumber));
+    lastOrders.set(levelNumber, cards.map((card) => card.id));
+    return cards;
+  }
+
   function mount(container, { level: levelNumber, feedback, character, onComplete }) {
     const level = MKD.commandOrder.levels[levelNumber - 1];
-    const cards = MKD.commandOrder.shuffleCards(MKD.commandOrder.buildCards(level), levelNumber * SHUFFLE_SEED_STEP);
+    const cards = shuffledCards(level, levelNumber);
     const cardById = new Map(cards.map((card, index) => [card.id, { ...card, tone: index % TONE_COUNT }]));
     const introText = level.extras ? MESSAGES.extrasIntro : MESSAGES.intro;
 

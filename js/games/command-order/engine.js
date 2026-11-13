@@ -8,10 +8,15 @@
     TOO_EARLY: "too-early", // Kart olması gerekenden önceki bir kutuda; ondan önce yapılacak bir adım var
   });
 
-  // Basit, tekrarlanabilir rastgele sayı üreteci: aynı seviye her açılışta aynı karışık sırayla gelir.
+  // Basit, tekrarlanabilir rastgele sayı üreteci: aynı tohum her zaman aynı karışık sırayı verir.
+  // Oyun her açılışta yeni bir tohum (createSeed) kullanır; testler sabit tohumla çalışır.
   const LCG_MULTIPLIER = 1103515245;
   const LCG_INCREMENT = 12345;
   const LCG_MODULUS = 2 ** 31;
+  // Karışık sıra çözülmüş sıraya ya da kaçınılan sıraya denk gelirse yeniden karıştırma sınırı
+  const MAX_SHUFFLE_ATTEMPTS = 20;
+
+  const createSeed = () => Math.floor(Math.random() * LCG_MODULUS);
 
   function createRandom(seed) {
     let value = seed;
@@ -30,13 +35,26 @@
 
   const isInOrder = (cards) => cards.every((card, index) => card.id === index);
 
-  /** Kartları karıştırır. Sonuç hiçbir zaman zaten doğru sıralı olmaz. */
-  function shuffleCards(cards, seed) {
-    const random = createRandom(seed);
+  const hasOrder = (cards, ids) => cards.length === ids.length && cards.every((card, index) => card.id === ids[index]);
+
+  function shuffleOnce(cards, random) {
     const result = [...cards];
     for (let index = result.length - 1; index > 0; index--) {
       const other = Math.floor(random() * (index + 1));
       [result[index], result[other]] = [result[other], result[index]];
+    }
+    return result;
+  }
+
+  /**
+   * Kartları karıştırır. Sonuç hiçbir zaman zaten doğru sıralı olmaz.
+   * @param {number[]} avoidIds Kaçınılacak sıra (ör. bir önceki açılış); başka sıra kalmadıysa yine de gelebilir.
+   */
+  function shuffleCards(cards, seed, avoidIds = []) {
+    const random = createRandom(seed);
+    let result = shuffleOnce(cards, random);
+    for (let attempt = 1; attempt < MAX_SHUFFLE_ATTEMPTS && (isInOrder(result) || hasOrder(result, avoidIds)); attempt++) {
+      result = shuffleOnce(cards, random);
     }
     if (isInOrder(result)) {
       result.push(result.shift());
@@ -68,5 +86,5 @@
     return slot < 0 ? null : { slot, cardId: slot };
   }
 
-  MKD.commandOrder = Object.assign(MKD.commandOrder ?? {}, { REASON, buildCards, shuffleCards, checkOrder, nextHint });
+  MKD.commandOrder = Object.assign(MKD.commandOrder ?? {}, { REASON, createSeed, buildCards, shuffleCards, checkOrder, nextHint });
 })((globalThis.MKD ??= {}));

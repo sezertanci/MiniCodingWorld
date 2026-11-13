@@ -71,6 +71,29 @@ describe("shuffleCards", () => {
       assert.notDeepEqual(ids, [0, 1, 2]);
     }
   });
+
+  test("shuffleCards_AvoidIdsGiven_ReturnsDifferentOrder", () => {
+    const cards = buildCards({ steps: THREE_STEP_LEVEL.steps });
+
+    for (let seed = 1; seed <= 50; seed++) {
+      const avoidIds = shuffleCards(cards, seed).map((card) => card.id);
+      const ids = shuffleCards(cards, seed, avoidIds).map((card) => card.id);
+      assert.notDeepEqual(ids, avoidIds);
+      assert.notDeepEqual(ids, [0, 1, 2]);
+    }
+  });
+
+  test("shuffleCards_OnlyOtherOrderAvoided_ReturnsAvoidedOrder", () => {
+    const cards = buildCards({ steps: THREE_STEP_LEVEL.steps.slice(0, 2) });
+
+    assert.deepEqual(shuffleCards(cards, 7, [1, 0]).map((card) => card.id), [1, 0]);
+  });
+
+  test("createSeed_Called_ReturnsNonNegativeInteger", () => {
+    const seed = commandOrder.createSeed();
+
+    assert.ok(Number.isInteger(seed) && seed >= 0);
+  });
 });
 
 describe("checkOrder", () => {
