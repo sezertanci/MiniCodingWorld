@@ -78,10 +78,10 @@
       hint: "Tohumun gireceği bir çukur olmadan onu toprağa koyamazsın.",
     },
     {
-      title: "Okula hazırlan", icon: "assets/command-order/school-bag.svg",
+      title: "Okula hazırlan", icon: "assets/command-order/school-bag.webp",
       steps: [
-        step("Alarm çalınca uyan", "assets/command-order/school-wake.svg"), step("Okul kıyafetini giy", "assets/command-order/school-dress.svg"),
-        step("Çantanı sırtına tak", "assets/command-order/school-bag.svg"), step("Servise bin", "assets/command-order/school-bus.svg"),
+        step("Alarm çalınca uyan", "assets/command-order/school-wake.webp"), step("Okul kıyafetini giy", "assets/command-order/school-dress.webp"),
+        step("Çantanı sırtına tak", "assets/command-order/school-bag.webp"), step("Servise bin", "assets/command-order/school-bus.webp"),
       ],
       hint: "Uyanmadan giyinmek olmaz. Sabah ilk ne olur?",
     },
