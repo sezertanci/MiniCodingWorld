@@ -96,11 +96,11 @@
 
     // Zor 11–15: 5–7 adım, ara hedefler
     {
-      title: "Kek yap", icon: "assets/command-order/cake-slice.svg",
+      title: "Kek yap", icon: "assets/command-order/cake-slice.webp",
       stages: [{ title: "Hamuru hazırla", size: 3 }, { title: "Keki pişir", size: 3 }],
       steps: [
-        step("Malzemeleri masaya koy", "assets/command-order/cake-ingredients.svg"), step("Hepsini kapta karıştır", "assets/command-order/cake-mix.svg"), step("Hamuru kalıba dök", "assets/command-order/cake-pour.svg"),
-        step("Kalıbı fırına koy", "assets/command-order/cake-oven.svg"), step("Pişmesini bekle", "assets/command-order/cake-bake.svg"), step("Keki dilimle", "assets/command-order/cake-slice.svg"),
+        step("Malzemeleri masaya koy", "assets/command-order/cake-ingredients.webp"), step("Hepsini kapta karıştır", "assets/command-order/cake-mix.webp"), step("Hamuru kalıba dök", "assets/command-order/cake-pour.webp"),
+        step("Kalıbı fırına koy", "assets/command-order/cake-oven.webp"), step("Pişmesini bekle", "assets/command-order/cake-bake.webp"), step("Keki dilimle", "assets/command-order/cake-slice.webp"),
       ],
       hint: "Hamur hazır olmadan fırına bir şey koyamazsın.",
     },
@@ -187,7 +187,7 @@
       title: "Kurabiye yap ve paylaş", icon: "assets/command-order/cookie-share.svg",
       stages: [{ title: "Hazırla", size: 3 }, { title: "Pişir", size: 2 }, { title: "Paylaş", size: 2 }],
       steps: [
-        step("Ellerini yıka", "assets/command-order/hands-rinse.webp"), step("Malzemeleri karıştır", "assets/command-order/cake-mix.svg"), step("Hamura şekil ver", "assets/command-order/cookie-shape.svg"),
+        step("Ellerini yıka", "assets/command-order/hands-rinse.webp"), step("Malzemeleri karıştır", "assets/command-order/cake-mix.webp"), step("Hamura şekil ver", "assets/command-order/cookie-shape.svg"),
         step("Fırında pişir", "assets/command-order/cookie-bake.svg"), step("Soğumasını bekle", "assets/command-order/cookie-cool.svg"), step("Kutuya koy", "assets/command-order/cookie-box.svg"),
         step("Arkadaşlarına ikram et", "assets/command-order/cookie-share.svg"),
       ],
