@@ -6,8 +6,11 @@
   const CHARACTERS = Object.freeze([
     { id: "robi", name: "Robi", image: "assets/characters/robot.webp" },
     { id: "fiyo", name: "Fiyo", image: "assets/characters/robot-bow.webp" },
+    { id: "pervane", name: "Pervane", image: "assets/characters/robot-propeller.webp" },
     { id: "isil", name: "Işıl", image: "assets/characters/robot-lamp.webp" },
+    { id: "kahraman", name: "Kahraman", image: "assets/characters/robot-hero.webp" },
     { id: "pembe", name: "Pembe", image: "assets/characters/robot-ribbon.webp" },
+    { id: "sovalye", name: "Şövalye", image: "assets/characters/robot-knight.webp" },
     { id: "piril", name: "Pırıl", image: "assets/characters/robot-cape.webp" },
   ].map(Object.freeze));
 
